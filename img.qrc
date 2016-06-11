@@ -1,0 +1,26 @@
+<RCC>
+    <qresource prefix="/">
+        <file>img/callNow.png</file>
+        <file>img/callStop.png</file>
+        <file>img/reload.png</file>
+        <file>img/ring.png</file>
+        <file>img/save.png</file>
+        <file>img/lyceum.png</file>
+        <file>img/exit.png</file>
+        <file>img/save_sheduls.png</file>
+        <file>img/collapse.png</file>
+        <file>img/expand.png</file>
+        <file>img/settings.png</file>
+        <file>img/days.png</file>
+        <file>img/instruction.png</file>
+        <file>img/author.png</file>
+        <file>img/clock.png</file>
+        <file>img/play.png</file>
+        <file>img/stop.png</file>
+        <file>img/en.png</file>
+        <file>img/ru.png</file>
+        <file>img/locale.png</file>
+        <file>img/apply.png</file>
+        <file>img/open.png</file>
+    </qresource>
+</RCC>
