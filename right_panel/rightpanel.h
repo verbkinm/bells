@@ -38,6 +38,8 @@ public:
     QString getLessonSoundBegin (int change, int numberOfLesson);
     QString getLessonSoundEnd   (int change, int numberOfLesson);
 
+    bool    _isTabEnabled       (int change);
+
 private:
     QLabel *pLabel; //Установленно распсание № n
     QList<QTableWidget*> pTable; //Вкладки смен

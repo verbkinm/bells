@@ -835,14 +835,15 @@ void MainWindow::slotResetSettings()
                                 + ")" );
     if(cacheSettingsDays[QDate::currentDate().dayOfWeek()-1][1].toBool()){
         for(int change = 1; change < 3; change++){
-            for(int lessons = 0; lessons < pRightPanel->getCountOfLessons(change); lessons++){
-                if(callBeforeLesson(change, lessons))
-                    log.write(" - call now before lesson - "+ callNow(cacheSettingsDays[QDate::currentDate().dayOfWeek()-1][3].toString()) );
-                if(QTime::currentTime().toString("hh:mm:ss") == pRightPanel->getLessonTimeBegin         (change, lessons)+":00")
-                    log.write(" - call now begin lesson - " + callNow(pRightPanel->getLessonSoundBegin  (change, lessons))     );
-                if(QTime::currentTime().toString("hh:mm:ss") == pRightPanel->getLessonTimeEnd           (change, lessons)+":00")
-                    log.write(" - call now end lesson - "   + callNow(pRightPanel->getLessonSoundEnd    (change, lessons))     );
-            }
+            if(pRightPanel->_isTabEnabled(change))
+                for(int lessons = 0; lessons < pRightPanel->getCountOfLessons(change); lessons++){
+                    if(callBeforeLesson(change, lessons))
+                        log.write(" - call now before lesson - "+ callNow(cacheSettingsDays[QDate::currentDate().dayOfWeek()-1][3].toString()) );
+                    if(QTime::currentTime().toString("hh:mm:ss") == pRightPanel->getLessonTimeBegin         (change, lessons)+":00")
+                        log.write(" - call now begin lesson - " + callNow(pRightPanel->getLessonSoundBegin  (change, lessons))     );
+                    if(QTime::currentTime().toString("hh:mm:ss") == pRightPanel->getLessonTimeEnd           (change, lessons)+":00")
+                        log.write(" - call now end lesson - "   + callNow(pRightPanel->getLessonSoundEnd    (change, lessons))     );
+                }
         }
     }
 }

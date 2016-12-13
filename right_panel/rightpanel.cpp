@@ -164,6 +164,12 @@ void RightPanel::correctChange(int change)
         exit(101);
     }
 }
+bool RightPanel::_isTabEnabled(int change)
+{
+    if(this->tabs->isTabEnabled(change - 1))
+        return true;
+    return false;
+}
 
 RightPanel::~RightPanel()
 {
