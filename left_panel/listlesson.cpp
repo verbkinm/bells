@@ -211,6 +211,8 @@ bool ListLesson::isChangeEnabled(int change)
         return pCheckbox_change1->isChecked();
     if(change == 2)
         return pCheckbox_change2->isChecked();
+
+    return 0;
 }
 bool ListLesson::isChangeVisible(int change)
 {
@@ -219,6 +221,8 @@ bool ListLesson::isChangeVisible(int change)
     if(change == 2)
         return pListChange2.at(0)->isVisible();
     correctChange(change);
+
+    return 0;
 }
 bool ListLesson::isLessonEnabled(int change, int lesson)
 {
@@ -227,6 +231,8 @@ bool ListLesson::isLessonEnabled(int change, int lesson)
     if(change == 2)
         return pListChange2.at(lesson)->isLessonEnabled();
     correctChange(change);
+
+    return 0;
 }
 QString ListLesson::getLessonTimeBegin(int change, int numberOfLesson)
 {
@@ -235,6 +241,8 @@ QString ListLesson::getLessonTimeBegin(int change, int numberOfLesson)
     if(change == 2)
         return pListChange2.at(numberOfLesson)->getLessonTimeBegin();
     correctChange(change);
+
+    return 0;
 }
 QString ListLesson::getLessonTimeEnd(int change, int numberOfLesson)
 {
@@ -243,6 +251,8 @@ QString ListLesson::getLessonTimeEnd(int change, int numberOfLesson)
     if(change == 2)
         return pListChange2.at(numberOfLesson)->getLessonTimeEnd();
     correctChange(change);
+
+    return 0;
 }
 QString ListLesson::getLessonSoundBegin(int change, int numberOfLesson)
 {
@@ -251,6 +261,8 @@ QString ListLesson::getLessonSoundBegin(int change, int numberOfLesson)
     if(change == 2)
         return pListChange2.at(numberOfLesson)->getLessonSoundBegin();
     correctChange(change);
+
+    return 0;
 }
 QString ListLesson::getLessonSoundEnd(int change, int numberOfLesson)
 {
@@ -259,6 +271,8 @@ QString ListLesson::getLessonSoundEnd(int change, int numberOfLesson)
     if(change == 2)
         return pListChange2.at(numberOfLesson)->getLessonSoundEnd();
     correctChange(change);
+
+    return 0;
 }
 QString ListLesson::getLessonSoundBeginToSave(int change, int numberOfLesson)
 {
@@ -267,6 +281,8 @@ QString ListLesson::getLessonSoundBeginToSave(int change, int numberOfLesson)
     if(change == 2)
         return pListChange2.at(numberOfLesson)->getLessonSoundBeginToSave();
     correctChange(change);
+
+    return 0;
 }
 QString ListLesson::getLessonSoundEndToSave(int change, int numberOfLesson)
 {
@@ -275,6 +291,8 @@ QString ListLesson::getLessonSoundEndToSave(int change, int numberOfLesson)
     if(change == 2)
         return pListChange2.at(numberOfLesson)->getLessonSoundEndToSave();
     correctChange(change);
+
+    return 0;
 }
 void ListLesson::slot_hide_change1()
 {

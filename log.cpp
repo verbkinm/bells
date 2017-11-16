@@ -15,6 +15,11 @@ void Log::write(QString stringLog)
         dir.mkpath(QDir::homePath()+"/"+".LYCEUM/Bells");
     dir.setPath(QDir::homePath()+"/"+".LYCEUM/Bells");
     QString fileName = dir.path()+"/"+"bells.log";
+#elif defined (Q_OS_UNIX)
+    if( !dir.exists(QDir::homePath()+"/"+".LYCEUM/Bells") )
+        dir.mkpath(QDir::homePath()+"/"+".LYCEUM/Bells");
+    dir.setPath(QDir::homePath()+"/"+".LYCEUM/Bells");
+    QString fileName = dir.path()+"/"+"bells.log";
 #endif
     QFile log(fileName);
     log.open(QIODevice::WriteOnly | QIODevice::Append);

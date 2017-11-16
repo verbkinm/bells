@@ -66,6 +66,8 @@ void Dialog::slotPlayStop1()
     QString sound = dir.path().replace("/","\\")+"\\"+ui->dialogBeginSound->currentText();
 #elif defined (Q_OS_LINUX)
     QString sound = dir.path()+"/"+ui->dialogBeginSound->currentText();
+#elif defined (Q_OS_UNIX)
+    QString sound = dir.path()+"/"+ui->dialogBeginSound->currentText();
 #endif
     player.setVolume(100);
 
@@ -92,6 +94,8 @@ void Dialog::slotPlayStop2()
 #if defined (Q_OS_WIN)
     QString sound = dir.path().replace("/","\\")+"\\"+ui->dialogEndSound->currentText();
 #elif defined (Q_OS_LINUX)
+    QString sound = dir.path()+"/"+ui->dialogEndSound->currentText();
+#elif defined (Q_OS_UNIX)
     QString sound = dir.path()+"/"+ui->dialogEndSound->currentText();
 #endif
 

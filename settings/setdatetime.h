@@ -16,7 +16,7 @@ class SetDateTime : public QDialog
   Q_OBJECT
 
 public:
-  SetDateTime(QLocale &locale, QWidget *parent = 0);
+  SetDateTime(QLocale locale, QWidget *parent = 0);
   ~SetDateTime();
 
   QDate getDate();

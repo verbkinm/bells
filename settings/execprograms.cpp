@@ -66,6 +66,8 @@ void ExecPrograms::slotChooseProgramStart1()
         ui->programStart1->setText(tmpPath.replace("/","\\"));
 #elif defined (Q_OS_LINUX)
         ui->programStart1->setText(tmpPath);
+#elif defined (Q_OS_UNIX)
+        ui->programStart1->setText(tmpPath);
 #endif
         ui->programStart1->setToolTip   (path_1 + ui->programStart1->text()  );
         ui->programStart1->setWhatsThis (path_1 + ui->programStart1->text()  );
@@ -79,6 +81,8 @@ void ExecPrograms::slotChooseProgramStart2()
 #if defined (Q_OS_WIN)
         ui->programStart2->setText(tmpPath.replace("/","\\"));
 #elif defined (Q_OS_LINUX)
+        ui->programStart1->setText(tmpPath);
+#elif defined (Q_OS_UNIX)
         ui->programStart1->setText(tmpPath);
 #endif
         ui->programStart2->setToolTip   (path_2 + ui->programStart2->text()  );
@@ -94,6 +98,8 @@ void ExecPrograms::slotChooseProgramEnd1()
         ui->programEnd1->setText(tmpPath.replace("/","\\"));
 #elif defined (Q_OS_LINUX)
         ui->programEnd1->setText(tmpPath);
+#elif defined (Q_OS_UNIX)
+        ui->programEnd1->setText(tmpPath);
 #endif
         ui->programEnd1->setToolTip     (path_1 + ui->programEnd1->text()    );
         ui->programEnd1->setWhatsThis   (path_1 + ui->programEnd1->text()    );
@@ -107,6 +113,8 @@ void ExecPrograms::slotChooseProgramEnd2()
 #if defined (Q_OS_WIN)
         ui->programEnd2->setText(tmpPath.replace("/","\\"));
 #elif defined (Q_OS_LINUX)
+        ui->programEnd2->setText(tmpPath);
+#elif defined (Q_OS_UNIX)
         ui->programEnd2->setText(tmpPath);
 #endif
         ui->programEnd2->setToolTip     (path_2 + ui->programEnd2->text()    );

@@ -1,5 +1,5 @@
 #ifndef LESSON_MELODY_H
-#define LESSONMELODY_H
+#define LESSON_MELODY_H
 
 #include <QDialog>
 #include <QDir>

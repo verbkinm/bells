@@ -80,6 +80,8 @@ void settings::slotPlayStop()
     QString sound = path_of_sounds_dir.path().replace("/","\\")+"\\"+ui->ring_before_lesson->currentText();
 #elif defined (Q_OS_LINUX)
     QString sound = path_of_sounds_dir.path()+"/"+ui->ring_before_lesson->currentText();
+#elif defined (Q_OS_UNIX)
+    QString sound = path_of_sounds_dir.path()+"/"+ui->ring_before_lesson->currentText();
 #endif
 
   player.setVolume(100);

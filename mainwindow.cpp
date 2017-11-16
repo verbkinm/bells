@@ -26,6 +26,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
         qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
 #elif defined (Q_OS_LINUX)
         qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
+#elif defined (Q_OS_UNIX)
+        qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
 #endif
         QApplication::installTranslator(&qtTranslator);
     }
@@ -75,6 +77,8 @@ void MainWindow::firstStartProgram()
   qtTranslator.load(QCoreApplication::applicationDirPath().replace("/","\\")+"\\translation\\arrowpad_"+QLocale::system().name() );
 #elif defined (Q_OS_LINUX)
   qtTranslator.load(QCoreApplication::applicationDirPath()+"/translation/arrowpad_"+QLocale::system().name() );
+#elif defined (Q_OS_UNIX)
+  qtTranslator.load(QCoreApplication::applicationDirPath()+"/translation/arrowpad_"+QLocale::system().name() );
 #endif
   QApplication::installTranslator(&qtTranslator);
 
@@ -83,6 +87,8 @@ void MainWindow::firstStartProgram()
 #if defined (Q_OS_WIN)
         settings.setValue("Generals_settings/path_application",QCoreApplication::applicationDirPath().replace("/","\\"));
 #elif defined (Q_OS_LINUX)
+        settings.setValue("Generals_settings/path_application",QCoreApplication::applicationDirPath());
+#elif defined (Q_OS_UNIX)
         settings.setValue("Generals_settings/path_application",QCoreApplication::applicationDirPath());
 #endif
         settings.setValue("Generals_settings/numbers_of_tabs",4);
@@ -155,6 +161,9 @@ void MainWindow::firstStartProgram()
 #elif defined (Q_OS_LINUX)
         settings.setValue("Generals_settings/path_of_sounds_dir",QCoreApplication::applicationDirPath()+"/sounds");
         settings.setValue("Generals_settings/path_save_and_open_file",QCoreApplication::applicationDirPath());
+#elif defined (Q_OS_UNIX)
+        settings.setValue("Generals_settings/path_of_sounds_dir",QCoreApplication::applicationDirPath()+"/sounds");
+        settings.setValue("Generals_settings/path_save_and_open_file",QCoreApplication::applicationDirPath());
 #endif
         settings.setValue("Generals_settings/manual_ring",test_sound);
         for (int day = 1; day < 8; day++) {
@@ -213,6 +222,8 @@ void MainWindow::readSettingsCache()
     cacheSettingsGenerals[7] = settings.value("Generals_settings/start_tab");
     cacheSettingsGenerals[8] = settings.value("Generals_settings/path_save_and_open_file");
     cacheSettingsGenerals[9] = settings.value("Generals_settings/path_application");
+    if( cacheSettingsGenerals[9].toString().isEmpty() )
+        settings.setValue("Generals_settings/path_application", QCoreApplication::applicationDirPath());
 }
 void MainWindow::writeSettings(bool isSaveSheduls)
 {
@@ -501,6 +512,11 @@ QString MainWindow::callNow(QString sound)
         QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
         return "error, file " + cacheSettingsGenerals[2].toString() + "/" + sound + " - not exist!";
     }
+#elif defined (Q_OS_UNIX)
+    if( !QFile(cacheSettingsGenerals[2].toString() + "/" + sound).exists() ){
+        QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
+        return "error, file " + cacheSettingsGenerals[2].toString() + "/" + sound + " - not exist!";
+    }
 #endif
   if( player.state() == QMediaPlayer::PlayingState )
     return " error, melody is already playing" ;
@@ -517,6 +533,13 @@ QString MainWindow::callNow(QString sound)
 
     tmpArgs << cacheSettingsGenerals[2].toString() + "\\" + sound;
 #elif defined (Q_OS_LINUX)
+    if(!cacheSettingsGenerals[5].toString().isEmpty())
+       cmdProgramStart[0].start(cacheSettingsGenerals[5].toString());
+    if(!cacheSettingsGenerals[6].toString().isEmpty())
+      cmdProgramStart[1].start(cacheSettingsGenerals[6].toString());
+
+    tmpArgs << cacheSettingsGenerals[2].toString() + "/" + sound;
+#elif defined (Q_OS_UNIX)
     if(!cacheSettingsGenerals[5].toString().isEmpty())
        cmdProgramStart[0].start(cacheSettingsGenerals[5].toString());
     if(!cacheSettingsGenerals[6].toString().isEmpty())
@@ -672,6 +695,10 @@ void MainWindow::slotAboutInstruction()
 #elif defined (Q_OS_LINUX)
   args << "-collectionFile" << cacheSettingsGenerals[9].toString()+"/help/instruction.qhc";
   cmdAssistant.start("assistant",args);
+#elif defined (Q_OS_UNIX)
+  qDebug() << cacheSettingsGenerals[9].toString();
+  args << "-collectionFile" << cacheSettingsGenerals[9].toString()+"/help/instruction.qhc";
+  cmdAssistant.start("assistant",args);
 #endif
 }
 void MainWindow::slotAboutInstructionClose()
@@ -682,16 +709,28 @@ void MainWindow::slotAboutInstructionClose()
 }
 void MainWindow::slotSetDateTime()
 {
+#if defined (Q_OS_UNIX)
+    QMessageBox* pmbxUnix =
+                        new QMessageBox(tr("Warning"),
+                        tr("In Unix system you can't change time and date in this program!"),
+                        QMessageBox::Warning,
+                        QMessageBox::Ok,
+                        QMessageBox::NoButton, QMessageBox::NoButton);
+    if( pmbxUnix->exec() == QMessageBox::Ok){
+        delete pmbxUnix;
+        return;
+    }
+#endif
   QMessageBox* pmbx =
                       new QMessageBox(tr("Warning"),
                       tr("These settings change the date and time system! Continue?"),
                       QMessageBox::Information,
                       QMessageBox::Yes,
                       QMessageBox::No,QMessageBox::NoButton);
-      if (pmbx->exec() == QMessageBox::Yes){
+      if( pmbx->exec() == QMessageBox::Yes){
           SetDateTime *dateTime = new SetDateTime(locale);
           dateTime->show();
-      if( dateTime->exec() == QDialog::Accepted ){
+          if( dateTime->exec() == QDialog::Accepted ){
 #if defined (Q_OS_WIN)
           SYSTEMTIME lt;
           GetLocalTime(&lt);
@@ -712,25 +751,24 @@ void MainWindow::slotSetDateTime()
           if( SetLocalTime(&lt) == 0 )
               QMessageBox::information(dateTime, tr("Warning"), tr("To change the date and time you need to run a program as a local administrator!"));
 #elif defined (Q_OS_LINUX)
-    QString month = QString::number(dateTime->getDate().month());
-    QString day   = QString::number(dateTime->getDate().day());
-    QString hour  = QString::number(dateTime->getTime().hour());
-    QString minute= QString::number(dateTime->getTime().minute());
-    QString year  = QString::number(dateTime->getDate().year());
-    QString second= QString::number(dateTime->getTime().second());
+        QString month = QString::number(dateTime->getDate().month());
+        QString day   = QString::number(dateTime->getDate().day());
+        QString hour  = QString::number(dateTime->getTime().hour());
+        QString minute= QString::number(dateTime->getTime().minute());
+        QString year  = QString::number(dateTime->getDate().year());
+        QString second= QString::number(dateTime->getTime().second());
 
-    if(month.toInt() < 10)  {month  = "0" + month;}
-    if(day.toInt() < 10)    {day    = "0" + day;}
-    if(hour.toInt() < 10)   {hour   = "0" + hour;}
-    if(minute.toInt() < 10) {minute = "0" + minute;}
-    if(second.toInt() < 10) {second = "0" + second;}
+        if(month.toInt() < 10)  {month  = "0" + month;}
+        if(day.toInt() < 10)    {day    = "0" + day;}
+        if(hour.toInt() < 10)   {hour   = "0" + hour;}
+        if(minute.toInt() < 10) {minute = "0" + minute;}
+        if(second.toInt() < 10) {second = "0" + second;}
 
-    QString date_and_time = month+day+hour+minute+year+"."+second;
+        QString date_and_time = month+day+hour+minute+year+"."+second;
 
-//    qDebug() << system(QString("gksu date "+date_and_time).toLocal8Bit() );
-    Password *password = new Password(date_and_time);
+    qDebug() << system(QString("gksu date "+date_and_time).toLocal8Bit() );
+        Password *password = new Password(date_and_time);
 //    password.show();
-
 #endif
         dateTime->close();
         }
@@ -763,6 +801,9 @@ void MainWindow::slotStatusChanged(QMediaPlayer::State state)
 #elif defined (Q_OS_LINUX)
       cmdProgramEnd[0].start(cacheSettingsGenerals[3].toString());
       cmdProgramEnd[1].start(cacheSettingsGenerals[4].toString());
+#elif defined (Q_OS_UNIX)
+      cmdProgramEnd[0].start(cacheSettingsGenerals[3].toString());
+      cmdProgramEnd[1].start(cacheSettingsGenerals[4].toString());
 #endif
       log.write(" - program 1 after call - " + cacheSettingsGenerals[3].toString());
       log.write(" - program 2 after call - " + cacheSettingsGenerals[4].toString());
@@ -780,6 +821,8 @@ void MainWindow::slotSetLanguageRu()
 #if defined (Q_OS_WIN)
     qtTranslator.load(cacheSettingsGenerals[9].toString()+"\\translation\\arrowpad_ru_RU");
 #elif defined (Q_OS_LINUX)
+    qtTranslator.load(cacheSettingsGenerals[9].toString()+"/translation/arrowpad_ru_RU");
+#elif defined (Q_OS_UNIX)
     qtTranslator.load(cacheSettingsGenerals[9].toString()+"/translation/arrowpad_ru_RU");
 #endif
     QApplication::installTranslator(&qtTranslator);

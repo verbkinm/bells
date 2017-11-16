@@ -10,7 +10,7 @@ Password::Password(QString &date) : QDialog()
 {
     date_and_time = date;
     this->setFixedSize(250, 100);
-    this->setWindowTitle(tr("Аутентификация"));
+    this->setWindowTitle(tr("Authentication"));
 
     QPushButton* pOk = new QPushButton("OK");
     QPushButton* pCancel = new QPushButton("Cancel");
@@ -43,10 +43,10 @@ void Password::showWidget()
     const char *ptr = string.toUtf8().constData(); //t.toAscii().constData();
 
     int i = system(ptr);
-    if(i!= 0)
+    if( i != 0)
     {
         QMessageBox* msgBox = new QMessageBox;
-        msgBox->setText(tr("Вы ввели не правильный пароль!"));
+        msgBox->setText(tr("You input wrong password!"));
         msgBox->setStandardButtons(QMessageBox::Ok);
         msgBox->setDefaultButton(QMessageBox::Ok);
         pInput->setEchoMode(QLineEdit::Password);

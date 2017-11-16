@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.0" language="ru_RU">
+<TS version="2.1" language="ru_RU">
 <context>
     <name>AboutProgram</name>
     <message>
@@ -196,7 +196,7 @@
         <translation>Путь к каталогу мелодий - </translation>
     </message>
     <message>
-        <location filename="../settings/generals_settings.cpp" line="70"/>
+        <location filename="../settings/generals_settings.cpp" line="67"/>
         <source>Select the directory with the ringtones</source>
         <translation>Выбор каталога мелодий</translation>
     </message>
@@ -213,249 +213,274 @@
     <name>ListLesson</name>
     <message>
         <location filename="../left_panel/listlesson.cpp" line="25"/>
-        <location filename="../left_panel/listlesson.cpp" line="341"/>
+        <location filename="../left_panel/listlesson.cpp" line="359"/>
         <source>hide\show lessons in change #1</source>
         <translation>Скрыть\Показать уроки в смене №1</translation>
     </message>
     <message>
         <location filename="../left_panel/listlesson.cpp" line="26"/>
-        <location filename="../left_panel/listlesson.cpp" line="337"/>
+        <location filename="../left_panel/listlesson.cpp" line="355"/>
         <source>Change #1</source>
         <translation>Смена №1</translation>
     </message>
     <message>
         <location filename="../left_panel/listlesson.cpp" line="28"/>
-        <location filename="../left_panel/listlesson.cpp" line="338"/>
+        <location filename="../left_panel/listlesson.cpp" line="356"/>
         <source>On\Off calls for change #1</source>
         <translation>Вкл.\Выкл. звонки для смены №1</translation>
     </message>
     <message>
         <location filename="../left_panel/listlesson.cpp" line="37"/>
-        <location filename="../left_panel/listlesson.cpp" line="342"/>
+        <location filename="../left_panel/listlesson.cpp" line="360"/>
         <source>hide\show lessons in change #2</source>
         <translation>Скрыть\Показать уроки в смене №2</translation>
     </message>
     <message>
         <location filename="../left_panel/listlesson.cpp" line="38"/>
-        <location filename="../left_panel/listlesson.cpp" line="339"/>
+        <location filename="../left_panel/listlesson.cpp" line="357"/>
         <source>Change #2</source>
         <translation>Смена №2</translation>
     </message>
     <message>
         <location filename="../left_panel/listlesson.cpp" line="40"/>
-        <location filename="../left_panel/listlesson.cpp" line="340"/>
+        <location filename="../left_panel/listlesson.cpp" line="358"/>
         <source>On\Off calls for change #2</source>
         <translation>Вкл.\Выкл. звонки для смены №2</translation>
     </message>
     <message>
-        <location filename="../left_panel/listlesson.cpp" line="305"/>
-        <location filename="../left_panel/listlesson.cpp" line="319"/>
+        <location filename="../left_panel/listlesson.cpp" line="323"/>
+        <location filename="../left_panel/listlesson.cpp" line="337"/>
         <source>Error</source>
         <translation>Ошибка</translation>
     </message>
     <message>
-        <location filename="../left_panel/listlesson.cpp" line="305"/>
-        <location filename="../left_panel/listlesson.cpp" line="319"/>
+        <location filename="../left_panel/listlesson.cpp" line="323"/>
+        <location filename="../left_panel/listlesson.cpp" line="337"/>
         <source>Must be enabled on at least one change!</source>
         <translation>Должна быть включена хотя бы одна смена!</translation>
     </message>
     <message>
         <source>Must be enabled on at least one shift!</source>
-        <translation>Должна быть включена хотя бы одна смена!</translation>
+        <translation type="vanished">Должна быть включена хотя бы одна смена!</translation>
     </message>
 </context>
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="56"/>
-        <location filename="../mainwindow.cpp" line="458"/>
+        <location filename="../mainwindow.cpp" line="60"/>
+        <location filename="../mainwindow.cpp" line="469"/>
         <source>School bell schedul</source>
         <translation>Школьное расписание звонков</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="95"/>
+        <location filename="../mainwindow.cpp" line="103"/>
         <source>Shedule</source>
         <translation>Расписание</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="241"/>
-        <location filename="../mainwindow.cpp" line="242"/>
-        <location filename="../mainwindow.cpp" line="466"/>
-        <location filename="../mainwindow.cpp" line="727"/>
+        <location filename="../mainwindow.cpp" line="252"/>
+        <location filename="../mainwindow.cpp" line="253"/>
+        <location filename="../mainwindow.cpp" line="477"/>
+        <location filename="../mainwindow.cpp" line="789"/>
         <source>Call</source>
         <translation>Звонок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="248"/>
-        <location filename="../mainwindow.cpp" line="467"/>
+        <location filename="../mainwindow.cpp" line="259"/>
+        <location filename="../mainwindow.cpp" line="478"/>
         <source>Exit</source>
         <translation>Выход</translation>
     </message>
     <message>
         <source>Save everything and set the schedule</source>
-        <translation>Сохранить всё и установить расписание</translation>
+        <translation type="vanished">Сохранить всё и установить расписание</translation>
     </message>
     <message>
         <source>Save the schedules</source>
-        <translation>Сохранить расписания</translation>
+        <translation type="vanished">Сохранить расписания</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="254"/>
-        <location filename="../mainwindow.cpp" line="468"/>
+        <location filename="../mainwindow.cpp" line="265"/>
+        <location filename="../mainwindow.cpp" line="479"/>
         <source>Apply</source>
         <translation>Применить</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="260"/>
-        <location filename="../mainwindow.cpp" line="469"/>
-        <location filename="../mainwindow.cpp" line="579"/>
+        <location filename="../mainwindow.cpp" line="271"/>
+        <location filename="../mainwindow.cpp" line="480"/>
+        <location filename="../mainwindow.cpp" line="609"/>
         <source>Open template</source>
         <translation>Открыть шаблон</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="266"/>
-        <location filename="../mainwindow.cpp" line="470"/>
-        <location filename="../mainwindow.cpp" line="557"/>
+        <location filename="../mainwindow.cpp" line="277"/>
+        <location filename="../mainwindow.cpp" line="481"/>
+        <location filename="../mainwindow.cpp" line="587"/>
         <source>Save the template</source>
         <translation>Сохранить шаблон</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="272"/>
-        <location filename="../mainwindow.cpp" line="471"/>
+        <location filename="../mainwindow.cpp" line="283"/>
+        <location filename="../mainwindow.cpp" line="482"/>
         <source>Days of the week</source>
         <translation>Дни недели</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="278"/>
-        <location filename="../mainwindow.cpp" line="472"/>
+        <location filename="../mainwindow.cpp" line="289"/>
+        <location filename="../mainwindow.cpp" line="483"/>
         <source>General</source>
         <translation>Общие</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="284"/>
-        <location filename="../mainwindow.cpp" line="474"/>
+        <location filename="../mainwindow.cpp" line="295"/>
+        <location filename="../mainwindow.cpp" line="485"/>
         <source>instruction</source>
         <translation>Инструкция</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="290"/>
-        <location filename="../mainwindow.cpp" line="475"/>
+        <location filename="../mainwindow.cpp" line="301"/>
+        <location filename="../mainwindow.cpp" line="486"/>
         <source>About...</source>
         <translation>О программе...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="295"/>
-        <location filename="../mainwindow.cpp" line="476"/>
+        <location filename="../mainwindow.cpp" line="306"/>
+        <location filename="../mainwindow.cpp" line="487"/>
         <source>Date and time</source>
         <translation>Дата и время</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="301"/>
-        <location filename="../mainwindow.cpp" line="477"/>
+        <location filename="../mainwindow.cpp" line="312"/>
+        <location filename="../mainwindow.cpp" line="488"/>
         <source>Russian</source>
         <translation>Русский</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
-        <location filename="../mainwindow.cpp" line="478"/>
+        <location filename="../mainwindow.cpp" line="317"/>
+        <location filename="../mainwindow.cpp" line="489"/>
         <source>English</source>
         <translation>Английский</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="311"/>
-        <location filename="../mainwindow.cpp" line="473"/>
+        <location filename="../mainwindow.cpp" line="322"/>
+        <location filename="../mainwindow.cpp" line="484"/>
         <source>Default settings</source>
         <translation>Сброс настроек</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="317"/>
-        <location filename="../mainwindow.cpp" line="460"/>
+        <location filename="../mainwindow.cpp" line="328"/>
+        <location filename="../mainwindow.cpp" line="471"/>
         <source>&amp;File</source>
         <translation>&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="325"/>
-        <location filename="../mainwindow.cpp" line="461"/>
+        <location filename="../mainwindow.cpp" line="336"/>
+        <location filename="../mainwindow.cpp" line="472"/>
         <source>&amp;Call</source>
         <translation>&amp;Звонок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="328"/>
-        <location filename="../mainwindow.cpp" line="462"/>
+        <location filename="../mainwindow.cpp" line="339"/>
+        <location filename="../mainwindow.cpp" line="473"/>
         <source>&amp;Settings</source>
         <translation>&amp;Настройки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="334"/>
-        <location filename="../mainwindow.cpp" line="463"/>
+        <location filename="../mainwindow.cpp" line="345"/>
+        <location filename="../mainwindow.cpp" line="474"/>
         <source>Language</source>
         <translation>Язык</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="343"/>
-        <location filename="../mainwindow.cpp" line="464"/>
+        <location filename="../mainwindow.cpp" line="354"/>
+        <location filename="../mainwindow.cpp" line="475"/>
         <source>&amp;Help</source>
         <translation>&amp;Справка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="368"/>
+        <location filename="../mainwindow.cpp" line="379"/>
         <source>Toolbar</source>
         <translation>панель инструментов</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="448"/>
+        <location filename="../mainwindow.cpp" line="459"/>
         <source> min.</source>
         <translation> мин.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="493"/>
-        <location filename="../mainwindow.cpp" line="677"/>
-        <location filename="../mainwindow.cpp" line="705"/>
-        <location filename="../mainwindow.cpp" line="789"/>
+        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="510"/>
+        <location filename="../mainwindow.cpp" line="515"/>
+        <location filename="../mainwindow.cpp" line="712"/>
+        <location filename="../mainwindow.cpp" line="723"/>
+        <location filename="../mainwindow.cpp" line="750"/>
+        <location filename="../mainwindow.cpp" line="856"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="493"/>
+        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="510"/>
+        <location filename="../mainwindow.cpp" line="515"/>
         <source>The file </source>
         <translation>Файл </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="493"/>
+        <location filename="../mainwindow.cpp" line="505"/>
+        <location filename="../mainwindow.cpp" line="510"/>
+        <location filename="../mainwindow.cpp" line="515"/>
         <source> - not exist!</source>
         <translation> - не существует!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="678"/>
+        <location filename="../mainwindow.cpp" line="713"/>
+        <source>In Unix system you can&apos;t change time and date in this program!</source>
+        <translation>В Unix системах, вы не можете изменять время и дату через это программу!</translation>
+    </message>
+    <message>
+        <location filename="../mainwindow.cpp" line="724"/>
         <source>These settings change the date and time system! Continue?</source>
         <translation>Данные настройки изменяют дату и время системы! Продолжить?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="705"/>
+        <location filename="../mainwindow.cpp" line="750"/>
         <source>To change the date and time you need to run a program as a local administrator!</source>
         <translation>Для изменения даты и времени нужно запускать программу с правами локального администратора!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="790"/>
+        <location filename="../mainwindow.cpp" line="857"/>
         <source>Are you sure?</source>
         <translation>Вы уверены?</translation>
     </message>
     <message>
         <source> мин.</source>
-        <translation>min.</translation>
+        <translation type="vanished">min.</translation>
     </message>
     <message>
         <source>Attention</source>
-        <translation>Внимание</translation>
+        <translation type="vanished">Внимание</translation>
     </message>
     <message>
         <source>To change the date and time you need to run a c program as a local administrator!</source>
-        <translation>Для изменения даты и времени нужно запускать программу с правами локального администратора!</translation>
+        <translation type="vanished">Для изменения даты и времени нужно запускать программу с правами локального администратора!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="748"/>
+        <location filename="../mainwindow.cpp" line="813"/>
         <source>Turn the ringer off</source>
         <translation>Выключить звонок</translation>
+    </message>
+</context>
+<context>
+    <name>Password</name>
+    <message>
+        <location filename="../settings/password.cpp" line="13"/>
+        <source>Authentication</source>
+        <translation>Аутентификация</translation>
+    </message>
+    <message>
+        <location filename="../settings/password.cpp" line="49"/>
+        <source>You input wrong password!</source>
+        <translation>Вы ввели неправильный пароль!</translation>
     </message>
 </context>
 <context>
@@ -472,7 +497,7 @@
     </message>
     <message>
         <source>beginning of the lessonа</source>
-        <translation>Начало урока</translation>
+        <translation type="vanished">Начало урока</translation>
     </message>
     <message>
         <location filename="../right_panel/rightpanel.cpp" line="48"/>
@@ -492,7 +517,7 @@
     <message>
         <location filename="../right_panel/rightpanel.cpp" line="88"/>
         <source>change:</source>
-        <translation>Смена:</translation>
+        <translation>Перемена:</translation>
     </message>
     <message>
         <location filename="../right_panel/rightpanel.cpp" line="97"/>
@@ -515,15 +540,15 @@
     </message>
     <message>
         <source>Attention</source>
-        <translation>Внимание</translation>
+        <translation type="vanished">Внимание</translation>
     </message>
     <message>
-        <location filename="../settings/setdatetime.cpp" line="49"/>
+        <location filename="../settings/setdatetime.cpp" line="50"/>
         <source>Choose a day of the month!</source>
         <translation>Выбирите день месяца!</translation>
     </message>
     <message>
-        <location filename="../settings/setdatetime.cpp" line="49"/>
+        <location filename="../settings/setdatetime.cpp" line="50"/>
         <source>Warning</source>
         <translation>Внимание</translation>
     </message>
