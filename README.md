@@ -8,15 +8,15 @@ bells
 Количество уроков 0 - 20, 2-е смены;
 
 Зависимости:
-	qt5-multimedia
+qt5-multimedia
 	
 Дополнительные необходимые программы:
-	Qt Assistant
+Qt Assistant
 
 Пути файлов
 
 Windows:
 		
 *nix:
-	~/.config/LYCEUM/Bells.conf - 	конфигурационный файл
-	~/.LYCEUM/Bells/bells.log	-	лог-файл
+~/.config/LYCEUM/Bells.conf;
+~/.LYCEUM/Bells/bells.log
