@@ -13,9 +13,10 @@ bells
 Дополнительные необходимые программы:
 	Qt Assistant
 
-Пути файлов файлов:
-	Windows:
+Пути файлов
+
+Windows:
 		
-	*nix:
-		~/.config/LYCEUM/Bells.conf - 	конфигурационный файл
-		~/.LYCEUM/Bells/bells.log	-	лог-файл
+*nix:
+	~/.config/LYCEUM/Bells.conf - 	конфигурационный файл
+	~/.LYCEUM/Bells/bells.log	-	лог-файл
