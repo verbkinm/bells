@@ -31,7 +31,10 @@ void MyTimeEdit::slotSetCurrentTime()
 {
   if( event->type() == QEvent::FocusIn )
     timer.stop();
+
   QWidget::event(event);
+
+  return false;
 }
 MyTimeEdit::~MyTimeEdit()
 {

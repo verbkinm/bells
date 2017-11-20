@@ -1,0 +1,1 @@
+qhelpgenerator help.qhp -o help.qch && qcollectiongenerator help.qhcp -o help.qhc && assistant -collectionFile help.qhc

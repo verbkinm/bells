@@ -1,0 +1,39 @@
+ <QtHelpProject version="1.0">
+     <namespace>lyceum.org.bells.1.0</namespace>
+     <virtualFolder>doc</virtualFolder>
+     <customFilter name="Сервер звонков">
+         <filterAttribute>myapp</filterAttribute>
+         <filterAttribute>1.0</filterAttribute>
+     </customFilter>
+     <filterSection>
+         <filterAttribute>myapp</filterAttribute>
+         <filterAttribute>1.0</filterAttribute>
+         <toc>
+             <section title="Оглавление" ref="index.html">
+                 <section title="Интерфейс приложения" ref="interface.html">
+					<section title="Панель «Меню»" ref="interface.html#menu"/>
+					<section title="Панель инструментов" ref="interface.html#tools"/>
+					<section title="Основная часть приложения" ref="interface.html#generals"/>
+					<section title="Панель текущей даты и времени" ref="interface.html#date"/>
+				 </section>
+                 <section title="Настройки приложения" ref="settings.html">
+					<section title="Настройка уроков и смены" ref="settings.html#settings1"/>
+					<section title="Установка рабочего расписания" ref="settings.html#settings2"/>
+					<section title="Подача звукового сигнала (мелодии)" ref="settings.html#settings3"/>
+					<section title="Настройка по дням недели" ref="settings.html#settings4"/>
+					<section title="Общие настройки" ref="settings.html#settings5"/>
+					<section title="Дополнительные программы" ref="settings.html#settings6"/>
+				 </section>
+                 <section title="Описание приложения" ref="about.html">
+					<section title="О программе" ref="about.html"/>
+					<section title="Об авторе" ref="about.html"/>
+				 </section>
+             </section>
+         </toc>
+         <files>
+             <file>style.css</file>
+             <file>*.html</file>
+             <file>img/*</file>
+         </files>
+     </filterSection>
+ </QtHelpProject>

@@ -70,7 +70,7 @@ void Generals_Settings::slotChooseDir()
         ui->pathToSoundsDir->setText(tmpPath.replace("/","\\"));
 #elif defined (Q_OS_LINUX)
         ui->pathToSoundsDir->setText(tmpPath);
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
         ui->pathToSoundsDir->setText(tmpPath);
 #endif
         ui->manual_ring->clear();
@@ -103,7 +103,7 @@ void Generals_Settings::slotPlayStop()
     QString sound = path_of_sounds_dir.path().replace("/","\\")+"\\"+ui->manual_ring->currentText();
 #elif defined (Q_OS_LINUX)
     QString sound = path_of_sounds_dir.path()+"/"+ui->manual_ring->currentText();
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
     QString sound = path_of_sounds_dir.path()+"/"+ui->manual_ring->currentText();
 #endif
 

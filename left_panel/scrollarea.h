@@ -12,9 +12,6 @@ public:
     ~ScrollArea();
 
     void setList(ListLesson *list);
-
-private:
-    ListLesson* pList;
 };
 
 #endif // SCROLLAREA_H

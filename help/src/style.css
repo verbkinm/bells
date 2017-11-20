@@ -1,0 +1,35 @@
+body{
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+h2{
+	text-align: center;
+}
+p {
+   text-indent: 5%;
+   text-align: justify;
+	margin: 10px 20px 10px 20px;
+}
+.image{
+	text-align: center;
+}
+.image_title{
+	text-align: center;
+	color: red;
+	font: italic 12px sans-serif;
+	margin-bottom: 10px;
+}
+.image_number{
+	color: red;
+	font-weight: bold;
+}
+.title {
+	margin-bottom: 20px;
+	font: bold italic 16px sans-serif;
+	text-decoration: underline;
+}
+.subtitle {
+	margin-bottom: 20px;
+	font-weight: bold;
+}
+
+

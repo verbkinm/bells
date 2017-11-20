@@ -32,7 +32,6 @@ Password::Password(QString &date) : QDialog()
     connect( pCancel, SIGNAL(clicked()), SLOT(close()) );
 
     this->setModal(true);
-    this->show();
 }
 void Password::showWidget()
 {

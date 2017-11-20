@@ -15,7 +15,7 @@ void Log::write(QString stringLog)
         dir.mkpath(QDir::homePath()+"/"+".LYCEUM/Bells");
     dir.setPath(QDir::homePath()+"/"+".LYCEUM/Bells");
     QString fileName = dir.path()+"/"+"bells.log";
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
     if( !dir.exists(QDir::homePath()+"/"+".LYCEUM/Bells") )
         dir.mkpath(QDir::homePath()+"/"+".LYCEUM/Bells");
     dir.setPath(QDir::homePath()+"/"+".LYCEUM/Bells");

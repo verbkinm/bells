@@ -99,37 +99,37 @@ private:
     QString             callNow             (QString sound);
     bool                callBeforeLesson    (int change, int lessons);
     void                setSheduleOfDay     ();
-    QToolBar*           createToolBar();
-    void                retranslate();
+    QToolBar*           createToolBar       ();
+    void                retranslate         ();
 
-    virtual void timerEvent(QTimerEvent*);
-    virtual void closeEvent(QCloseEvent*);
-    virtual void changeEvent(QEvent *event);
+    virtual void        timerEvent          (QTimerEvent*);
+    virtual void        closeEvent          (QCloseEvent*);
+    virtual void        changeEvent         (QEvent *event);
 
 private slots:
-    void slotApply();
-    void slotOpen();
-    void slotSaveTemplate();
+    void                slotApply           ();
+    void                slotOpen            ();
+    void                slotSaveTemplate    ();
 
-    void slotCallNow();
-    void slotCallStop();
-    void slotSetLanguageRu();
-    void slotSetLanguageEn();
+    void                slotCallNow         ();
+    void                slotCallStop        ();
+    void                slotSetLanguageRu   ();
+    void                slotSetLanguageEn   ();
 
-    void slotSettingsDays();
-    void slotSettingsGenerals();
+    void                slotSettingsDays    ();
+    void                slotSettingsGenerals();
 
-    void slotResetSettings();
+    void                slotResetSettings   ();
 
-    void slotAboutInstruction();
-    void slotAboutInstructionClose();
-    void slotAboutAuthor();
+    void                slotAboutInstruction();
+    void                slotAboutInstructionClose();
+    void                slotAboutAuthor     ();
 
-    void slotSetDateTime();
+    void                slotSetDateTime     ();
 
-    void slotStatusChanged(QMediaPlayer::State state);
+    void                slotStatusChanged   (QMediaPlayer::State state);
 
-    void slotCheckDayOfWeek();
+    void                slotCheckDayOfWeek  ();
 
 };
 

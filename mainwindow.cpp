@@ -26,7 +26,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
         qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
 #elif defined (Q_OS_LINUX)
         qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
         qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
 #endif
         QApplication::installTranslator(&qtTranslator);
@@ -77,7 +77,7 @@ void MainWindow::firstStartProgram()
   qtTranslator.load(QCoreApplication::applicationDirPath().replace("/","\\")+"\\translation\\arrowpad_"+QLocale::system().name() );
 #elif defined (Q_OS_LINUX)
   qtTranslator.load(QCoreApplication::applicationDirPath()+"/translation/arrowpad_"+QLocale::system().name() );
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
   qtTranslator.load(QCoreApplication::applicationDirPath()+"/translation/arrowpad_"+QLocale::system().name() );
 #endif
   QApplication::installTranslator(&qtTranslator);
@@ -88,7 +88,7 @@ void MainWindow::firstStartProgram()
         settings.setValue("Generals_settings/path_application",QCoreApplication::applicationDirPath().replace("/","\\"));
 #elif defined (Q_OS_LINUX)
         settings.setValue("Generals_settings/path_application",QCoreApplication::applicationDirPath());
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
         settings.setValue("Generals_settings/path_application",QCoreApplication::applicationDirPath());
 #endif
         settings.setValue("Generals_settings/numbers_of_tabs",4);
@@ -161,7 +161,7 @@ void MainWindow::firstStartProgram()
 #elif defined (Q_OS_LINUX)
         settings.setValue("Generals_settings/path_of_sounds_dir",QCoreApplication::applicationDirPath()+"/sounds");
         settings.setValue("Generals_settings/path_save_and_open_file",QCoreApplication::applicationDirPath());
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
         settings.setValue("Generals_settings/path_of_sounds_dir",QCoreApplication::applicationDirPath()+"/sounds");
         settings.setValue("Generals_settings/path_save_and_open_file",QCoreApplication::applicationDirPath());
 #endif
@@ -512,7 +512,7 @@ QString MainWindow::callNow(QString sound)
         QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
         return "error, file " + cacheSettingsGenerals[2].toString() + "/" + sound + " - not exist!";
     }
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
     if( !QFile(cacheSettingsGenerals[2].toString() + "/" + sound).exists() ){
         QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
         return "error, file " + cacheSettingsGenerals[2].toString() + "/" + sound + " - not exist!";
@@ -539,7 +539,7 @@ QString MainWindow::callNow(QString sound)
       cmdProgramStart[1].start(cacheSettingsGenerals[6].toString());
 
     tmpArgs << cacheSettingsGenerals[2].toString() + "/" + sound;
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
     if(!cacheSettingsGenerals[5].toString().isEmpty())
        cmdProgramStart[0].start(cacheSettingsGenerals[5].toString());
     if(!cacheSettingsGenerals[6].toString().isEmpty())
@@ -695,8 +695,7 @@ void MainWindow::slotAboutInstruction()
 #elif defined (Q_OS_LINUX)
   args << "-collectionFile" << cacheSettingsGenerals[9].toString()+"/help/instruction.qhc";
   cmdAssistant.start("assistant",args);
-#elif defined (Q_OS_UNIX)
-  qDebug() << cacheSettingsGenerals[9].toString();
+#elif defined (Q_OS_FREEBSD)
   args << "-collectionFile" << cacheSettingsGenerals[9].toString()+"/help/instruction.qhc";
   cmdAssistant.start("assistant",args);
 #endif
@@ -709,7 +708,7 @@ void MainWindow::slotAboutInstructionClose()
 }
 void MainWindow::slotSetDateTime()
 {
-#if defined (Q_OS_UNIX)
+#if defined (Q_OS_FREEBSD)
     QMessageBox* pmbxUnix =
                         new QMessageBox(tr("Warning"),
                         tr("In Unix system you can't change time and date in this program!"),
@@ -768,7 +767,7 @@ void MainWindow::slotSetDateTime()
 
     qDebug() << system(QString("gksu date "+date_and_time).toLocal8Bit() );
         Password *password = new Password(date_and_time);
-//    password.show();
+    password.show();
 #endif
         dateTime->close();
         }
@@ -801,7 +800,7 @@ void MainWindow::slotStatusChanged(QMediaPlayer::State state)
 #elif defined (Q_OS_LINUX)
       cmdProgramEnd[0].start(cacheSettingsGenerals[3].toString());
       cmdProgramEnd[1].start(cacheSettingsGenerals[4].toString());
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
       cmdProgramEnd[0].start(cacheSettingsGenerals[3].toString());
       cmdProgramEnd[1].start(cacheSettingsGenerals[4].toString());
 #endif
@@ -822,7 +821,7 @@ void MainWindow::slotSetLanguageRu()
     qtTranslator.load(cacheSettingsGenerals[9].toString()+"\\translation\\arrowpad_ru_RU");
 #elif defined (Q_OS_LINUX)
     qtTranslator.load(cacheSettingsGenerals[9].toString()+"/translation/arrowpad_ru_RU");
-#elif defined (Q_OS_UNIX)
+#elif defined (Q_OS_FREEBSD)
     qtTranslator.load(cacheSettingsGenerals[9].toString()+"/translation/arrowpad_ru_RU");
 #endif
     QApplication::installTranslator(&qtTranslator);

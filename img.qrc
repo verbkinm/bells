@@ -4,10 +4,8 @@
         <file>img/callStop.png</file>
         <file>img/reload.png</file>
         <file>img/ring.png</file>
-        <file>img/save.png</file>
         <file>img/lyceum.png</file>
         <file>img/exit.png</file>
-        <file>img/save_sheduls.png</file>
         <file>img/collapse.png</file>
         <file>img/expand.png</file>
         <file>img/settings.png</file>
@@ -22,5 +20,6 @@
         <file>img/locale.png</file>
         <file>img/apply.png</file>
         <file>img/open.png</file>
+        <file>img/save_sheduls.png</file>
     </qresource>
 </RCC>
