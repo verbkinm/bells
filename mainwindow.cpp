@@ -767,7 +767,7 @@ void MainWindow::slotSetDateTime()
 
     qDebug() << system(QString("gksu date "+date_and_time).toLocal8Bit() );
         Password *password = new Password(date_and_time);
-    password.show();
+    password->show();
 #endif
         dateTime->close();
         }

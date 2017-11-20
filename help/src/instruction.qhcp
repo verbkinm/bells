@@ -10,7 +10,7 @@
      </assistant>
 	 <docFiles>
          <register>
-             <file>help.qch</file>
+             <file>instruction.qch</file>
          </register>
      </docFiles>
  </QHelpCollectionProject>
