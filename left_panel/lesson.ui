@@ -84,9 +84,9 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>13</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
+        <pointsize>12</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
        </font>
       </property>
       <property name="contextMenuPolicy">
@@ -170,7 +170,7 @@
       </property>
       <property name="font">
        <font>
-        <pointsize>20</pointsize>
+        <pointsize>12</pointsize>
         <weight>75</weight>
         <italic>false</italic>
         <bold>true</bold>

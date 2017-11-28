@@ -23,6 +23,20 @@ lesson::lesson(QMediaPlayer *parentPlayer, QWidget *parent) :
     layout->addWidget(ui->lessonRing);
     layout->addWidget(ui->lessonOnOrOff);
 
+//Для маленького монитора
+    QFont font = ui->lessonBegin->font();
+    font.setPixelSize(12);
+    ui->label->setFont(font);
+    font.setPixelSize(10);
+    ui->lessonNumber->setFont(font);
+    ui->lessonBegin->setFont(font);
+    ui->lessonEnd->setFont(font);
+    ui->lessonBegin->setFixedHeight(24);
+    ui->lessonEnd->setFixedHeight(24);
+    ui->lessonRing->setFixedSize(24,24);
+    ui->lessonRing->setIconSize(QSize(16,16));
+    ui->lessonOnOrOff->setFont(font);
+
     vLayout->addLayout(layout);
 
     this->setLayout(vLayout);

@@ -52,6 +52,11 @@ void RightPanel::createTables(int numbersOfLessonsChange1, int numbersOfLessonsC
 
     for(int i = 0; i < 2; i++){
         pTable.at(i)->setHorizontalHeaderLabels(headers);
+//Для маленького монитора
+//        QFont font = pTable.at(i)->horizontalHeader()->font();
+//        font.setPixelSize(10);
+//        pTable.at(i)->horizontalHeader()->setFont(font);
+
         pTable.at(i)->verticalHeader()->hide();
         pTable.at(i)->horizontalHeader()->setDefaultAlignment(Qt::AlignCenter);
         pTable.at(i)->setHorizontalScrollBarPolicy(Qt::ScrollBarAsNeeded);
