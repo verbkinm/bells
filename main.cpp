@@ -9,10 +9,11 @@ int main(int argc, char *argv[])
 
     MainWindow w;
 //Для маленького монитора
-    w.setIconSize(QSize(16,16));
+/*    w.setIconSize(QSize(16,16));
     QFont font = w.font();
     font.setPixelSize(8);
     w.setFont(font);
+*/
     w.showMaximized();
 
     return a.exec();
