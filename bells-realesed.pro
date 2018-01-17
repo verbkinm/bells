@@ -30,7 +30,8 @@ SOURCES += main.cpp\
     settings/setdatetime.cpp \
     settings/mytimeedit.cpp \
     statusbar/statusbartime.cpp \
-    settings/password.cpp
+    settings/password.cpp \
+    settings/server.cpp
 
 HEADERS  += \
     left_panel/lesson.h \
@@ -51,7 +52,8 @@ HEADERS  += \
     settings/setdatetime.h \
     settings/mytimeedit.h \
     statusbar/statusbartime.h \
-    settings/password.h
+    settings/password.h \
+    settings/server.h
 
 FORMS += \
     left_panel/lesson.ui \
@@ -61,7 +63,8 @@ FORMS += \
     settings/generals_settings.ui \
     settings/execprograms.ui \
     aboutprogram.ui \
-    settings/setdatetime.ui
+    settings/setdatetime.ui \
+    settings/server.ui
 
 RESOURCES += \
     img.qrc

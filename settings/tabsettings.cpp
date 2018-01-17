@@ -14,9 +14,8 @@ TabSettings::TabSettings(QMediaPlayer *parentPlayer, int currentShedule) : QDial
 }
 void TabSettings::writeSettingsDays()
 {
-    for( int i = 0; i < 7; i++){
+    for( int i = 0; i < 7; i++)
         pTab_of_Day[i]->writeSettings();
-    }
 }
 void TabSettings::days()
 {
@@ -62,13 +61,17 @@ void TabSettings::generals()
 {
     pGeneralSettings = new Generals_Settings(player, CurrentShedule);
     pExecPrograms    = new ExecPrograms;
+    pServer          = new Server;
     pTabs->addTab(pGeneralSettings, tr("General"));
     pTabs->addTab(pExecPrograms,tr("Program"));
+    pTabs->addTab(pServer,tr("Server"));
 
     pTabs->setTabToolTip(0,tr("General settings"));
     pTabs->setTabWhatsThis(0,tr("General settings"));
     pTabs->setTabToolTip(1,tr("Additional programs for calls"));
     pTabs->setTabWhatsThis(1,tr("Additional programs for calls"));
+    pTabs->setTabToolTip(2,tr("Server settings"));
+    pTabs->setTabWhatsThis(2,tr("Server settings"));
 
     pLayout = new QVBoxLayout;
 
@@ -86,12 +89,14 @@ void TabSettings::generalsDelete()
 {
     delete pGeneralSettings;
     delete pExecPrograms;
+    delete pServer;
     delete pLayout;
 }
 void TabSettings::writeSettingsGenerals()
 {
     pGeneralSettings->writeSettings();
     pExecPrograms->writeSettings();
+    pServer->writeSettings();
 }
 void TabSettings::stopSoundGenerals()
 {

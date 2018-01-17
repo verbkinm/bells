@@ -174,6 +174,10 @@ void MainWindow::firstStartProgram()
             settings.setValue("Days/"+QString::number(day)+"/sound_before_lesson",test_sound);
             settings.setValue("Days/"+QString::number(day)+"/time_before_lesson",2);
           }
+        settings.setValue("Generals_settings/on_or_off_server",false);
+        settings.setValue("Generals_settings/address_listen","localhost");
+        settings.setValue("Generals_settings/port_listen","83");
+        settings.setValue("Generals_settings/start_with_program",false);
     }
     int count = settings.value("Generals_settings/count_of_program").toInt();
     settings.setValue("Generals_settings/count_of_program",++count);

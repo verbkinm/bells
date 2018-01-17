@@ -30,7 +30,7 @@ settings::settings(int numberOfDay, QMediaPlayer *parentPlayer) :
         ui->on_or_off_day->setChecked(true);
         slot_on_or_off_day();
     }else{slot_on_or_off_day();}
-//name_of_shedul
+//name_of_shedule
     for (int tab = 0; tab < countTabs; tab++) {
         ui->shedul_of_day->addItem(setting.value("Sheduls/shedul"+QString::number(tab)+"/name_of_shedul").toString());
     }

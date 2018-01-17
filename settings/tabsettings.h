@@ -15,6 +15,7 @@
 #include "settings.h"
 #include "generals_settings.h"
 #include "execprograms.h"
+#include "server.h"
 
 #include "ui_generals_settings.h"
 #include "ui_settings.h"
@@ -29,6 +30,7 @@ public:
     QTabWidget          *pTabs;
     Generals_Settings   *pGeneralSettings;
     ExecPrograms        *pExecPrograms;
+    Server              *pServer;
     settings            *pTab_of_Day[7];
     int                 CurrentShedule;
 
