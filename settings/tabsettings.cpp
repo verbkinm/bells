@@ -1,6 +1,6 @@
 #include "tabsettings.h"
 
-TabSettings::TabSettings(QMediaPlayer *parentPlayer, int currentShedule) : QDialog()
+TabSettings::TabSettings(QMediaPlayer *parentPlayer, int currentShedule, TcpServer *server) : QDialog()
 {
     CurrentShedule = currentShedule;
     player = parentPlayer;
@@ -8,6 +8,8 @@ TabSettings::TabSettings(QMediaPlayer *parentPlayer, int currentShedule) : QDial
     pButtonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     pButtonBox->setToolTip(tr("Save\\Cancel"));
     pButtonBox->setWhatsThis(tr("Save\\Cancel"));
+
+    pTcpServer = server;
 
     connect(pButtonBox, SIGNAL(accepted()), SLOT(accept()) );
     connect(pButtonBox, SIGNAL(rejected()), SLOT(reject()) );
@@ -61,7 +63,7 @@ void TabSettings::generals()
 {
     pGeneralSettings = new Generals_Settings(player, CurrentShedule);
     pExecPrograms    = new ExecPrograms;
-    pServer          = new Server;
+    pServer          = new Server(pTcpServer);
     pTabs->addTab(pGeneralSettings, tr("General"));
     pTabs->addTab(pExecPrograms,tr("Program"));
     pTabs->addTab(pServer,tr("Server"));

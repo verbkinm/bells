@@ -16,6 +16,7 @@
 #include "generals_settings.h"
 #include "execprograms.h"
 #include "server.h"
+#include "tcpserver.h"
 
 #include "ui_generals_settings.h"
 #include "ui_settings.h"
@@ -36,7 +37,9 @@ public:
 
     QMediaPlayer        *player;
 
-    TabSettings(QMediaPlayer *parentPlayer, int currentShedule);
+    TcpServer           *pTcpServer;
+
+    TabSettings(QMediaPlayer *parentPlayer, int currentShedule, TcpServer *server);
     ~TabSettings();
 
     void days();

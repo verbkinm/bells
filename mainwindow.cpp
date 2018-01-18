@@ -70,6 +70,11 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
     connect(&timer_day_of_the_week, SIGNAL(timeout()), SLOT(slotCheckDayOfWeek()) );
 
     setSheduleOfDay();
+
+    server = new TcpServer;
+    if( settings.value("Generals_settings/on_or_off_server").toBool() )
+        if( settings.value("Generals_settings/start_with_program").toBool() )
+            startTcpServer(settings.value("Generals_settings/address_listen").toString(), settings.value("Generals_settings/port_listen").toInt() );
 }
 void MainWindow::firstStartProgram()
 {
@@ -579,6 +584,14 @@ bool MainWindow::callBeforeLesson(int change, int lessons)
     }
     return false;
 }
+void MainWindow::startTcpServer(QString address, int port)
+{
+    server->start(address, port);
+}
+void MainWindow::stopTcpServer()
+{
+    server->close();
+}
 //###################
 //#     SLOTS       #
 //###################
@@ -653,7 +666,7 @@ void MainWindow::slotCallStop()
 }
 void MainWindow::slotSettingsDays()
 {
-    TabSettings *pSettingsWindow = new TabSettings(&player, pLeftPanel->currentTab());
+    TabSettings *pSettingsWindow = new TabSettings(&player, pLeftPanel->currentTab(), server);
     pSettingsWindow->days();
     pSettingsWindow->show();
     if (pSettingsWindow->exec() == QDialog::Accepted){
@@ -666,7 +679,7 @@ void MainWindow::slotSettingsDays()
 }
 void MainWindow::slotSettingsGenerals()
 {
-    TabSettings *pSettingsWindow = new TabSettings(&player, pLeftPanel->currentTab());
+    TabSettings *pSettingsWindow = new TabSettings(&player, pLeftPanel->currentTab(), server);
     pSettingsWindow->generals();
     pSettingsWindow->show();
     if (pSettingsWindow->exec() == QDialog::Accepted){

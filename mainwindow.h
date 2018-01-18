@@ -21,6 +21,7 @@
 #include "aboutprogram.h"
 #include "settings/tabsettings.h"
 #include "statusbar/statusbartime.h"
+#include "tcpserver.h"
 
 class MainWindow : public QMainWindow
 {
@@ -83,6 +84,11 @@ private:
                             // cacheSettingsGenerals[7]     - start_tab                 - int
                             // cacheSettingsGenerals[8]     - path_save_and_open_file   - QString
                             // cacheSettingsGenerals[9]     - path_application          - QString
+
+    TcpServer*          server;
+
+    void                startTcpServer      (QString address, int port);
+    void                stopTcpServer       ();
 
     void                firstStartProgram   ();
 

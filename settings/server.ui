@@ -219,6 +219,10 @@
    <property name="text">
     <string/>
    </property>
+   <property name="icon">
+    <iconset resource="../img.qrc">
+     <normaloff>:/img/play.png</normaloff>:/img/play.png</iconset>
+   </property>
   </widget>
   <widget class="QCheckBox" name="start_with_program">
    <property name="enabled">
@@ -254,6 +258,8 @@
   <tabstop>status</tabstop>
   <tabstop>start_stop_server</tabstop>
  </tabstops>
- <resources/>
+ <resources>
+  <include location="../img.qrc"/>
+ </resources>
  <connections/>
 </ui>

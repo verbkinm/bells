@@ -1,21 +1,40 @@
 #include "server.h"
 #include "ui_server.h"
 
-Server::Server(QWidget *parent) :
+Server::Server(TcpServer *server, QWidget *parent) :
     QWidget(parent), settings("LYCEUM","Bells"),
     ui(new Ui::Server)
 {
     ui->setupUi(this);
 
+    pTcpServer = server;
+
     ui->on_or_off_server->setChecked(settings.value("Generals_settings/on_or_off_server").toBool());
-    ui->address_listen->setText(settings.value("Generals_settings/address_listen").toString());
-    ui->port_listen->setText(settings.value("Generals_settings/port_listen").toString());
     ui->start_with_program->setChecked(settings.value("Generals_settings/start_with_program").toBool());
+    if(pTcpServer->isListening()){
+        ui->address_listen->setText(pTcpServer->currentAddress());
+        ui->port_listen->setText(pTcpServer->currentPort());
+    }
+    else{
+        ui->address_listen->setText(settings.value("Generals_settings/address_listen").toString());
+        ui->port_listen->setText(settings.value("Generals_settings/port_listen").toString());
+    }
+
+    if(server->isListening()){
+        ui->status->setText(tr("started"));
+        ui->start_stop_server->setIcon(QIcon(":/img/stop.png"));
+    }
+    else{
+        ui->status->setText(tr("stopped"));
+        ui->start_stop_server->setIcon(QIcon(":/img/play.png"));
+    }
 
     if(ui->on_or_off_server)
         slot_on_or_off_server();
 
     connect(ui->on_or_off_server, SIGNAL(toggled(bool)), SLOT(slot_on_or_off_server()));
+
+    connect(ui->start_stop_server, SIGNAL(clicked(bool)), SLOT(slot_start_or_stop_tcpServer()) ) ;
 }
 
 Server::~Server()
@@ -56,3 +75,20 @@ void Server::slot_on_or_off_server()
       ui->start_with_program->setEnabled(true);
     }
 }
+void Server::slot_start_or_stop_tcpServer()
+{
+    if(pTcpServer->isListening()){
+        pTcpServer->close();
+        ui->status->setText(tr("stopped"));
+        ui->start_stop_server->setIcon(QIcon(":/img/play.png"));
+    }
+    else{
+        if(pTcpServer->start(ui->address_listen->text(), ui->port_listen->text().toInt())){
+            ui->status->setText(tr("started"));
+            ui->start_stop_server->setIcon(QIcon(":/img/stop.png"));
+            ui->address_listen->setText(pTcpServer->currentAddress());
+            ui->port_listen->setText(pTcpServer->currentPort());
+        }
+    }
+}
+

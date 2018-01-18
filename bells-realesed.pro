@@ -6,7 +6,7 @@
 
 QT       += core gui multimedia
 
-greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets network
 
 TARGET = bells
 TEMPLATE = app
@@ -31,7 +31,8 @@ SOURCES += main.cpp\
     settings/mytimeedit.cpp \
     statusbar/statusbartime.cpp \
     settings/password.cpp \
-    settings/server.cpp
+    settings/server.cpp \
+    tcpserver.cpp
 
 HEADERS  += \
     left_panel/lesson.h \
@@ -53,7 +54,8 @@ HEADERS  += \
     settings/mytimeedit.h \
     statusbar/statusbartime.h \
     settings/password.h \
-    settings/server.h
+    settings/server.h \
+    tcpserver.h
 
 FORMS += \
     left_panel/lesson.ui \
