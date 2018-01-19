@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "tcpserver.h"
 #include <QToolBar>
 
 #if defined (Q_OS_WIN)
@@ -13,6 +14,11 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM","Bells")
 {
+    server = new TcpServer;
+    if( settings.value("Generals_settings/on_or_off_server").toBool() )
+        if( settings.value("Generals_settings/start_with_program").toBool() )
+            startTcpServer(settings.value("Generals_settings/address_listen").toString(), settings.value("Generals_settings/port_listen").toInt() );
+
     localeEN = new QLocale(QLocale::English);
     localeRU = new QLocale(QLocale::Russian);
 
@@ -23,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 
     if(settings.value("Generals_settings/language").toString() != "en_EN"){
 #if defined (Q_OS_WIN)
-        qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
+        qtTranslator.load(\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
 #elif defined (Q_OS_LINUX)
         qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
 #elif defined (Q_OS_FREEBSD)
@@ -63,29 +69,27 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 
     readSettings();
     readSettingsCache();
-    rightPanelSet();
+
+//Если русский язык, то при старте проги функция rightPanelSet() вызываеться дважды!
+    if(locale.language() == QLocale::English )
+        rightPanelSet();
 
     connect(&player, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(slotStatusChanged(QMediaPlayer::State)) );
 
     connect(&timer_day_of_the_week, SIGNAL(timeout()), SLOT(slotCheckDayOfWeek()) );
 
     setSheduleOfDay();
-
-    server = new TcpServer;
-    if( settings.value("Generals_settings/on_or_off_server").toBool() )
-        if( settings.value("Generals_settings/start_with_program").toBool() )
-            startTcpServer(settings.value("Generals_settings/address_listen").toString(), settings.value("Generals_settings/port_listen").toInt() );
 }
 void MainWindow::firstStartProgram()
 {
-#if defined (Q_OS_WIN)
-  qtTranslator.load(QCoreApplication::applicationDirPath().replace("/","\\")+"\\translation\\arrowpad_"+QLocale::system().name() );
-#elif defined (Q_OS_LINUX)
-  qtTranslator.load(QCoreApplication::applicationDirPath()+"/translation/arrowpad_"+QLocale::system().name() );
-#elif defined (Q_OS_FREEBSD)
-  qtTranslator.load(QCoreApplication::applicationDirPath()+"/translation/arrowpad_"+QLocale::system().name() );
-#endif
-  QApplication::installTranslator(&qtTranslator);
+//#if defined (Q_OS_WIN)
+//  qtTranslator.load(QCoreApplication::applicationDirPath().replace("/","\\")+"\\translation\\arrowpad_"+QLocale::system().name() );
+//#elif defined (Q_OS_LINUX)
+//  qtTranslator.load(QCoreApplication::applicationDirPath()+"/translation/arrowpad_"+QLocale::system().name() );
+//#elif defined (Q_OS_FREEBSD)
+//  qtTranslator.load(QCoreApplication::applicationDirPath()+"/translation/arrowpad_"+QLocale::system().name() );
+//#endif
+//  QApplication::installTranslator(&qtTranslator);
 
     if(settings.value("Generals_settings/count_of_program").toInt() < 1){
         settings.clear();
@@ -413,21 +417,34 @@ void MainWindow::rightPanelSet()
     killTimer(timerId);
 
     pRightPanel->setNumberOfShedul(pLeftPanel->currentTabText(), pLeftPanel->currentTab());
-    pRightPanel->setNumbersOfLesson(pLeftPanel->getSize(pLeftPanel->currentTab(),1),\
+
+    int lessonsNumbersChange1 = pLeftPanel->getSize(pLeftPanel->currentTab(),1);
+    int lessonsNumbersChange2 = pLeftPanel->getSize(pLeftPanel->currentTab(),2);
+
+    pRightPanel->setNumbersOfLesson(lessonsNumbersChange1,\
                                     pLeftPanel->isChangeEnabled(pLeftPanel->currentTab(),1),\
-                                    pLeftPanel->getSize(pLeftPanel->currentTab(),2),\
+                                    lessonsNumbersChange2,\
                                     pLeftPanel->isChangeEnabled(pLeftPanel->currentTab(),2));
+
+//    server->createDataSendArray(lessonsNumbersChange1);
 
     for(int change = 1; change < 3; change++){
         for(int lesson = 0; lesson < pLeftPanel->getSize(pLeftPanel->currentTab(),change); lesson++){
+
+            QString timeBegin = pLeftPanel->getLessonTimeBegin(pLeftPanel->currentTab(), change,lesson);
+            QString timeEnd = pLeftPanel->getLessonTimeEnd(pLeftPanel->currentTab(), change,lesson);
+
             pRightPanel->setLesson(change,\
                                    lesson,\
-                                   pLeftPanel->getLessonTimeBegin(pLeftPanel->currentTab(), change,lesson),\
-                                   pLeftPanel->getLessonTimeEnd(pLeftPanel->currentTab(),change,lesson),\
+                                   timeBegin,\
+                                   timeEnd,\
                                    pLeftPanel->getLessonSoundBegin(pLeftPanel->currentTab(), change,lesson),\
                                    pLeftPanel->getLessonSoundEnd(pLeftPanel->currentTab(), change,lesson));
+
+//            server->appendDataSendArray(lesson, timeBegin, timeEnd);
         }
     }
+//    server->printDataSendArray();
 //перемены
     int end_this_lesson,recess,begin_next_lesson;
     QString result;
