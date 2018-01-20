@@ -99,31 +99,34 @@ QString TcpServer::currentPort()
 {
     return QString::number(m_ptcpServer->serverPort());
 }
-void TcpServer::createDataSendArray(int length)
+void TcpServer::createDataSendArray(unsigned short change, unsigned short length)
 {
-    qDebug() << "createDataSendArray";
-    if(dataSend !=0){
-        delete dataSend;
-        qDebug() << "delete createDataSendArray";
+    if(dataSendArray != 0)
+        for (int i = 0; i < 2; ++i)
+            delete []dataSendArray[i];
 
-    }
+    dataSendArray = new lesson* [2];
+    for (int i = 0; i < 2; ++i)
+        dataSendArray[i] = new lesson[length];
 
-//    this->length = length;
-//    qDebug() << length;
-    qDebug() << "createDataSendArray NEW";
-    dataSend = new lesson[length];
+    change == 1 ? lengthArray1=length : lengthArray2=length;
 }
-void TcpServer::appendDataSendArray(int lessonNumber, QString timeBegin, QString timeEnd)
+void TcpServer::appendDataSendArray(unsigned short change, unsigned short lessonNumber, QString timeBegin, QString timeEnd)
 {
-    if(dataSend !=0){
-        dataSend[lessonNumber].begin=timeBegin;
-        dataSend[lessonNumber].end  =timeEnd;
-    }
+//    qDebug() << change << lessonNumber << timeBegin << timeEnd;
+
+    dataSendArray[change-1][lessonNumber].begin = timeBegin;
+    dataSendArray[change-1][lessonNumber].end   = timeEnd;
+
+
+
 }
 void TcpServer::printDataSendArray()
 {
-    qDebug() << length;
-//    for (int i = 0; i < (sizeof(dataSend)/sizeof(dataSend[0])); ++i) {
-
-//    }
+    //  1-я смена
+    for (int lessons = 0; lessons < lengthArray1; ++lessons)
+        qDebug() << dataSendArray[0][lessons].begin << dataSendArray[0][lessons].end;
+    //  2-я смена
+    for (int lessons = 0; lessons < lengthArray1; ++lessons)
+        qDebug() << dataSendArray[1][lessons].begin << dataSendArray[0][lessons].end;
 }

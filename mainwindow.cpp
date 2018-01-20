@@ -426,7 +426,9 @@ void MainWindow::rightPanelSet()
                                     lessonsNumbersChange2,\
                                     pLeftPanel->isChangeEnabled(pLeftPanel->currentTab(),2));
 
-//    server->createDataSendArray(lessonsNumbersChange1);
+    server->createDataSendArray(1, lessonsNumbersChange1);
+    server->createDataSendArray(2, lessonsNumbersChange2);
+//    qDebug() << "after createDataSendArray";
 
     for(int change = 1; change < 3; change++){
         for(int lesson = 0; lesson < pLeftPanel->getSize(pLeftPanel->currentTab(),change); lesson++){
@@ -441,10 +443,11 @@ void MainWindow::rightPanelSet()
                                    pLeftPanel->getLessonSoundBegin(pLeftPanel->currentTab(), change,lesson),\
                                    pLeftPanel->getLessonSoundEnd(pLeftPanel->currentTab(), change,lesson));
 
-//            server->appendDataSendArray(lesson, timeBegin, timeEnd);
+            server->appendDataSendArray(change, lesson, timeBegin, timeEnd);
         }
     }
-//    server->printDataSendArray();
+//    qDebug() << "after for";
+    server->printDataSendArray();
 //перемены
     int end_this_lesson,recess,begin_next_lesson;
     QString result;
@@ -491,6 +494,8 @@ void MainWindow::rightPanelSet()
     timerId = startTimer(timer);
 
     pRightPanel->setTableToolTip();
+
+//    qDebug() << "end rigth";
 }
 void MainWindow::retranslate()
 {

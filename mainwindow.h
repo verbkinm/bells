@@ -21,7 +21,7 @@
 #include "aboutprogram.h"
 #include "settings/tabsettings.h"
 #include "statusbar/statusbartime.h"
-#include "tcpserver.h"
+//#include "tcpserver.h"
 
 class MainWindow : public QMainWindow
 {
