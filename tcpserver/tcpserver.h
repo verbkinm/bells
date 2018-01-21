@@ -6,6 +6,8 @@
 #include <QTcpSocket>
 #include <QTime>
 
+#include "datatosend.h"
+
 class TcpServer : public QObject
 {
     Q_OBJECT
@@ -19,31 +21,17 @@ public:
     QString     currentAddress      ();
     QString     currentPort         ();
 
-    void        createDataSendArray (unsigned short change, unsigned short length);
-    void        appendDataSendArray (unsigned short change, unsigned short lessonNumber, QString timeBegin, QString timeEnd);
+    void        createDataSendArray (bool changeOneEnable, unsigned short length1, bool changeTwoEnable, unsigned short length2);
+    void        appendDataSendArray (unsigned short change, unsigned short lessonNumber, QString timeBegin, QString timeEnd, bool lessonEnable);
     void        printDataSendArray  ();
 
 private:
     QTcpServer* m_ptcpServer;
     quint16     m_nNextBlockSize;
 
-    unsigned short lengthArray1;
-    unsigned short lengthArray2;
+    DataToSend  dataClass;
 
-
-    struct lesson {
-        QString begin;
-        QString end;
-//        quint8 beginH;
-//        quint8 beginM;
-//        quint8 endH;
-//        quint8 endM;
-    };
-
-
-    lesson**        dataSendArray = 0;
-
-    void sendToClient(QTcpSocket* pSocket, lesson* data, quint8 numbersLessons);
+    void sendToClient(QTcpSocket* pSocket);
 
 signals:
 

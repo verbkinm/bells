@@ -16,7 +16,7 @@
 #include "generals_settings.h"
 #include "execprograms.h"
 #include "server.h"
-#include "tcpserver.h"
+#include "tcpserver/tcpserver.h"
 
 #include "ui_generals_settings.h"
 #include "ui_settings.h"

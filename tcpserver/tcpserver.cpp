@@ -7,8 +7,6 @@ TcpServer::TcpServer(QObject *parent) : QObject(parent)
     m_ptcpServer = new QTcpServer(this);
 
     connect(m_ptcpServer, SIGNAL(newConnection()), this, SLOT(slotNewConnection()) );
-
-//    dataSend = new lesson[1];
 }
 void TcpServer::slotNewConnection()
 {
@@ -17,12 +15,7 @@ void TcpServer::slotNewConnection()
     connect(pClientSocket, SIGNAL(disconnected()),  pClientSocket,  SLOT(deleteLater()) );
     connect(pClientSocket, SIGNAL(readyRead()),     this,           SLOT(slotReadClient()) );
 
-//    data[0].beginH  = (quint8)8;//QTime(8,30,0);
-//    data[0].beginM  = (quint8)30;//QTime(9,15,0);
-//    data[0].endH    = (quint8)9;
-//    data[0].endM    = (quint8)15;
-
-//    sendToClient( pClientSocket, data, (quint8)(sizeof(data)/sizeof(data[0])) );
+    sendToClient(pClientSocket);
 
 }
 void TcpServer::slotReadClient()
@@ -54,20 +47,23 @@ void TcpServer::slotReadClient()
 ////        sendToClient(pClientSocket, "Server Response: Received \"" + str + "\"" );
 //    }
 }
-void TcpServer::sendToClient(QTcpSocket* pSocket, lesson *data, quint8 numbersLessons)
+void TcpServer::sendToClient(QTcpSocket* pSocket)
 {
     QByteArray  arrBlock;
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
+//    qDebug() << "send address = " << &out;
     out.setVersion(QDataStream::Qt_5_3);
 
-    out << numbersLessons;
-    for (int i = 0; i < numbersLessons; ++i);
-//        out << data[i].beginH << data[i].beginM << data[i].endH << data[i].endM;
+//    out << quint16(0);
+    dataClass.send(out);
 
 //    out.device()->seek(0);
 //    out << quint16(arrBlock.size() - sizeof(quint16));
 
     pSocket->write(arrBlock);
+
+//    qDebug() << quint16(arrBlock.size() - sizeof(quint16));
+//    qDebug() << quint16(arrBlock.size());
 }
 bool TcpServer::start(const QString address, int nPort)
 {
@@ -99,34 +95,15 @@ QString TcpServer::currentPort()
 {
     return QString::number(m_ptcpServer->serverPort());
 }
-void TcpServer::createDataSendArray(unsigned short change, unsigned short length)
+void TcpServer::createDataSendArray(bool changeOneEnable, unsigned short length1, bool changeTwoEnable, unsigned short length2)
 {
-    if(dataSendArray != 0)
-        for (int i = 0; i < 2; ++i)
-            delete []dataSendArray[i];
-
-    dataSendArray = new lesson* [2];
-    for (int i = 0; i < 2; ++i)
-        dataSendArray[i] = new lesson[length];
-
-    change == 1 ? lengthArray1=length : lengthArray2=length;
+    dataClass.createDataSendArray(changeOneEnable, length1, changeTwoEnable, length2);
 }
-void TcpServer::appendDataSendArray(unsigned short change, unsigned short lessonNumber, QString timeBegin, QString timeEnd)
+void TcpServer::appendDataSendArray(unsigned short change, unsigned short lessonNumber, QString timeBegin, QString timeEnd, bool lessonEnable)
 {
-//    qDebug() << change << lessonNumber << timeBegin << timeEnd;
-
-    dataSendArray[change-1][lessonNumber].begin = timeBegin;
-    dataSendArray[change-1][lessonNumber].end   = timeEnd;
-
-
-
+    dataClass.appendDataSendArray(change, lessonNumber, timeBegin, timeEnd, lessonEnable);
 }
 void TcpServer::printDataSendArray()
 {
-    //  1-я смена
-    for (int lessons = 0; lessons < lengthArray1; ++lessons)
-        qDebug() << dataSendArray[0][lessons].begin << dataSendArray[0][lessons].end;
-    //  2-я смена
-    for (int lessons = 0; lessons < lengthArray1; ++lessons)
-        qDebug() << dataSendArray[1][lessons].begin << dataSendArray[0][lessons].end;
+    dataClass.printDataSendArray();
 }

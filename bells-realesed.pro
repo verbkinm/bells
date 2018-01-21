@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     statusbar/statusbartime.cpp \
     settings/password.cpp \
     settings/server.cpp \
-    tcpserver.cpp
+    tcpserver/tcpserver.cpp \
+    tcpserver/datatosend.cpp
 
 HEADERS  += \
     left_panel/lesson.h \
@@ -55,7 +56,8 @@ HEADERS  += \
     statusbar/statusbartime.h \
     settings/password.h \
     settings/server.h \
-    tcpserver.h
+    tcpserver/tcpserver.h \
+    tcpserver/datatosend.h
 
 FORMS += \
     left_panel/lesson.ui \

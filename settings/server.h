@@ -4,7 +4,7 @@
 #include <QWidget>
 #include <QSettings>
 
-#include "tcpserver.h"
+#include "tcpserver/tcpserver.h"
 
 namespace Ui {
 class Server;

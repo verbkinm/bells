@@ -1,5 +1,4 @@
 #include "mainwindow.h"
-#include "tcpserver.h"
 #include <QToolBar>
 
 #if defined (Q_OS_WIN)
@@ -15,6 +14,7 @@
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM","Bells")
 {
     server = new TcpServer;
+
     if( settings.value("Generals_settings/on_or_off_server").toBool() )
         if( settings.value("Generals_settings/start_with_program").toBool() )
             startTcpServer(settings.value("Generals_settings/address_listen").toString(), settings.value("Generals_settings/port_listen").toInt() );
@@ -388,7 +388,6 @@ void MainWindow::createStatusBar()
     statusBarTimeLabel->setAlignment(Qt::AlignCenter | Qt::AlignHCenter);
     statusBar()->addWidget(statusBarTimeLabel);
 }
-
 QToolBar* MainWindow::createToolBar()
 {
     pToolbar = new QToolBar(tr("Toolbar"));
@@ -416,38 +415,46 @@ void MainWindow::rightPanelSet()
 {
     killTimer(timerId);
 
-    pRightPanel->setNumberOfShedul(pLeftPanel->currentTabText(), pLeftPanel->currentTab());
+    int currentTab = pLeftPanel->currentTab();
 
-    int lessonsNumbersChange1 = pLeftPanel->getSize(pLeftPanel->currentTab(),1);
-    int lessonsNumbersChange2 = pLeftPanel->getSize(pLeftPanel->currentTab(),2);
+    pRightPanel->setNumberOfShedul(pLeftPanel->currentTabText(), currentTab);
+
+    int lessonsNumbersChange1 = pLeftPanel->getSize(currentTab,1);
+    int lessonsNumbersChange2 = pLeftPanel->getSize(currentTab,2);
+    bool isChangeOneEnabled   = pLeftPanel->isChangeEnabled(currentTab,1);
+    bool isChangeTwoEnabled   = pLeftPanel->isChangeEnabled(currentTab,2);
 
     pRightPanel->setNumbersOfLesson(lessonsNumbersChange1,\
-                                    pLeftPanel->isChangeEnabled(pLeftPanel->currentTab(),1),\
+                                    isChangeOneEnabled,\
                                     lessonsNumbersChange2,\
-                                    pLeftPanel->isChangeEnabled(pLeftPanel->currentTab(),2));
+                                    isChangeTwoEnabled);
 
-    server->createDataSendArray(1, lessonsNumbersChange1);
-    server->createDataSendArray(2, lessonsNumbersChange2);
-//    qDebug() << "after createDataSendArray";
+    server->createDataSendArray(isChangeOneEnabled, \
+                                lessonsNumbersChange1, \
+                                isChangeTwoEnabled, \
+                                lessonsNumbersChange2);
 
     for(int change = 1; change < 3; change++){
-        for(int lesson = 0; lesson < pLeftPanel->getSize(pLeftPanel->currentTab(),change); lesson++){
+        for(int lesson = 0; lesson < pLeftPanel->getSize(currentTab,change); lesson++){
 
-            QString timeBegin = pLeftPanel->getLessonTimeBegin(pLeftPanel->currentTab(), change,lesson);
-            QString timeEnd = pLeftPanel->getLessonTimeEnd(pLeftPanel->currentTab(), change,lesson);
+            QString timeBegin = pLeftPanel->getLessonTimeBegin(currentTab, change,lesson);
+            QString timeEnd = pLeftPanel->getLessonTimeEnd(currentTab, change,lesson);
 
             pRightPanel->setLesson(change,\
                                    lesson,\
                                    timeBegin,\
                                    timeEnd,\
-                                   pLeftPanel->getLessonSoundBegin(pLeftPanel->currentTab(), change,lesson),\
-                                   pLeftPanel->getLessonSoundEnd(pLeftPanel->currentTab(), change,lesson));
+                                   pLeftPanel->getLessonSoundBegin(currentTab, change,lesson),\
+                                   pLeftPanel->getLessonSoundEnd(currentTab, change,lesson));
 
-            server->appendDataSendArray(change, lesson, timeBegin, timeEnd);
+            server->appendDataSendArray(change, \
+                                        lesson, \
+                                        timeBegin, \
+                                        timeEnd, \
+                                        pLeftPanel->isLessonEnabled(currentTab, change, lesson) );
         }
     }
-//    qDebug() << "after for";
-    server->printDataSendArray();
+//    server->printDataSendArray();
 //перемены
     int end_this_lesson,recess,begin_next_lesson;
     QString result;
