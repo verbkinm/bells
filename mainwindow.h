@@ -89,6 +89,7 @@ private:
 
     void                startTcpServer      (QString address, int port);
     void                stopTcpServer       ();
+    void                resendDataToServer  ();
 
     void                firstStartProgram   ();
 

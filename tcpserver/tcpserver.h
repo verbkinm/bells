@@ -25,19 +25,24 @@ public:
     void        appendDataSendArray (unsigned short change, unsigned short lessonNumber, QString timeBegin, QString timeEnd, bool lessonEnable);
     void        printDataSendArray  ();
 
+    void        resendDataToServer  ();
+
 private:
     QTcpServer* m_ptcpServer;
     quint16     m_nNextBlockSize;
 
     DataToSend  dataClass;
 
-    void sendToClient(QTcpSocket* pSocket);
+    QList<QTcpSocket*>  clientsList;
 
+    void        sendToClient        (QTcpSocket* pSocket);
 signals:
 
 public slots:
-    virtual void slotNewConnection();
-            void slotReadClient   ();
+    virtual void slotNewConnection  ();
+            void slotReadClient     ();
+            void disconnectClient   ();
+
 };
 
 #endif // TCPSERVER_H

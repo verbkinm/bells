@@ -11,12 +11,26 @@ TcpServer::TcpServer(QObject *parent) : QObject(parent)
 void TcpServer::slotNewConnection()
 {
     QTcpSocket* pClientSocket = m_ptcpServer->nextPendingConnection();
+    clientsList << pClientSocket;
+    qDebug() << pClientSocket->peerAddress() << pClientSocket->peerPort() << pClientSocket->peerName();
 
-    connect(pClientSocket, SIGNAL(disconnected()),  pClientSocket,  SLOT(deleteLater()) );
-    connect(pClientSocket, SIGNAL(readyRead()),     this,           SLOT(slotReadClient()) );
+    connect(pClientSocket, SIGNAL(disconnected()),  this,   SLOT(disconnectClient()) );
+    connect(pClientSocket, SIGNAL(readyRead()),     this,   SLOT(slotReadClient()) );
 
     sendToClient(pClientSocket);
 
+}
+void TcpServer::disconnectClient()
+{
+    QTcpSocket *pClientSocket = qobject_cast<QTcpSocket *>(QObject::sender());
+
+    int idx = clientsList.indexOf(pClientSocket);
+    if (idx!=-1)
+        clientsList.removeAt(idx);
+
+    pClientSocket->deleteLater();
+
+    qDebug() << clientsList.size();
 }
 void TcpServer::slotReadClient()
 {
@@ -64,6 +78,14 @@ void TcpServer::sendToClient(QTcpSocket* pSocket)
 
 //    qDebug() << quint16(arrBlock.size() - sizeof(quint16));
 //    qDebug() << quint16(arrBlock.size());
+}
+void TcpServer::resendDataToServer()
+{
+    qDebug() << "resendDataToServer";
+    foreach (QTcpSocket* pClientSocket, clientsList) {
+        sendToClient(pClientSocket);
+        qDebug() << pClientSocket->peerAddress() << pClientSocket->peerPort() << pClientSocket->peerName();
+    }
 }
 bool TcpServer::start(const QString address, int nPort)
 {

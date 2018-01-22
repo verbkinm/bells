@@ -621,6 +621,10 @@ void MainWindow::stopTcpServer()
 {
     server->close();
 }
+void MainWindow::resendDataToServer()
+{
+    server->resendDataToServer();
+}
 //###################
 //#     SLOTS       #
 //###################
@@ -629,6 +633,7 @@ void MainWindow::slotApply()
     writeSettings(false);
     rightPanelSet();
     readSettingsCache();
+    resendDataToServer();
 }
 void MainWindow::slotSaveTemplate()
 {
