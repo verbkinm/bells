@@ -915,7 +915,8 @@ void MainWindow::slotResetSettings()
       firstStartProgram();
       readSettings();
       readSettingsCache();
-      rightPanelSet();
+      slotApply();
+//      rightPanelSet();
   }
   delete pmbx;
 }
