@@ -15,10 +15,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 {
     server = new TcpServer;
 
-    if( settings.value("Generals_settings/on_or_off_server").toBool() )
-        if( settings.value("Generals_settings/start_with_program").toBool() )
-            startTcpServer(settings.value("Generals_settings/address_listen").toString(), settings.value("Generals_settings/port_listen").toInt() );
-
     localeEN = new QLocale(QLocale::English);
     localeRU = new QLocale(QLocale::Russian);
 
@@ -67,10 +63,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 
     this->show();
 
+    if( settings.value("Generals_settings/on_or_off_server").toBool() )
+        if( settings.value("Generals_settings/start_with_program").toBool() )
+            startTcpServer(settings.value("Generals_settings/address_listen").toString(), settings.value("Generals_settings/port_listen").toInt() );
+
     readSettings();
     readSettingsCache();
 
-//Если русский язык, то при старте проги функция rightPanelSet() вызываеться дважды!
+//Если русский язык, то при старте проги функция rightPanelSet() вызываеться дважды, что бы такого не было:
     if(locale.language() == QLocale::English )
         rightPanelSet();
 
