@@ -23,17 +23,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
     else
         locale = *localeEN;
 
-    if(settings.value("Generals_settings/language").toString() != "en_EN"){
-#if defined (Q_OS_WIN)
-        qtTranslator.load(\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
-#elif defined (Q_OS_LINUX)
-        qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
-#elif defined (Q_OS_FREEBSD)
-        qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
-#endif
-        QApplication::installTranslator(&qtTranslator);
-    }
-
     log.write(" - start program =))");
     firstStartProgram(); // if the program is started for the first time
 
@@ -69,6 +58,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 
     readSettings();
     readSettingsCache();
+
+    if(settings.value("Generals_settings/language").toString() != "en_EN"){
+#if defined (Q_OS_WIN)
+        qtTranslator.load(\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
+#elif defined (Q_OS_LINUX)
+        qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
+#elif defined (Q_OS_FREEBSD)
+        qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
+#endif
+        QApplication::installTranslator(&qtTranslator);
+    }
 
 //Если русский язык, то при старте проги функция rightPanelSet() вызываеться дважды, что бы такого не было:
     if(locale.language() == QLocale::English )
