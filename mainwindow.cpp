@@ -65,7 +65,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 #elif defined (Q_OS_LINUX)
         qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
 #elif defined (Q_OS_FREEBSD)
-        qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
+        qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"/translation/arrowpad_"+settings.value("Generals_settings/language").toString());
 #endif
         QApplication::installTranslator(&qtTranslator);
     }
@@ -235,6 +235,7 @@ void MainWindow::readSettingsCache()
     cacheSettingsGenerals[7] = settings.value("Generals_settings/start_tab");
     cacheSettingsGenerals[8] = settings.value("Generals_settings/path_save_and_open_file");
     cacheSettingsGenerals[9] = settings.value("Generals_settings/path_application");
+
     if( cacheSettingsGenerals[9].toString().isEmpty() )
         settings.setValue("Generals_settings/path_application", QCoreApplication::applicationDirPath());
 }
