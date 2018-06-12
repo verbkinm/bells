@@ -103,6 +103,13 @@ bool TcpServer::start(const QString address, int nPort)
 }
 void TcpServer::close()
 {
+    foreach (QTcpSocket* pClientSocket, clientsList){
+        int idx = clientsList.indexOf(pClientSocket);
+        if (idx!=-1)
+            clientsList.removeAt(idx);
+        pClientSocket->deleteLater();
+    }
+
     m_ptcpServer->close();
 }
 bool TcpServer::isListening()
