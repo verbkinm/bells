@@ -66,9 +66,9 @@ FORMS += \
     settings/settings.ui \
     settings/generals_settings.ui \
     settings/execprograms.ui \
-    aboutprogram.ui \
     settings/setdatetime.ui \
-    settings/server.ui
+    settings/server.ui \
+    aboutprogram.ui
 
 RESOURCES += \
     img.qrc

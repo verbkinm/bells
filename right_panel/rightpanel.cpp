@@ -90,7 +90,7 @@ void RightPanel::createTables(int numbersOfLessonsChange1, int numbersOfLessonsC
                 pTable.at(tab)->item(row+1,0)->setText(tr("melody:"));
 
                 if(row+2 == pTable.at(tab)->rowCount()){break;}
-                pTable.at(tab)->item(row+2,0)->setText(tr("change:"));
+                pTable.at(tab)->item(row+2,0)->setText(tr("break:"));
                 pTable.at(tab)->setSpan(row+2,1, 1,2);
 
                 numberOfLesson += 1;

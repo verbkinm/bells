@@ -13,7 +13,7 @@ class AboutProgram : public QDialog
   Q_OBJECT
 
 public:
-  explicit AboutProgram(QWidget *parent = 0);
+  AboutProgram(QWidget *parent = 0);
   ~AboutProgram();
 
 private:

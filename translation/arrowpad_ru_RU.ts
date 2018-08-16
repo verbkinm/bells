@@ -6,11 +6,11 @@
     <message>
         <location filename="../aboutprogram.ui" line="26"/>
         <source>О программе</source>
-        <translation></translation>
+        <translation>About</translation>
     </message>
     <message>
-        <location filename="../aboutprogram.ui" line="61"/>
-        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;«Школьное расписание звонков»&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; color:#000000;&quot;&gt;Основано на Qt 5.6&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; color:#000000;&quot;&gt;Собрано в апреле 2016 года&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; color:#000000;&quot;&gt;Тестировалось на Windows 7, Linux Ubuntu 14.04, FreeBSD 10.1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; color:#000000;&quot;&gt;Разработчик — Вербкин Михаил Сергеевич, &lt;/span&gt;&lt;a href=&quot;mailto:verbkinm@yandex.ru&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; text-decoration: underline; color:#0000ff;&quot;&gt;verbkinm&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;mailto:verbkinm@yandex.ru&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; font-style:italic; text-decoration: underline; color:#0000ff;&quot;&gt;@yandex.ru&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
+        <location filename="../aboutprogram.ui" line="99"/>
+        <source>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;«Школьное расписание звонков»&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;Версия 0.9&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; color:#000000;&quot;&gt;Основано на Qt 5.3&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; color:#000000;&quot;&gt;Собрано в апреле 2016 года&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; color:#000000;&quot;&gt;Разработчик — Вербкин Михаил Сергеевич&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; color:#000000;&quot;&gt;e-mail:  &lt;/span&gt;&lt;a href=&quot;mailto:verbkinm@yandex.ru&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; text-decoration: underline; color:#0000ff;&quot;&gt;verbkinm&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;mailto:verbkinm@yandex.ru&quot;&gt;&lt;span style=&quot; font-family:&apos;Arial&apos;; font-size:medium; font-style:italic; text-decoration: underline; color:#0000ff;&quot;&gt;@yandex.ru&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</source>
         <translation></translation>
     </message>
 </context>
@@ -267,29 +267,21 @@
 <context>
     <name>MainWindow</name>
     <message>
-        <location filename="../mainwindow.cpp" line="60"/>
-        <location filename="../mainwindow.cpp" line="469"/>
+        <location filename="../mainwindow.cpp" line="51"/>
         <source>School bell schedul</source>
         <translation>Школьное расписание звонков</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="103"/>
         <source>Shedule</source>
-        <translation>Расписание</translation>
+        <translation type="vanished">Расписание</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="252"/>
-        <location filename="../mainwindow.cpp" line="253"/>
-        <location filename="../mainwindow.cpp" line="477"/>
-        <location filename="../mainwindow.cpp" line="789"/>
         <source>Call</source>
-        <translation>Звонок</translation>
+        <translation type="vanished">Звонок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="259"/>
-        <location filename="../mainwindow.cpp" line="478"/>
         <source>Exit</source>
-        <translation>Выход</translation>
+        <translation type="vanished">Выход</translation>
     </message>
     <message>
         <source>Save everything and set the schedule</source>
@@ -300,157 +292,104 @@
         <translation type="vanished">Сохранить расписания</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="265"/>
-        <location filename="../mainwindow.cpp" line="479"/>
         <source>Apply</source>
-        <translation>Применить</translation>
+        <translation type="vanished">Применить</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="271"/>
-        <location filename="../mainwindow.cpp" line="480"/>
-        <location filename="../mainwindow.cpp" line="609"/>
         <source>Open template</source>
-        <translation>Открыть шаблон</translation>
+        <translation type="vanished">Открыть шаблон</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="277"/>
-        <location filename="../mainwindow.cpp" line="481"/>
-        <location filename="../mainwindow.cpp" line="587"/>
         <source>Save the template</source>
-        <translation>Сохранить шаблон</translation>
+        <translation type="vanished">Сохранить шаблон</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="283"/>
-        <location filename="../mainwindow.cpp" line="482"/>
         <source>Days of the week</source>
-        <translation>Дни недели</translation>
+        <translation type="vanished">Дни недели</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="289"/>
-        <location filename="../mainwindow.cpp" line="483"/>
         <source>General</source>
-        <translation>Общие</translation>
+        <translation type="vanished">Общие</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="295"/>
-        <location filename="../mainwindow.cpp" line="485"/>
         <source>instruction</source>
-        <translation>Инструкция</translation>
+        <translation type="vanished">Инструкция</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="301"/>
-        <location filename="../mainwindow.cpp" line="486"/>
         <source>About...</source>
-        <translation>О программе...</translation>
+        <translation type="vanished">О программе...</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="306"/>
-        <location filename="../mainwindow.cpp" line="487"/>
         <source>Date and time</source>
-        <translation>Дата и время</translation>
+        <translation type="vanished">Дата и время</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="312"/>
-        <location filename="../mainwindow.cpp" line="488"/>
         <source>Russian</source>
-        <translation>Русский</translation>
+        <translation type="vanished">Русский</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="317"/>
-        <location filename="../mainwindow.cpp" line="489"/>
         <source>English</source>
-        <translation>Английский</translation>
+        <translation type="vanished">Английский</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="322"/>
-        <location filename="../mainwindow.cpp" line="484"/>
         <source>Default settings</source>
-        <translation>Сброс настроек</translation>
+        <translation type="vanished">Сброс настроек</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="328"/>
-        <location filename="../mainwindow.cpp" line="471"/>
         <source>&amp;File</source>
-        <translation>&amp;Файл</translation>
+        <translation type="vanished">&amp;Файл</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="336"/>
-        <location filename="../mainwindow.cpp" line="472"/>
         <source>&amp;Call</source>
-        <translation>&amp;Звонок</translation>
+        <translation type="vanished">&amp;Звонок</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="339"/>
-        <location filename="../mainwindow.cpp" line="473"/>
         <source>&amp;Settings</source>
-        <translation>&amp;Настройки</translation>
+        <translation type="vanished">&amp;Настройки</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="345"/>
-        <location filename="../mainwindow.cpp" line="474"/>
         <source>Language</source>
-        <translation>Язык</translation>
+        <translation type="vanished">Язык</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="354"/>
-        <location filename="../mainwindow.cpp" line="475"/>
         <source>&amp;Help</source>
-        <translation>&amp;Справка</translation>
+        <translation type="vanished">&amp;Справка</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="379"/>
         <source>Toolbar</source>
-        <translation>панель инструментов</translation>
+        <translation type="vanished">панель инструментов</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="459"/>
         <source> min.</source>
-        <translation> мин.</translation>
+        <translation type="vanished"> мин.</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="505"/>
-        <location filename="../mainwindow.cpp" line="510"/>
-        <location filename="../mainwindow.cpp" line="515"/>
-        <location filename="../mainwindow.cpp" line="712"/>
-        <location filename="../mainwindow.cpp" line="723"/>
-        <location filename="../mainwindow.cpp" line="750"/>
-        <location filename="../mainwindow.cpp" line="856"/>
         <source>Warning</source>
-        <translation>Внимание</translation>
+        <translation type="vanished">Внимание</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="505"/>
-        <location filename="../mainwindow.cpp" line="510"/>
-        <location filename="../mainwindow.cpp" line="515"/>
         <source>The file </source>
-        <translation>Файл </translation>
+        <translation type="vanished">Файл </translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="505"/>
-        <location filename="../mainwindow.cpp" line="510"/>
-        <location filename="../mainwindow.cpp" line="515"/>
         <source> - not exist!</source>
-        <translation> - не существует!</translation>
+        <translation type="vanished"> - не существует!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="713"/>
         <source>In Unix system you can&apos;t change time and date in this program!</source>
-        <translation>В Unix системах, вы не можете изменять время и дату через это программу!</translation>
+        <translation type="vanished">В Unix системах, вы не можете изменять время и дату через это программу!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="724"/>
         <source>These settings change the date and time system! Continue?</source>
-        <translation>Данные настройки изменяют дату и время системы! Продолжить?</translation>
+        <translation type="vanished">Данные настройки изменяют дату и время системы! Продолжить?</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="750"/>
         <source>To change the date and time you need to run a program as a local administrator!</source>
-        <translation>Для изменения даты и времени нужно запускать программу с правами локального администратора!</translation>
+        <translation type="vanished">Для изменения даты и времени нужно запускать программу с правами локального администратора!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="857"/>
         <source>Are you sure?</source>
-        <translation>Вы уверены?</translation>
+        <translation type="vanished">Вы уверены?</translation>
     </message>
     <message>
         <source> мин.</source>
@@ -465,9 +404,8 @@
         <translation type="vanished">Для изменения даты и времени нужно запускать программу с правами локального администратора!</translation>
     </message>
     <message>
-        <location filename="../mainwindow.cpp" line="813"/>
         <source>Turn the ringer off</source>
-        <translation>Выключить звонок</translation>
+        <translation type="vanished">Выключить звонок</translation>
     </message>
 </context>
 <context>
@@ -478,7 +416,7 @@
         <translation>Аутентификация</translation>
     </message>
     <message>
-        <location filename="../settings/password.cpp" line="49"/>
+        <location filename="../settings/password.cpp" line="48"/>
         <source>You input wrong password!</source>
         <translation>Вы ввели неправильный пароль!</translation>
     </message>
@@ -510,26 +448,98 @@
         <translation>Начало урока</translation>
     </message>
     <message>
-        <location filename="../right_panel/rightpanel.cpp" line="85"/>
+        <location filename="../right_panel/rightpanel.cpp" line="90"/>
         <source>melody:</source>
         <translation>Мелодия:</translation>
     </message>
     <message>
-        <location filename="../right_panel/rightpanel.cpp" line="88"/>
-        <source>change:</source>
-        <translation>Перемена:</translation>
+        <location filename="../right_panel/rightpanel.cpp" line="93"/>
+        <source>break:</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../right_panel/rightpanel.cpp" line="97"/>
-        <location filename="../right_panel/rightpanel.cpp" line="98"/>
+        <source>change:</source>
+        <translation type="vanished">Перемена:</translation>
+    </message>
+    <message>
+        <location filename="../right_panel/rightpanel.cpp" line="102"/>
+        <location filename="../right_panel/rightpanel.cpp" line="103"/>
         <source>Change #1</source>
         <translation>Смена №1</translation>
     </message>
     <message>
-        <location filename="../right_panel/rightpanel.cpp" line="99"/>
-        <location filename="../right_panel/rightpanel.cpp" line="100"/>
+        <location filename="../right_panel/rightpanel.cpp" line="104"/>
+        <location filename="../right_panel/rightpanel.cpp" line="105"/>
         <source>Change #2</source>
         <translation>Смена №2</translation>
+    </message>
+</context>
+<context>
+    <name>Server</name>
+    <message>
+        <location filename="../settings/server.ui" line="26"/>
+        <source>Server</source>
+        <translation>Сервер</translation>
+    </message>
+    <message>
+        <location filename="../settings/server.ui" line="41"/>
+        <source>Address listen:</source>
+        <translation>Слушать адрес:</translation>
+    </message>
+    <message>
+        <location filename="../settings/server.ui" line="57"/>
+        <source>Port listen:</source>
+        <translation>Слушать порт:</translation>
+    </message>
+    <message>
+        <location filename="../settings/server.ui" line="73"/>
+        <source>localhost</source>
+        <translation>localhost</translation>
+    </message>
+    <message>
+        <location filename="../settings/server.ui" line="95"/>
+        <location filename="../settings/server.ui" line="98"/>
+        <location filename="../settings/server.ui" line="240"/>
+        <location filename="../settings/server.ui" line="243"/>
+        <source>ON\OFF calls for the this day</source>
+        <translation>Вкл.\Выкл. звонки для данного дня</translation>
+    </message>
+    <message>
+        <location filename="../settings/server.ui" line="101"/>
+        <source>ON\OFF</source>
+        <translation>Вкл.\Выкл.</translation>
+    </message>
+    <message>
+        <location filename="../settings/server.ui" line="136"/>
+        <source>83</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../settings/server.ui" line="161"/>
+        <source>Status of server:</source>
+        <translation>Статус сервера:</translation>
+    </message>
+    <message>
+        <location filename="../settings/server.ui" line="177"/>
+        <source>unknown</source>
+        <translation>неизвестно</translation>
+    </message>
+    <message>
+        <location filename="../settings/server.ui" line="246"/>
+        <source>Start with program</source>
+        <translation>Запускать при старте программы</translation>
+    </message>
+    <message>
+        <location filename="../settings/server.cpp" line="24"/>
+        <location filename="../settings/server.cpp" line="87"/>
+        <source>started</source>
+        <translation>запущен</translation>
+    </message>
+    <message>
+        <location filename="../settings/server.cpp" line="28"/>
+        <location filename="../settings/server.cpp" line="82"/>
+        <source>stopped</source>
+        <translation>отсановлен</translation>
     </message>
 </context>
 <context>
@@ -575,67 +585,78 @@
         <translation>Сохранит\Отменить</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="27"/>
+        <location filename="../settings/tabsettings.cpp" line="28"/>
         <source>Mo.</source>
         <translation>Пн.</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="28"/>
+        <location filename="../settings/tabsettings.cpp" line="29"/>
         <source>Tu.</source>
         <translation>Вт.</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="29"/>
+        <location filename="../settings/tabsettings.cpp" line="30"/>
         <source>We.</source>
         <translation>Ср.</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="30"/>
+        <location filename="../settings/tabsettings.cpp" line="31"/>
         <source>Th.</source>
         <translation>Чт.</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="31"/>
+        <location filename="../settings/tabsettings.cpp" line="32"/>
         <source>Fr.</source>
         <translation>Пт.</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="32"/>
+        <location filename="../settings/tabsettings.cpp" line="33"/>
         <source>Sa.</source>
         <translation>Сб.</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="33"/>
+        <location filename="../settings/tabsettings.cpp" line="34"/>
         <source>Su.</source>
         <translation>Вс.</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="49"/>
+        <location filename="../settings/tabsettings.cpp" line="50"/>
         <source>Days of the week</source>
         <translation>Дни недели</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="65"/>
+        <location filename="../settings/tabsettings.cpp" line="67"/>
         <source>General</source>
         <translation>Общие</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="66"/>
+        <location filename="../settings/tabsettings.cpp" line="68"/>
         <source>Program</source>
         <translation>Программы</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="68"/>
         <location filename="../settings/tabsettings.cpp" line="69"/>
-        <location filename="../settings/tabsettings.cpp" line="80"/>
+        <source>Server</source>
+        <translation>Сервер</translation>
+    </message>
+    <message>
+        <location filename="../settings/tabsettings.cpp" line="71"/>
+        <location filename="../settings/tabsettings.cpp" line="72"/>
+        <location filename="../settings/tabsettings.cpp" line="85"/>
         <source>General settings</source>
         <translation>Общие настройки</translation>
     </message>
     <message>
-        <location filename="../settings/tabsettings.cpp" line="70"/>
-        <location filename="../settings/tabsettings.cpp" line="71"/>
+        <location filename="../settings/tabsettings.cpp" line="73"/>
+        <location filename="../settings/tabsettings.cpp" line="74"/>
         <source>Additional programs for calls</source>
         <translation>Дополнительные программы для звонков</translation>
+    </message>
+    <message>
+        <location filename="../settings/tabsettings.cpp" line="75"/>
+        <location filename="../settings/tabsettings.cpp" line="76"/>
+        <source>Server settings</source>
+        <translation>Настройки сервера</translation>
     </message>
 </context>
 <context>
@@ -657,6 +678,19 @@
         <location filename="../left_panel/tabtext.ui" line="74"/>
         <source>Save\Cancel</source>
         <translation>Сохранит\Отменить</translation>
+    </message>
+</context>
+<context>
+    <name>TcpServer</name>
+    <message>
+        <location filename="../tcpserver/tcpserver.cpp" line="95"/>
+        <source>Server Error</source>
+        <translation>Ошибка сервера</translation>
+    </message>
+    <message>
+        <location filename="../tcpserver/tcpserver.cpp" line="96"/>
+        <source>Unable to start the server: </source>
+        <translation>Не врзможно запустить сервер: </translation>
     </message>
 </context>
 <context>

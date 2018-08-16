@@ -6,48 +6,38 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>540</width>
-    <height>193</height>
+    <width>550</width>
+    <height>473</height>
    </rect>
   </property>
-  <property name="minimumSize">
-   <size>
-    <width>540</width>
-    <height>193</height>
-   </size>
-  </property>
-  <property name="maximumSize">
-   <size>
-    <width>100000</width>
-    <height>100000</height>
-   </size>
-  </property>
   <property name="windowTitle">
-   <string>О программе</string>
-  </property>
-  <property name="windowIcon">
-   <iconset resource="img.qrc">
-    <normaloff>:/img/lyceum.png</normaloff>:/img/lyceum.png</iconset>
+   <string>Dialog</string>
   </property>
   <property name="modal">
    <bool>true</bool>
   </property>
-  <layout class="QGridLayout" name="gridLayout_2">
-   <item row="0" column="1" colspan="2">
-    <spacer name="verticalSpacer_2">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="1" column="1">
+    <widget class="QPushButton" name="pushButton">
+     <property name="minimumSize">
       <size>
-       <width>20</width>
-       <height>40</height>
+       <width>100</width>
+       <height>23</height>
       </size>
      </property>
-    </spacer>
+     <property name="maximumSize">
+      <size>
+       <width>100</width>
+       <height>23</height>
+      </size>
+     </property>
+     <property name="text">
+      <string>OK</string>
+     </property>
+    </widget>
    </item>
-   <item row="1" column="3">
-    <spacer name="horizontalSpacer_2">
+   <item row="1" column="0">
+    <spacer name="horizontalSpacer">
      <property name="orientation">
       <enum>Qt::Horizontal</enum>
      </property>
@@ -59,120 +49,49 @@
      </property>
     </spacer>
    </item>
-   <item row="1" column="1" colspan="2">
-    <widget class="QLabel" name="label_2">
-     <property name="minimumSize">
-      <size>
-       <width>150</width>
-       <height>150</height>
-      </size>
-     </property>
-     <property name="maximumSize">
-      <size>
-       <width>150</width>
-       <height>150</height>
-      </size>
-     </property>
-     <property name="text">
-      <string/>
-     </property>
-     <property name="pixmap">
-      <pixmap resource="img.qrc">:/img/lyceum.png</pixmap>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
+   <item row="0" column="0" colspan="2">
+    <widget class="QTextEdit" name="textEdit">
+     <property name="html">
+      <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'Sans Serif'; font-size:9pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Приложение &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;Школьное расписание звонков&amp;quot;&lt;/span&gt; - это программное обеспечение, предназначенное для автоматической, гибко настраеваемой, подачи звуковых сигналов по расписанию. &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Возможности программы: &lt;/p&gt;
+&lt;ul style=&quot;margin-top: 0px; margin-bottom: 0px; margin-left: 0px; margin-right: 0px; -qt-list-indent: 1;&quot;&gt;&lt;li style=&quot; margin-top:12px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;До 20-ти уроков в смене, включая нулевой урок; &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Две смены; &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Установка времени начала и окончания урока (периода); &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Установка времени предупреждающего (за определенное время до начала урока) звукового сигнала; &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;4 отдельных расписания; &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Выбор расписания для каждого дня недели; &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Ручная подача звукового сигнала; &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Выбор мелодии для ручной подачи и предупреждающего звонка; &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Выбор мелодии для начала и окончания каждого урока; &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Возможность сохранения расписаний и всех настроек приложения в отдельный файл, а так же его открытие; &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Выполнение сценариев (запуск приложений) операционной системы, перед подачей звукового сигнала и после его окончания; &lt;/li&gt;
+&lt;li style=&quot; margin-top:0px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;TCP/IP сервер, для взаимодействия с приложением &lt;span style=&quot; font-weight:600;&quot;&gt;&amp;quot;Школьное расписание звонков - Монитор&amp;quot;&lt;/span&gt; &lt;/li&gt;&lt;/ul&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Программное обеспечение разрабатывалось для учебного учреждения и сделан упор именно на эту тематику. Но может использоваться в любой сфере, где необходимо использовать автоматическую подачу звуковых сигналов по расписанию. &lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Программа написана с использованием библиотеки Qt5, что делает её кроссплатформенной. Тестировалась на таких операционных системах как: &lt;span style=&quot; font-weight:600;&quot;&gt;Windows 7(x86, x64)&lt;/span&gt;, &lt;span style=&quot; font-weight:600;&quot;&gt;Ubuntu 14.04 - 18.04(x86, x64)&lt;/span&gt;, &lt;span style=&quot; font-weight:600;&quot;&gt;FreeBSD 10 - 11(x86, x64)&lt;/span&gt;. &lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
-   </item>
-   <item row="1" column="4">
-    <widget class="QLabel" name="label">
-     <property name="minimumSize">
-      <size>
-       <width>364</width>
-       <height>150</height>
-      </size>
-     </property>
-     <property name="text">
-      <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-size:12pt; font-weight:600;&quot;&gt;«Школьное расписание звонков»&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'Arial'; font-size:medium; color:#000000;&quot;&gt;Основано на Qt 5.6&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'Arial'; font-size:medium; color:#000000;&quot;&gt;Собрано в апреле 2016 года&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'Arial'; font-size:medium; color:#000000;&quot;&gt;Тестировалось на Windows 7, Linux Ubuntu 16.04, FreeBSD 11.1&lt;/span&gt;&lt;/p&gt;&lt;p align=&quot;justify&quot;&gt;&lt;span style=&quot; font-family:'Arial'; font-size:medium; color:#000000;&quot;&gt;Разработчик — Вербкин Михаил Сергеевич, &lt;/span&gt;&lt;a href=&quot;mailto:verbkinm@yandex.ru&quot;&gt;&lt;span style=&quot; font-family:'Arial'; font-size:medium; text-decoration: underline; color:#0000ff;&quot;&gt;verbkinm&lt;/span&gt;&lt;/a&gt;&lt;a href=&quot;mailto:verbkinm@yandex.ru&quot;&gt;&lt;span style=&quot; font-family:'Arial'; font-size:medium; font-style:italic; text-decoration: underline; color:#0000ff;&quot;&gt;@yandex.ru&lt;/span&gt;&lt;/a&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-     </property>
-     <property name="textFormat">
-      <enum>Qt::AutoText</enum>
-     </property>
-     <property name="scaledContents">
-      <bool>false</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="wordWrap">
-      <bool>false</bool>
-     </property>
-     <property name="textInteractionFlags">
-      <set>Qt::NoTextInteraction</set>
-     </property>
-    </widget>
-   </item>
-   <item row="3" column="3" colspan="3">
-    <widget class="QDialogButtonBox" name="buttonBox">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <property name="standardButtons">
-      <set>QDialogButtonBox::Ok</set>
-     </property>
-    </widget>
-   </item>
-   <item row="2" column="1" rowspan="2" colspan="2">
-    <spacer name="verticalSpacer">
-     <property name="orientation">
-      <enum>Qt::Vertical</enum>
-     </property>
-     <property name="sizeHint" stdset="0">
-      <size>
-       <width>20</width>
-       <height>40</height>
-      </size>
-     </property>
-    </spacer>
    </item>
   </layout>
  </widget>
- <resources>
-  <include location="img.qrc"/>
- </resources>
+ <resources/>
  <connections>
   <connection>
-   <sender>buttonBox</sender>
-   <signal>accepted()</signal>
-   <receiver>AboutProgram</receiver>
-   <slot>accept()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>248</x>
-     <y>254</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>157</x>
-     <y>274</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
-   <sender>buttonBox</sender>
-   <signal>rejected()</signal>
+   <sender>pushButton</sender>
+   <signal>clicked()</signal>
    <receiver>AboutProgram</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>316</x>
-     <y>260</y>
+     <x>169</x>
+     <y>231</y>
     </hint>
     <hint type="destinationlabel">
-     <x>286</x>
-     <y>274</y>
+     <x>199</x>
+     <y>149</y>
     </hint>
    </hints>
   </connection>

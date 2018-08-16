@@ -47,7 +47,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
     this->addToolBar(Qt::TopToolBarArea, createToolBar());
     this->setCentralWidget(pSplitter);
 
-    this->setWindowIcon(QPixmap(":/img/lyceum.png"));
+    this->setWindowIcon(QPixmap(":/img/callNow.png"));
     this->setWindowTitle(tr("School bell schedul"));
 
     this->show();
@@ -315,7 +315,7 @@ void MainWindow::createActions()
 
     pActionAboutAuthor = new QAction("Author", 0);
     pActionAboutAuthor->setText(tr("About..."));
-    pActionAboutAuthor->setIcon(QPixmap(":/img/lyceum.png"));
+    pActionAboutAuthor->setIcon(QPixmap(":/img/callNow.png"));
     connect(pActionAboutAuthor, SIGNAL(triggered(bool)), SLOT(slotAboutAuthor()) );
 
     pActionSetDateTime = new QAction("SetDateTime", 0);
