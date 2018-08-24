@@ -15,6 +15,8 @@
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM","Bells")
 {
+    settings.setIniCodec("utf8");
+
     server = new TcpServer;
 
     localeEN = new QLocale(QLocale::English);
