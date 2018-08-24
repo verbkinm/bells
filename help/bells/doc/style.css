@@ -1,16 +1,13 @@
-body{
-	font-family: Geneva, Arial, Helvetica, sans-serif;
-}
-h2{
-	text-align: center;
-}
-p {
-   text-indent: 5%;
-   text-align: justify;
-	margin: 10px 20px 10px 20px;
-}
 .image{
 	text-align: center;
+}
+li img {
+	width: 22px;
+	height: 22px;
+}
+td img {
+	width: 350px;
+	height: 232px;
 }
 .image_title{
 	text-align: center;
@@ -24,12 +21,14 @@ p {
 }
 .title {
 	margin-bottom: 20px;
-	font: bold italic 16px sans-serif;
+	font: bold italic 14px sans-serif;
 	text-decoration: underline;
 }
 .subtitle {
 	margin-bottom: 20px;
 	font-weight: bold;
 }
-
+main td {
+	border-width: 0px;
+}
 

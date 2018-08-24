@@ -18,7 +18,6 @@
 #include "settings/setdatetime.h"
 #include "right_panel/rightpanel.h"
 #include "log.h"
-#include "aboutprogram.h"
 #include "settings/tabsettings.h"
 #include "statusbar/statusbartime.h"
 //#include "tcpserver.h"
@@ -129,7 +128,6 @@ private slots:
     void                slotResetSettings   ();
 
     void                slotAboutInstruction();
-    void                slotAboutInstructionClose();
     void                slotAboutAuthor     ();
 
     void                slotSetDateTime     ();

@@ -26,7 +26,6 @@ SOURCES += main.cpp\
     settings/tabsettings.cpp \
     log.cpp \
     settings/execprograms.cpp \
-    aboutprogram.cpp \
     settings/setdatetime.cpp \
     settings/mytimeedit.cpp \
     statusbar/statusbartime.cpp \
@@ -50,7 +49,6 @@ HEADERS  += \
     settings/tabsettings.h \
     log.h \
     settings/execprograms.h \
-    aboutprogram.h \
     settings/setdatetime.h \
     settings/mytimeedit.h \
     statusbar/statusbartime.h \
@@ -67,8 +65,7 @@ FORMS += \
     settings/generals_settings.ui \
     settings/execprograms.ui \
     settings/setdatetime.ui \
-    settings/server.ui \
-    aboutprogram.ui
+    settings/server.ui
 
 RESOURCES += \
     img.qrc

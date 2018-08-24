@@ -1,5 +1,7 @@
 #include "mainwindow.h"
+
 #include <QToolBar>
+#include <QDesktopServices>
 
 #if defined (Q_OS_WIN)
 #include <windows.h>
@@ -61,10 +63,12 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 
     if(settings.value("Generals_settings/language").toString() != "en_EN"){
 #if defined (Q_OS_WIN)
-        qtTranslator.load(\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
-#elif defined (Q_OS_LINUX)
+        qtTranslator.load("\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
+#endif
+#if defined (Q_OS_LINUX)
         qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
-#elif defined (Q_OS_FREEBSD)
+#endif
+#if defined (Q_OS_FREEBSD)
         qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"/translation/arrowpad_"+settings.value("Generals_settings/language").toString());
 #endif
         QApplication::installTranslator(&qtTranslator);
@@ -82,15 +86,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 }
 void MainWindow::firstStartProgram()
 {
-//#if defined (Q_OS_WIN)
-//  qtTranslator.load(QCoreApplication::applicationDirPath().replace("/","\\")+"\\translation\\arrowpad_"+QLocale::system().name() );
-//#elif defined (Q_OS_LINUX)
-//  qtTranslator.load(QCoreApplication::applicationDirPath()+"/translation/arrowpad_"+QLocale::system().name() );
-//#elif defined (Q_OS_FREEBSD)
-//  qtTranslator.load(QCoreApplication::applicationDirPath()+"/translation/arrowpad_"+QLocale::system().name() );
-//#endif
-//  QApplication::installTranslator(&qtTranslator);
-
     if(settings.value("Generals_settings/count_of_program").toInt() < 1){
         settings.clear();
 #if defined (Q_OS_WIN)
@@ -341,7 +336,7 @@ void MainWindow::createActions()
 }
 void MainWindow::createMenu()
 {
-    pMenuFile = new QMenu(tr("&File"));
+    pMenuFile = new QMenu(tr("File"));
     pMenuFile->addAction(pActionApply);
     pMenuFile->addSeparator();
     pMenuFile->addAction(pActionOpen);
@@ -349,10 +344,10 @@ void MainWindow::createMenu()
     pMenuFile->addSeparator();
     pMenuFile->addAction(pActionExit);
 
-    pMenuBell = new QMenu(tr("&Call"));
+    pMenuBell = new QMenu(tr("Call"));
     pMenuBell->addAction(pActionCall);
 
-    pMenuSettings = new QMenu(tr("&Settings"));
+    pMenuSettings = new QMenu(tr("Settings"));
     pMenuSettings->addAction(pActionSettingsDasy);
     pMenuSettings->addAction(pActionSettingsGenerals);
     pMenuSettings->addSeparator();
@@ -367,7 +362,7 @@ void MainWindow::createMenu()
     pMenuSettings->addSeparator();
     pMenuSettings->addAction(pActionResetSettings);
 
-    pMenuAbout = new QMenu(tr("&Help"));
+    pMenuAbout = new QMenu(tr("Help"));
     pMenuAbout->addAction(pActionAboutInstruction);
     pMenuAbout->addSeparator();
     pMenuAbout->addAction(pActionAboutAuthor);
@@ -737,26 +732,7 @@ void MainWindow::slotSettingsGenerals()
 }
 void MainWindow::slotAboutInstruction()
 {
-  QStringList args;
-  pActionAboutInstruction->setEnabled(false);
-  connect(&cmdAssistant, SIGNAL(finished(int)), SLOT(slotAboutInstructionClose()) );
-
-#if defined (Q_OS_WIN)
-    args << QLatin1String("-collectionFile") << cacheSettingsGenerals[9].toString()+"\\"+"help\\instruction.qhc";
-    cmdAssistant.start(QLatin1String((cacheSettingsGenerals[9].toString()+"\\assistant.exe").toLocal8Bit()),args);
-#elif defined (Q_OS_LINUX)
-  args << "-collectionFile" << cacheSettingsGenerals[9].toString()+"/help/instruction.qhc";
-  cmdAssistant.start("assistant",args);
-#elif defined (Q_OS_FREEBSD)
-  args << "-collectionFile" << cacheSettingsGenerals[9].toString()+"/help/instruction.qhc";
-  cmdAssistant.start("assistant",args);
-#endif
-}
-void MainWindow::slotAboutInstructionClose()
-{
-  disconnect(&cmdAssistant, SIGNAL(finished(int)), this, SLOT(slotAboutInstructionClose()));
-  cmdAssistant.close();
-  pActionAboutInstruction->setEnabled(true);
+    QDesktopServices::openUrl(QUrl("https://litsey-yugorsk.ru/soft/bells/doc.html"));
 }
 void MainWindow::slotSetDateTime()
 {
@@ -829,11 +805,7 @@ void MainWindow::slotSetDateTime()
 }
 void MainWindow::slotAboutAuthor()
 {
-  AboutProgram *aboutprogram = new AboutProgram;
-  if(aboutprogram->exec() == QDialog::Rejected)
-    aboutprogram->close();
-
-  delete aboutprogram;
+    QDesktopServices::openUrl(QUrl("https://litsey-yugorsk.ru/soft/bells/index.html"));
 }
 void MainWindow::slotStatusChanged(QMediaPlayer::State state)
 {

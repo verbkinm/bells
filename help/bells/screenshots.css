@@ -1,0 +1,12 @@
+td img {
+	width: 750px; 
+	height: 575px;
+}
+main td {
+	border:0px solid black;
+	text-align: center;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	font-size: 14px;
+	font-weight: bold;
+}
