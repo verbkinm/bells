@@ -1,6 +1,6 @@
 #include "rightpanel.h"
 
-RightPanel::RightPanel(int numbersOfLessonsChange1, int numbersOfLessonsChange2) : QFrame(), settings("LYCEUM","Bells")
+RightPanel::RightPanel(int numbersOfLessonsChange1, int numbersOfLessonsChange2) : QFrame()//, settings("LYCEUM","Bells")
 {
     pLabel = new QLabel;
     pLabel->setAlignment(Qt::AlignCenter);

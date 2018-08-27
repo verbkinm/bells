@@ -1,6 +1,6 @@
 #include "left_panel/tabofsheduls.h"
 
-TabOfSheduls::TabOfSheduls(int numbers_of_tabs, QMediaPlayer *parentPlayer) : QTabWidget(), settings("LYCEUM","Bells")
+TabOfSheduls::TabOfSheduls(int numbers_of_tabs, QMediaPlayer *parentPlayer) : QTabWidget()
 {
     tabs = numbers_of_tabs;
 

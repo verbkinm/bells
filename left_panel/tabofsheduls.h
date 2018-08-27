@@ -17,7 +17,7 @@ public:
     int tabs;
 
     TabOfSheduls(int numbers_of_tabs, QMediaPlayer *parentPlayer);
-    QSettings   settings;
+//    QSettings   settings;
     ~TabOfSheduls();
 
     void setNumbersOfLesson             (int numberOfTab, int numbersOfLessonChange1, int numbersOfLessonChange2);

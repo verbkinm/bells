@@ -11,12 +11,9 @@
 
 #define dash "-- : --"
 #define timer 1000
-#define test_sound "Повседневный -15db.mp3"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM","Bells")
 {
-    settings.setIniCodec("utf8");
-
     server = new TcpServer;
 
     localeEN = new QLocale(QLocale::English);
@@ -77,8 +74,8 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
     }
 
 //Если русский язык, то при старте проги функция rightPanelSet() вызываеться дважды, что бы такого не было:
-    if(locale.language() == QLocale::English )
-        rightPanelSet();
+//    if(locale.language() == QLocale::English )
+//        rightPanelSet();
 
     connect(&player, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(slotStatusChanged(QMediaPlayer::State)) );
 
@@ -110,8 +107,8 @@ void MainWindow::firstStartProgram()
                 for (int lesson = 0; lesson < 9; lesson++) {
                     settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/time_begin","00:00");
                     settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/time_end","00:00");
-                    settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/sound_begin",test_sound);
-                    settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/sound_end",test_sound);
+                    settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/sound_begin",dash);
+                    settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/sound_end",dash);
                     settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/isEnabled",false);
                 }
             }
@@ -129,38 +126,38 @@ void MainWindow::firstStartProgram()
 
         settings.setValue("Sheduls/shedul0/change1/lesson1/time_begin","08:30");
         settings.setValue("Sheduls/shedul0/change1/lesson1/time_end","09:15");
-        settings.setValue("Sheduls/shedul0/change1/lesson1/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson1/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson1/sound_begin",dash);
+        settings.setValue("Sheduls/shedul0/change1/lesson1/sound_end",dash);
 
         settings.setValue("Sheduls/shedul0/change1/lesson2/time_begin","09:30");
         settings.setValue("Sheduls/shedul0/change1/lesson2/time_end","10:10");
-        settings.setValue("Sheduls/shedul0/change1/lesson2/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson2/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson2/sound_begin",dash);
+        settings.setValue("Sheduls/shedul0/change1/lesson2/sound_end",dash);
 
         settings.setValue("Sheduls/shedul0/change1/lesson3/time_begin","10:30");
         settings.setValue("Sheduls/shedul0/change1/lesson3/time_end","11:10");
-        settings.setValue("Sheduls/shedul0/change1/lesson3/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson3/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson3/sound_begin",dash);
+        settings.setValue("Sheduls/shedul0/change1/lesson3/sound_end",dash);
 
         settings.setValue("Sheduls/shedul0/change1/lesson4/time_begin","11:30");
         settings.setValue("Sheduls/shedul0/change1/lesson4/time_end","12:10");
-        settings.setValue("Sheduls/shedul0/change1/lesson4/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson4/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson4/sound_begin",dash);
+        settings.setValue("Sheduls/shedul0/change1/lesson4/sound_end",dash);
 
         settings.setValue("Sheduls/shedul0/change1/lesson5/time_begin","12:25");
         settings.setValue("Sheduls/shedul0/change1/lesson5/time_end","13:05");
-        settings.setValue("Sheduls/shedul0/change1/lesson5/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson5/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson5/sound_begin",dash);
+        settings.setValue("Sheduls/shedul0/change1/lesson5/sound_end",dash);
 
         settings.setValue("Sheduls/shedul0/change1/lesson6/time_begin","13:15");
         settings.setValue("Sheduls/shedul0/change1/lesson6/time_end","13:55");
-        settings.setValue("Sheduls/shedul0/change1/lesson6/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson6/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson6/sound_begin",dash);
+        settings.setValue("Sheduls/shedul0/change1/lesson6/sound_end",dash);
 
         settings.setValue("Sheduls/shedul0/change1/lesson7/time_begin","14:05");
         settings.setValue("Sheduls/shedul0/change1/lesson7/time_end","14:45");
-        settings.setValue("Sheduls/shedul0/change1/lesson7/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson7/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson7/sound_begin",dash);
+        settings.setValue("Sheduls/shedul0/change1/lesson7/sound_end",dash);
 #if defined (Q_OS_WIN)
         settings.setValue("Generals_settings/path_of_sounds_dir",QCoreApplication::applicationDirPath().replace("/","\\")+"\\sounds");
         settings.setValue("Generals_settings/path_save_and_open_file",QCoreApplication::applicationDirPath().replace("/","\\"));
@@ -171,13 +168,13 @@ void MainWindow::firstStartProgram()
         settings.setValue("Generals_settings/path_of_sounds_dir",QCoreApplication::applicationDirPath()+"/sounds");
         settings.setValue("Generals_settings/path_save_and_open_file",QCoreApplication::applicationDirPath());
 #endif
-        settings.setValue("Generals_settings/manual_ring",test_sound);
+        settings.setValue("Generals_settings/manual_ring",dash);
         for (int day = 1; day < 8; day++) {
             settings.setValue("Days/"+QString::number(day)+"/on_or_off_before_lesson",false);
             settings.setValue("Days/"+QString::number(day)+"/on_or_off_day",false);
             settings.setValue("Days/"+QString::number(day)+"/on_or_off_shedule",false);
             settings.setValue("Days/"+QString::number(day)+"/shedul_of_day",0);
-            settings.setValue("Days/"+QString::number(day)+"/sound_before_lesson",test_sound);
+            settings.setValue("Days/"+QString::number(day)+"/sound_before_lesson",dash);
             settings.setValue("Days/"+QString::number(day)+"/time_before_lesson",2);
           }
         settings.setValue("Generals_settings/on_or_off_server",false);
