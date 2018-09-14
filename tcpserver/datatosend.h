@@ -16,7 +16,7 @@ public:
 private:
 
 // contents protocol
-// out << размер данных(quint16)
+// out << размер данных(quint16) << тип передаваемых данных (int 0 - send data, 1 - ping)
 //    for (int i = 0; i < 2; ++i){
 //      << состояние смены(bool) << кол-во уроков в смене(int)
 //      for (int j = 0; j < кол-во уроков в смене[i]; ++j)

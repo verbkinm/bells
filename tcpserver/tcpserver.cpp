@@ -7,6 +7,9 @@ TcpServer::TcpServer(QObject *parent) : QObject(parent)
     m_ptcpServer = new QTcpServer(this);
 
     connect(m_ptcpServer, SIGNAL(newConnection()), this, SLOT(slotNewConnection()) );
+    connect(&timerDataResend, SIGNAL(timeout()), this, SLOT(slotDataResend()));
+
+    timerDataResend.start(4000);
 }
 void TcpServer::slotNewConnection()
 {
@@ -15,7 +18,7 @@ void TcpServer::slotNewConnection()
     qDebug() << pClientSocket->peerAddress() << pClientSocket->peerPort() << pClientSocket->peerName();
 
     connect(pClientSocket, SIGNAL(disconnected()),  this,   SLOT(disconnectClient()) );
-    connect(pClientSocket, SIGNAL(readyRead()),     this,   SLOT(slotReadClient()) );
+//    connect(pClientSocket, SIGNAL(readyRead()),     this,   SLOT(slotReadClient()) );
 
     sendToClient(pClientSocket);
 
@@ -61,6 +64,23 @@ void TcpServer::slotReadClient()
 ////        sendToClient(pClientSocket, "Server Response: Received \"" + str + "\"" );
 //    }
 }
+void TcpServer::slotDataResend()
+{
+    foreach (QTcpSocket* client, clientsList) {
+        pingClient(client);
+    }
+}
+void TcpServer::pingClient(QTcpSocket *pSocket)
+{
+    QByteArray  arrBlock;
+    QDataStream out(&arrBlock, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_3);
+
+    int typeData = 1;
+    out <<typeData;
+
+    pSocket->write(arrBlock);
+}
 void TcpServer::sendToClient(QTcpSocket* pSocket)
 {
     QByteArray  arrBlock;
@@ -68,7 +88,8 @@ void TcpServer::sendToClient(QTcpSocket* pSocket)
 //    qDebug() << "send address = " << &out;
     out.setVersion(QDataStream::Qt_5_3);
 
-//    out << quint16(0);
+    int typeData = 0;
+    out << typeData;
     dataClass.send(out);
 
 //    out.device()->seek(0);

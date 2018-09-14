@@ -5,6 +5,7 @@
 #include <QTcpServer>
 #include <QTcpSocket>
 #include <QTime>
+#include <QTimer>
 
 #include "datatosend.h"
 
@@ -34,14 +35,17 @@ private:
     DataToSend  dataClass;
 
     QList<QTcpSocket*>  clientsList;
+    QTimer      timerDataResend;
 
     void        sendToClient        (QTcpSocket* pSocket);
+    void        pingClient          (QTcpSocket* pSocket);
 signals:
 
-public slots:
+private slots:
     virtual void slotNewConnection  ();
             void slotReadClient     ();
             void disconnectClient   ();
+            void slotDataResend     ();
 
 };
 
