@@ -1,4 +1,4 @@
-сайт приложеия - https://litsey-yugorsk.ru/soft/bells/
+сайт приложеия - https://bells.litsey-yugorsk.ru
 
 "Школьное расписание звонков" 
 
