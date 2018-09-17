@@ -701,6 +701,8 @@ void MainWindow::slotSettingsDays()
     if (pSettingsWindow->exec() == QDialog::Accepted){
         pSettingsWindow->writeSettingsDays();
         this->readSettingsCache();
+        setSheduleOfDay();
+        resendDataToServer();
     }
     pSettingsWindow->stopSoundDays();
     pSettingsWindow->daysDelete();
@@ -804,7 +806,7 @@ void MainWindow::slotSetDateTime()
 }
 void MainWindow::slotAboutAuthor()
 {
-    QDesktopServices::openUrl(QUrl("https://litsey-yugorsk.ru/soft/bells/index.html"));
+    QDesktopServices::openUrl(QUrl("https://bells.litsey-yugorsk.ru"));
 }
 void MainWindow::slotStatusChanged(QMediaPlayer::State state)
 {
