@@ -32,7 +32,8 @@ SOURCES += main.cpp\
     settings/password.cpp \
     settings/server.cpp \
     tcpserver/tcpserver.cpp \
-    tcpserver/datatosend.cpp
+    tcpserver/datatosend.cpp \
+    about.cpp
 
 HEADERS  += \
     left_panel/lesson.h \
@@ -55,7 +56,8 @@ HEADERS  += \
     settings/password.h \
     settings/server.h \
     tcpserver/tcpserver.h \
-    tcpserver/datatosend.h
+    tcpserver/datatosend.h \
+    about.h
 
 FORMS += \
     left_panel/lesson.ui \
@@ -65,7 +67,8 @@ FORMS += \
     settings/generals_settings.ui \
     settings/execprograms.ui \
     settings/setdatetime.ui \
-    settings/server.ui
+    settings/server.ui \
+    about.ui
 
 RESOURCES += \
     img.qrc

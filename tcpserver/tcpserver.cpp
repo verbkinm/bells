@@ -70,7 +70,6 @@ void TcpServer::sendToClient(QTcpSocket* pSocket)
 }
 void TcpServer::resendDataToServer()
 {
-    qDebug() << "resendDataToServer";
     foreach (QTcpSocket* pClientSocket, clientsList) {
         sendToClient(pClientSocket);
         qDebug() << pClientSocket->peerAddress() << pClientSocket->peerPort() << pClientSocket->peerName();

@@ -1,5 +1,7 @@
 #include "generals_settings.h"
 
+#define DASH "-- : --"
+
 Generals_Settings::Generals_Settings(QMediaPlayer *parentPlayer, int currentShedule) :
     QWidget(), settings("LYCEUM","Bells"),
     ui(new Ui::Generals_Settings)
@@ -77,6 +79,7 @@ void Generals_Settings::slotChooseDir()
 
         path_of_sounds_dir.setPath(ui->pathToSoundsDir->text());
 
+        ui->manual_ring->addItem(tr("None"));
         ui->manual_ring->addItems(path_of_sounds_dir.entryList(nameFilter, QDir::Files));
         ui->manual_ring->setCurrentText(settings.value("Generals_settings/manual_ring").toString());
     }
@@ -97,7 +100,7 @@ void Generals_Settings::stopSound()
 
 void Generals_Settings::slotPlayStop()
 {
-    if(ui->manual_ring->currentText().isEmpty() && player.state() == QMediaPlayer::StoppedState)
+    if(ui->manual_ring->currentText() == DASH && player.state() == QMediaPlayer::StoppedState)
         return;
 #if defined (Q_OS_WIN)
     QString sound = path_of_sounds_dir.path().replace("/","\\")+"\\"+ui->manual_ring->currentText();
@@ -154,12 +157,14 @@ void Generals_Settings::slotCheckDir(QString dir)
     ui->pathToSoundsDir->setPalette(paletteNorm);
     path_of_sounds_dir.setPath(ui->pathToSoundsDir->text());
     ui->manual_ring->clear();
+    ui->manual_ring->addItem(DASH);
     ui->manual_ring->addItems(path_of_sounds_dir.entryList(nameFilter, QDir::Files) );
     ui->manual_ring->setCurrentText(settings.value("Generals_settings/manual_ring").toString());
   }
   else{
     ui->pathToSoundsDir->setPalette(paletteRed);
     ui->manual_ring->clear();
+    ui->manual_ring->addItem(DASH);
   }
 }
 

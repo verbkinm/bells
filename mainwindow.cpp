@@ -1,7 +1,9 @@
 #include "mainwindow.h"
+#include "about.h"
 
 #include <QToolBar>
 #include <QDesktopServices>
+
 
 #if defined (Q_OS_WIN)
 #include <windows.h>
@@ -303,10 +305,10 @@ void MainWindow::createActions()
     pActionAboutInstruction->setShortcut(QKeySequence("F1"));
     connect(pActionAboutInstruction, SIGNAL(triggered(bool)), SLOT(slotAboutInstruction()) );
 
-    pActionAboutAuthor = new QAction("Author");
-    pActionAboutAuthor->setText(tr("About..."));
+    pActionAboutAuthor = new QAction("About");
+    pActionAboutAuthor->setText(tr("About"));
     pActionAboutAuthor->setIcon(QPixmap(":/img/callNow.png"));
-    connect(pActionAboutAuthor, SIGNAL(triggered(bool)), SLOT(slotAboutAuthor()) );
+    connect(pActionAboutAuthor, SIGNAL(triggered(bool)), SLOT(slotAbout()) );
 
     pActionSetDateTime = new QAction("SetDateTime");
     pActionSetDateTime->setText(tr("Date and time"));
@@ -531,20 +533,23 @@ void MainWindow::retranslate()
 }
 QString MainWindow::callNow(QString sound)
 {
+    if(sound == dash)
+        return "\0";
+
 #if defined (Q_OS_WIN)
   if( !QFile(cacheSettingsGenerals[2].toString() + "\\" + sound).exists() ){
       QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
-      return "error, file " + cacheSettingsGenerals[2].toString() + "\\" + sound + " - not exist!";
+      return "error, file \"" + cacheSettingsGenerals[2].toString() + "\\" + sound + "\" - not exist!";
   }
 #elif defined (Q_OS_LINUX)
     if( !QFile(cacheSettingsGenerals[2].toString() + "/" + sound).exists() ){
         QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
-        return "error, file " + cacheSettingsGenerals[2].toString() + "/" + sound + " - not exist!";
+        return "error, file \"" + cacheSettingsGenerals[2].toString() + "/" + sound + " - not exist!";
     }
 #elif defined (Q_OS_FREEBSD)
     if( !QFile(cacheSettingsGenerals[2].toString() + "/" + sound).exists() ){
         QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
-        return "error, file " + cacheSettingsGenerals[2].toString() + "/" + sound + " - not exist!";
+        return "error, file \"" + cacheSettingsGenerals[2].toString() + "/" + sound + "\" - not exist!";
     }
 #endif
   if( player.state() == QMediaPlayer::PlayingState )
@@ -800,9 +805,16 @@ void MainWindow::slotSetDateTime()
     }
     delete pmbx;
 }
-void MainWindow::slotAboutAuthor()
+void MainWindow::slotAbout()
 {
-    QDesktopServices::openUrl(QUrl("https://bells.litsey-yugorsk.ru"));
+//    QDesktopServices::openUrl(QUrl("https://bells.litsey-yugorsk.ru"));
+
+    About *about = new About();
+
+    if (about->exec() == QDialog::Accepted){
+        ;
+    }
+    delete about;
 }
 void MainWindow::slotStatusChanged(QMediaPlayer::State state)
 {

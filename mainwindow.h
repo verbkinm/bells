@@ -128,7 +128,7 @@ private slots:
     void                slotResetSettings   ();
 
     void                slotAboutInstruction();
-    void                slotAboutAuthor     ();
+    void                slotAbout           ();
 
     void                slotSetDateTime     ();
 
