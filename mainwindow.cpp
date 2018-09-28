@@ -62,20 +62,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 
     if(settings.value("Generals_settings/language").toString() != "en_EN"){
 #if defined (Q_OS_WIN)
-        qtTranslator.load("\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
+        qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
 #endif
 #if defined (Q_OS_LINUX)
-        qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
+        qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"/translation/arrowpad_"+settings.value("Generals_settings/language").toString());
 #endif
 #if defined (Q_OS_FREEBSD)
         qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"/translation/arrowpad_"+settings.value("Generals_settings/language").toString());
 #endif
         QApplication::installTranslator(&qtTranslator);
     }
-
-//Если русский язык, то при старте проги функция rightPanelSet() вызываеться дважды, что бы такого не было:
-//    if(locale.language() == QLocale::English )
-//        rightPanelSet();
 
     connect(&player, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(slotStatusChanged(QMediaPlayer::State)) );
 
@@ -259,76 +255,76 @@ void MainWindow::writeSettings(bool isSaveSheduls)
 
 void MainWindow::createActions()
 {
-    pActionCall = new QAction(tr("Call"),0);
+    pActionCall = new QAction(tr("Call"));
     pActionCall->setText(tr("Call"));
     pActionCall->setIcon(QPixmap(":/img/callNow.png"));
     pActionCall->setShortcut(QKeySequence("CTRL+SHIFT+R"));
     connect(pActionCall, SIGNAL(triggered(bool)), SLOT(slotCallNow()) );
 
-    pActionExit = new QAction("Exit",0);
+    pActionExit = new QAction("Exit");
     pActionExit->setText(tr("Exit"));
     pActionExit->setIcon(QPixmap(":/img/exit.png"));
     pActionExit->setShortcut(QKeySequence("CTRL+Q"));
     connect(pActionExit, SIGNAL(triggered(bool)), SLOT(close()) );
 
-    pActionApply = new QAction("Save",0);
+    pActionApply = new QAction("Save");
     pActionApply->setText(tr("Apply"));
     pActionApply->setIcon(QPixmap(":/img/apply.png"));
 //    pActionApply->setShortcut(QKeySequence("CTRL+S"));
     connect(pActionApply, SIGNAL(triggered(bool)), SLOT(slotApply()) );
 
-    pActionOpen = new QAction("Open",0);
+    pActionOpen = new QAction("Open");
     pActionOpen->setText(tr("Open template"));
     pActionOpen->setIcon(QPixmap(":/img/open.png"));
     pActionOpen->setShortcut(QKeySequence("CTRL+O"));
     connect(pActionOpen, SIGNAL(triggered(bool)), SLOT(slotOpen()) );
 
-    pActionSaveSheduls = new QAction("SaveSheduls",0);
+    pActionSaveSheduls = new QAction("SaveSheduls");
     pActionSaveSheduls->setText(tr("Save the template"));
     pActionSaveSheduls->setIcon(QPixmap(":/img/save_sheduls.png"));
     pActionSaveSheduls->setShortcut(QKeySequence("CTRL+S"));
     connect(pActionSaveSheduls, SIGNAL(triggered(bool)), SLOT(slotSaveTemplate()) );
 
-    pActionSettingsDasy = new QAction("Settings", 0);
+    pActionSettingsDasy = new QAction("Settings");
     pActionSettingsDasy->setText(tr("Days of the week"));
     pActionSettingsDasy->setIcon(QPixmap(":/img/days.png"));
     pActionSettingsDasy->setShortcut(QKeySequence("ALT+D"));
     connect(pActionSettingsDasy, SIGNAL(triggered(bool)), SLOT(slotSettingsDays()) );
 
-    pActionSettingsGenerals = new QAction("Settings", 0);
+    pActionSettingsGenerals = new QAction("Settings");
     pActionSettingsGenerals->setText(tr("General"));
     pActionSettingsGenerals->setIcon(QPixmap(":/img/settings.png"));
     pActionSettingsGenerals->setShortcut(QKeySequence("ALT+G"));
     connect(pActionSettingsGenerals, SIGNAL(triggered(bool)), SLOT(slotSettingsGenerals()) );
 
-    pActionAboutInstruction = new QAction("Instruction", 0);
+    pActionAboutInstruction = new QAction("Instruction");
     pActionAboutInstruction->setText(tr("instruction"));
     pActionAboutInstruction->setIcon(QPixmap(":/img/instruction.png"));
     pActionAboutInstruction->setShortcut(QKeySequence("F1"));
     connect(pActionAboutInstruction, SIGNAL(triggered(bool)), SLOT(slotAboutInstruction()) );
 
-    pActionAboutAuthor = new QAction("Author", 0);
+    pActionAboutAuthor = new QAction("Author");
     pActionAboutAuthor->setText(tr("About..."));
     pActionAboutAuthor->setIcon(QPixmap(":/img/callNow.png"));
     connect(pActionAboutAuthor, SIGNAL(triggered(bool)), SLOT(slotAboutAuthor()) );
 
-    pActionSetDateTime = new QAction("SetDateTime", 0);
+    pActionSetDateTime = new QAction("SetDateTime");
     pActionSetDateTime->setText(tr("Date and time"));
     pActionSetDateTime->setIcon(QPixmap(":/img/clock.png"));
     pActionSetDateTime->setShortcut(QKeySequence("ALT+T"));
     connect(pActionSetDateTime, SIGNAL(triggered(bool)), SLOT(slotSetDateTime()) );
 
-    pActionSetLanguageRu = new QAction("SetLanguage",0);
+    pActionSetLanguageRu = new QAction("SetLanguage");
     pActionSetLanguageRu->setText(tr("Russian"));
     pActionSetLanguageRu->setIcon(QPixmap(":img/ru.png"));
     connect(pActionSetLanguageRu, SIGNAL(triggered(bool)), SLOT(slotSetLanguageRu()) );
 
-    pActionSetLanguageEn = new QAction("SetLanguage",0);
+    pActionSetLanguageEn = new QAction("SetLanguage");
     pActionSetLanguageEn->setText(tr("English"));
     pActionSetLanguageEn->setIcon(QPixmap(":img/en.png"));
     connect(pActionSetLanguageEn, SIGNAL(triggered(bool)), SLOT(slotSetLanguageEn()) );
 
-    pActionResetSettings = new QAction(0);
+    pActionResetSettings = new QAction();
     pActionResetSettings->setText(tr("Default settings"));
     pActionResetSettings->setIcon(QPixmap(":/img/reload.png"));
     connect(pActionResetSettings, SIGNAL(triggered(bool)), SLOT(slotResetSettings()) );
@@ -733,7 +729,7 @@ void MainWindow::slotSettingsGenerals()
 }
 void MainWindow::slotAboutInstruction()
 {
-    QDesktopServices::openUrl(QUrl("https://litsey-yugorsk.ru/soft/bells/doc.html"));
+    QDesktopServices::openUrl(QUrl("https://bells.litsey-yugorsk.ru/doc.php"));
 }
 void MainWindow::slotSetDateTime()
 {

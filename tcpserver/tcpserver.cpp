@@ -37,32 +37,7 @@ void TcpServer::disconnectClient()
 }
 void TcpServer::slotReadClient()
 {
-//    QTcpSocket* pClientSocket = (QTcpSocket*)sender();
-//    QDataStream in(pClientSocket);
-//    in.setVersion(QDataStream::Qt_5_3);
-//    for (;;) {
-//        if (!m_nNextBlockSize) {
-//            if (pClientSocket->bytesAvailable() < (int)sizeof(quint16)) {
-//                break;
-//            }
-//            in >> m_nNextBlockSize;
-//        }
 
-//        if (pClientSocket->bytesAvailable() < m_nNextBlockSize) {
-//            break;
-//        }
-//        QTime   time;
-//        QString str;
-//        in >> time >> str;
-
-//        QString strMessage;// =
-////            time.toString() + " " + "Client has sent - " + str;
-////        m_ptxt->append(strMessage);
-
-//        m_nNextBlockSize = 0;
-
-////        sendToClient(pClientSocket, "Server Response: Received \"" + str + "\"" );
-//    }
 }
 void TcpServer::slotDataResend()
 {
@@ -85,20 +60,13 @@ void TcpServer::sendToClient(QTcpSocket* pSocket)
 {
     QByteArray  arrBlock;
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
-//    qDebug() << "send address = " << &out;
     out.setVersion(QDataStream::Qt_5_3);
 
     int typeData = 0;
     out << typeData;
     dataClass.send(out);
 
-//    out.device()->seek(0);
-//    out << quint16(arrBlock.size() - sizeof(quint16));
-
     pSocket->write(arrBlock);
-
-//    qDebug() << quint16(arrBlock.size() - sizeof(quint16));
-//    qDebug() << quint16(arrBlock.size());
 }
 void TcpServer::resendDataToServer()
 {
@@ -108,11 +76,11 @@ void TcpServer::resendDataToServer()
         qDebug() << pClientSocket->peerAddress() << pClientSocket->peerPort() << pClientSocket->peerName();
     }
 }
-bool TcpServer::start(const QString address, int nPort)
+bool TcpServer::start(const QString address, quint16 nPort)
 {
     if (!m_ptcpServer->listen(QHostAddress(address), nPort))
     {
-        QMessageBox::critical(0,
+        QMessageBox::critical(nullptr,
                               tr("Server Error"),
                               tr("Unable to start the server: ")
                               + m_ptcpServer->errorString()
@@ -145,7 +113,7 @@ QString TcpServer::currentPort()
 {
     return QString::number(m_ptcpServer->serverPort());
 }
-void TcpServer::createDataSendArray(bool changeOneEnable, unsigned short length1, bool changeTwoEnable, unsigned short length2)
+void TcpServer::createDataSendArray(bool changeOneEnable, int length1, bool changeTwoEnable, int length2)
 {
     dataClass.createDataSendArray(changeOneEnable, length1, changeTwoEnable, length2);
 }

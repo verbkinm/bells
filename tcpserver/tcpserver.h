@@ -15,14 +15,14 @@ class TcpServer : public QObject
 public:
     TcpServer(QObject *parent = nullptr);
 
-    bool        start               (const QString address, int nPort);
+    bool        start               (const QString address, quint16 nPort);
     void        close               ();
     bool        isListening         ();
 
     QString     currentAddress      ();
     QString     currentPort         ();
 
-    void        createDataSendArray (bool changeOneEnable, unsigned short length1, bool changeTwoEnable, unsigned short length2);
+    void        createDataSendArray (bool changeOneEnable, int length1, bool changeTwoEnable, int length2);
     void        appendDataSendArray (unsigned short change, unsigned short lessonNumber, QString timeBegin, QString timeEnd, bool lessonEnable);
     void        printDataSendArray  ();
 

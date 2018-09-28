@@ -6,9 +6,9 @@ DataToSend::DataToSend()
 {
 
 }
-void DataToSend::createDataSendArray(bool changeOneEnable, unsigned short length1, bool changeTwoEnable, unsigned short length2)
+void DataToSend::createDataSendArray(bool changeOneEnable, int length1, bool changeTwoEnable, int length2)
 {
-    if(pDoubleArray != 0)
+    if(pDoubleArray != nullptr)
         for (int i = 0; i < 2; ++i)
             delete []pDoubleArray[i];
 
