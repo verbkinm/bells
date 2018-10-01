@@ -7,6 +7,9 @@ TcpServer::TcpServer(QObject *parent) : QObject(parent)
     m_ptcpServer = new QTcpServer(this);
 
     connect(m_ptcpServer, SIGNAL(newConnection()), this, SLOT(slotNewConnection()) );
+    connect(&timerDataResend, SIGNAL(timeout()), this, SLOT(slotDataResend()));
+
+    timerDataResend.start(4000);
 }
 void TcpServer::slotNewConnection()
 {
@@ -15,7 +18,7 @@ void TcpServer::slotNewConnection()
     qDebug() << pClientSocket->peerAddress() << pClientSocket->peerPort() << pClientSocket->peerName();
 
     connect(pClientSocket, SIGNAL(disconnected()),  this,   SLOT(disconnectClient()) );
-    connect(pClientSocket, SIGNAL(readyRead()),     this,   SLOT(slotReadClient()) );
+//    connect(pClientSocket, SIGNAL(readyRead()),     this,   SLOT(slotReadClient()) );
 
     sendToClient(pClientSocket);
 
@@ -34,64 +37,49 @@ void TcpServer::disconnectClient()
 }
 void TcpServer::slotReadClient()
 {
-//    QTcpSocket* pClientSocket = (QTcpSocket*)sender();
-//    QDataStream in(pClientSocket);
-//    in.setVersion(QDataStream::Qt_5_3);
-//    for (;;) {
-//        if (!m_nNextBlockSize) {
-//            if (pClientSocket->bytesAvailable() < (int)sizeof(quint16)) {
-//                break;
-//            }
-//            in >> m_nNextBlockSize;
-//        }
 
-//        if (pClientSocket->bytesAvailable() < m_nNextBlockSize) {
-//            break;
-//        }
-//        QTime   time;
-//        QString str;
-//        in >> time >> str;
+}
+void TcpServer::slotDataResend()
+{
+    foreach (QTcpSocket* client, clientsList) {
+        pingClient(client);
+    }
+}
+void TcpServer::pingClient(QTcpSocket *pSocket)
+{
+    QByteArray  arrBlock;
+    QDataStream out(&arrBlock, QIODevice::WriteOnly);
+    out.setVersion(QDataStream::Qt_5_3);
 
-//        QString strMessage;// =
-////            time.toString() + " " + "Client has sent - " + str;
-////        m_ptxt->append(strMessage);
+    int typeData = 1;
+    out <<typeData;
 
-//        m_nNextBlockSize = 0;
-
-////        sendToClient(pClientSocket, "Server Response: Received \"" + str + "\"" );
-//    }
+    pSocket->write(arrBlock);
 }
 void TcpServer::sendToClient(QTcpSocket* pSocket)
 {
     QByteArray  arrBlock;
     QDataStream out(&arrBlock, QIODevice::WriteOnly);
-//    qDebug() << "send address = " << &out;
     out.setVersion(QDataStream::Qt_5_3);
 
-//    out << quint16(0);
+    int typeData = 0;
+    out << typeData;
     dataClass.send(out);
 
-//    out.device()->seek(0);
-//    out << quint16(arrBlock.size() - sizeof(quint16));
-
     pSocket->write(arrBlock);
-
-//    qDebug() << quint16(arrBlock.size() - sizeof(quint16));
-//    qDebug() << quint16(arrBlock.size());
 }
 void TcpServer::resendDataToServer()
 {
-    qDebug() << "resendDataToServer";
     foreach (QTcpSocket* pClientSocket, clientsList) {
         sendToClient(pClientSocket);
         qDebug() << pClientSocket->peerAddress() << pClientSocket->peerPort() << pClientSocket->peerName();
     }
 }
-bool TcpServer::start(const QString address, int nPort)
+bool TcpServer::start(const QString address, quint16 nPort)
 {
     if (!m_ptcpServer->listen(QHostAddress(address), nPort))
     {
-        QMessageBox::critical(0,
+        QMessageBox::critical(nullptr,
                               tr("Server Error"),
                               tr("Unable to start the server: ")
                               + m_ptcpServer->errorString()
@@ -124,11 +112,11 @@ QString TcpServer::currentPort()
 {
     return QString::number(m_ptcpServer->serverPort());
 }
-void TcpServer::createDataSendArray(bool changeOneEnable, unsigned short length1, bool changeTwoEnable, unsigned short length2)
+void TcpServer::createDataSendArray(bool changeOneEnable, int length1, bool changeTwoEnable, int length2)
 {
     dataClass.createDataSendArray(changeOneEnable, length1, changeTwoEnable, length2);
 }
-void TcpServer::appendDataSendArray(unsigned short change, unsigned short lessonNumber, QString timeBegin, QString timeEnd, bool lessonEnable)
+void TcpServer::appendDataSendArray(int change, int lessonNumber, QString timeBegin, QString timeEnd, bool lessonEnable)
 {
     dataClass.appendDataSendArray(change, lessonNumber, timeBegin, timeEnd, lessonEnable);
 }

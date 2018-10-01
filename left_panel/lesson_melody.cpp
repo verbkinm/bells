@@ -1,5 +1,7 @@
 #include "lesson_melody.h"
 
+#define DASH "-- : --"
+
 Dialog::Dialog(QMediaPlayer *parentPlayer) :
     QDialog(),settings("LYCEUM","Bells"),
     ui(new Ui::Dialog)
@@ -11,7 +13,10 @@ Dialog::Dialog(QMediaPlayer *parentPlayer) :
     ui->setupUi(this);
 
     dir.setPath( settings.value("Generals_settings/path_of_sounds_dir").toString() );
+
+    ui->dialogBeginSound->addItem(DASH);
     ui->dialogBeginSound->addItems( dir.entryList(nameFilter, QDir::Files) );
+    ui->dialogEndSound->addItem(DASH);
     ui->dialogEndSound->addItems( dir.entryList(nameFilter, QDir::Files) );
 
     if(generalPlayer->state() == QMediaPlayer::PlayingState){
@@ -60,7 +65,7 @@ void Dialog::stopSound()
 //###############################
 void Dialog::slotPlayStop1()
 {
-    if( ui->dialogBeginSound->currentText().isEmpty() )
+    if( ui->dialogBeginSound->currentText() == DASH )
         return;
 #if defined (Q_OS_WIN)
     QString sound = dir.path().replace("/","\\")+"\\"+ui->dialogBeginSound->currentText();
@@ -89,7 +94,7 @@ void Dialog::slotPlayStop1()
 }
 void Dialog::slotPlayStop2()
 {
-    if( ui->dialogEndSound->currentText().isEmpty() )
+    if( ui->dialogEndSound->currentText() == DASH )
         return;
 #if defined (Q_OS_WIN)
     QString sound = dir.path().replace("/","\\")+"\\"+ui->dialogEndSound->currentText();

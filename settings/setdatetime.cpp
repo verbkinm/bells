@@ -6,9 +6,7 @@ SetDateTime::SetDateTime(QLocale locale, QWidget *parent) :
   QDialog(parent),chanched(true),
   ui(new Ui::SetDateTime)
 {
-  qDebug() << "pin-pin";
   ui->setupUi(this);
-    qDebug() << "pin-pin2";
   ui->calendarWidget->setLocale(locale);
   ui->calendarWidget->setSelectedDate(QDate::currentDate());
 

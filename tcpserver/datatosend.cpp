@@ -6,9 +6,9 @@ DataToSend::DataToSend()
 {
 
 }
-void DataToSend::createDataSendArray(bool changeOneEnable, unsigned short length1, bool changeTwoEnable, unsigned short length2)
+void DataToSend::createDataSendArray(bool changeOneEnable, int length1, bool changeTwoEnable, int length2)
 {
-    if(pDoubleArray != 0)
+    if(pDoubleArray != nullptr)
         for (int i = 0; i < 2; ++i)
             delete []pDoubleArray[i];
 
@@ -23,7 +23,7 @@ void DataToSend::createDataSendArray(bool changeOneEnable, unsigned short length
     isChangesEnabled[0]         = changeOneEnable;
     isChangesEnabled[1]         = changeTwoEnable;
 }
-void DataToSend::appendDataSendArray(unsigned short change, unsigned short lessonNumber, QString timeBegin, QString timeEnd, bool lessonEnable)
+void DataToSend::appendDataSendArray(int change, int lessonNumber, QString timeBegin, QString timeEnd, bool lessonEnable)
 {
 //    qDebug() << change << lessonNumber << timeBegin << timeEnd;
     pDoubleArray[change-1][lessonNumber].begin          = timeBegin;

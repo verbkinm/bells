@@ -17,7 +17,7 @@ class RightPanel : public QFrame
 
 public:
 
-    QSettings   settings;
+//    QSettings   settings;
 
     RightPanel(int numbersOfLessonsChange1 = 8, int numbersOfLessonsChange2 = 8);
     ~RightPanel();

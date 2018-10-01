@@ -1,7 +1,9 @@
 #include "mainwindow.h"
+#include "about.h"
 
 #include <QToolBar>
 #include <QDesktopServices>
+
 
 #if defined (Q_OS_WIN)
 #include <windows.h>
@@ -10,13 +12,11 @@
 #include "settings/password.h"
 
 #define dash "-- : --"
+#define DEFAULT_SOUND "Повседневный.mp3"
 #define timer 1000
-#define test_sound "Повседневный -15db.mp3"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM","Bells")
 {
-    settings.setIniCodec("utf8");
-
     server = new TcpServer;
 
     localeEN = new QLocale(QLocale::English);
@@ -24,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 
     if(settings.value("Generals_settings/language").toString() == "ru_RU")
         locale = *localeRU;
-    else
+    else if (settings.value("Generals_settings/language").toString() == "en_EN")
         locale = *localeEN;
 
     log.write(" - start program =))");
@@ -65,20 +65,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), settings("LYCEUM"
 
     if(settings.value("Generals_settings/language").toString() != "en_EN"){
 #if defined (Q_OS_WIN)
-        qtTranslator.load("\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
+        qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"\\translation\\arrowpad_"+settings.value("Generals_settings/language").toString());
 #endif
 #if defined (Q_OS_LINUX)
-        qtTranslator.load("translation/arrowpad_"+settings.value("Generals_settings/language").toString());
+        qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"/translation/arrowpad_"+settings.value("Generals_settings/language").toString());
 #endif
 #if defined (Q_OS_FREEBSD)
         qtTranslator.load(settings.value("Generals_settings/path_application").toString()+"/translation/arrowpad_"+settings.value("Generals_settings/language").toString());
 #endif
         QApplication::installTranslator(&qtTranslator);
     }
-
-//Если русский язык, то при старте проги функция rightPanelSet() вызываеться дважды, что бы такого не было:
-    if(locale.language() == QLocale::English )
-        rightPanelSet();
 
     connect(&player, SIGNAL(stateChanged(QMediaPlayer::State)), SLOT(slotStatusChanged(QMediaPlayer::State)) );
 
@@ -110,8 +106,8 @@ void MainWindow::firstStartProgram()
                 for (int lesson = 0; lesson < 9; lesson++) {
                     settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/time_begin","00:00");
                     settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/time_end","00:00");
-                    settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/sound_begin",test_sound);
-                    settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/sound_end",test_sound);
+                    settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/sound_begin",DEFAULT_SOUND);
+                    settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/sound_end",DEFAULT_SOUND);
                     settings.setValue("Sheduls/shedul"+QString::number(tab)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/isEnabled",false);
                 }
             }
@@ -120,47 +116,47 @@ void MainWindow::firstStartProgram()
         settings.setValue("Generals_settings/language",QLocale::system().name());
         locale = QLocale::system().language();
 
-        for (int lesson = 1; lesson < 8; lesson++) {
+        for (int lesson = 1; lesson < 8; lesson++)
             settings.setValue("Sheduls/shedul0/change1/lesson"+QString::number(lesson)+"/isEnabled",true);
-          }
+
         settings.setValue("Sheduls/shedul0/change1/isVisible",true);
         settings.setValue("Sheduls/shedul0/change1/lesson0/time_begin","00:00");
         settings.setValue("Sheduls/shedul0/change1/lesson0/time_end","00:00");
 
         settings.setValue("Sheduls/shedul0/change1/lesson1/time_begin","08:30");
         settings.setValue("Sheduls/shedul0/change1/lesson1/time_end","09:15");
-        settings.setValue("Sheduls/shedul0/change1/lesson1/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson1/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson1/sound_begin", "Зарядка.mp3");
+        settings.setValue("Sheduls/shedul0/change1/lesson1/sound_end",DEFAULT_SOUND);
 
         settings.setValue("Sheduls/shedul0/change1/lesson2/time_begin","09:30");
         settings.setValue("Sheduls/shedul0/change1/lesson2/time_end","10:10");
-        settings.setValue("Sheduls/shedul0/change1/lesson2/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson2/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson2/sound_begin",DEFAULT_SOUND);
+        settings.setValue("Sheduls/shedul0/change1/lesson2/sound_end",DEFAULT_SOUND);
 
         settings.setValue("Sheduls/shedul0/change1/lesson3/time_begin","10:30");
         settings.setValue("Sheduls/shedul0/change1/lesson3/time_end","11:10");
-        settings.setValue("Sheduls/shedul0/change1/lesson3/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson3/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson3/sound_begin",DEFAULT_SOUND);
+        settings.setValue("Sheduls/shedul0/change1/lesson3/sound_end",DEFAULT_SOUND);
 
         settings.setValue("Sheduls/shedul0/change1/lesson4/time_begin","11:30");
         settings.setValue("Sheduls/shedul0/change1/lesson4/time_end","12:10");
-        settings.setValue("Sheduls/shedul0/change1/lesson4/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson4/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson4/sound_begin",DEFAULT_SOUND);
+        settings.setValue("Sheduls/shedul0/change1/lesson4/sound_end",DEFAULT_SOUND);
 
         settings.setValue("Sheduls/shedul0/change1/lesson5/time_begin","12:25");
         settings.setValue("Sheduls/shedul0/change1/lesson5/time_end","13:05");
-        settings.setValue("Sheduls/shedul0/change1/lesson5/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson5/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson5/sound_begin",DEFAULT_SOUND);
+        settings.setValue("Sheduls/shedul0/change1/lesson5/sound_end",DEFAULT_SOUND);
 
         settings.setValue("Sheduls/shedul0/change1/lesson6/time_begin","13:15");
         settings.setValue("Sheduls/shedul0/change1/lesson6/time_end","13:55");
-        settings.setValue("Sheduls/shedul0/change1/lesson6/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson6/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson6/sound_begin",DEFAULT_SOUND);
+        settings.setValue("Sheduls/shedul0/change1/lesson6/sound_end",DEFAULT_SOUND);
 
         settings.setValue("Sheduls/shedul0/change1/lesson7/time_begin","14:05");
         settings.setValue("Sheduls/shedul0/change1/lesson7/time_end","14:45");
-        settings.setValue("Sheduls/shedul0/change1/lesson7/sound_begin",test_sound);
-        settings.setValue("Sheduls/shedul0/change1/lesson7/sound_end",test_sound);
+        settings.setValue("Sheduls/shedul0/change1/lesson7/sound_begin",DEFAULT_SOUND);
+        settings.setValue("Sheduls/shedul0/change1/lesson7/sound_end",DEFAULT_SOUND);
 #if defined (Q_OS_WIN)
         settings.setValue("Generals_settings/path_of_sounds_dir",QCoreApplication::applicationDirPath().replace("/","\\")+"\\sounds");
         settings.setValue("Generals_settings/path_save_and_open_file",QCoreApplication::applicationDirPath().replace("/","\\"));
@@ -171,13 +167,13 @@ void MainWindow::firstStartProgram()
         settings.setValue("Generals_settings/path_of_sounds_dir",QCoreApplication::applicationDirPath()+"/sounds");
         settings.setValue("Generals_settings/path_save_and_open_file",QCoreApplication::applicationDirPath());
 #endif
-        settings.setValue("Generals_settings/manual_ring",test_sound);
+        settings.setValue("Generals_settings/manual_ring",DEFAULT_SOUND);
         for (int day = 1; day < 8; day++) {
-            settings.setValue("Days/"+QString::number(day)+"/on_or_off_before_lesson",false);
-            settings.setValue("Days/"+QString::number(day)+"/on_or_off_day",false);
+            settings.setValue("Days/"+QString::number(day)+"/on_or_off_before_lesson",true);
+            settings.setValue("Days/"+QString::number(day)+"/on_or_off_day",true);
             settings.setValue("Days/"+QString::number(day)+"/on_or_off_shedule",false);
             settings.setValue("Days/"+QString::number(day)+"/shedul_of_day",0);
-            settings.setValue("Days/"+QString::number(day)+"/sound_before_lesson",test_sound);
+            settings.setValue("Days/"+QString::number(day)+"/sound_before_lesson",DEFAULT_SOUND);
             settings.setValue("Days/"+QString::number(day)+"/time_before_lesson",2);
           }
         settings.setValue("Generals_settings/on_or_off_server",false);
@@ -262,76 +258,76 @@ void MainWindow::writeSettings(bool isSaveSheduls)
 
 void MainWindow::createActions()
 {
-    pActionCall = new QAction(tr("Call"),0);
+    pActionCall = new QAction(tr("Call"));
     pActionCall->setText(tr("Call"));
     pActionCall->setIcon(QPixmap(":/img/callNow.png"));
     pActionCall->setShortcut(QKeySequence("CTRL+SHIFT+R"));
     connect(pActionCall, SIGNAL(triggered(bool)), SLOT(slotCallNow()) );
 
-    pActionExit = new QAction("Exit",0);
+    pActionExit = new QAction("Exit");
     pActionExit->setText(tr("Exit"));
     pActionExit->setIcon(QPixmap(":/img/exit.png"));
     pActionExit->setShortcut(QKeySequence("CTRL+Q"));
     connect(pActionExit, SIGNAL(triggered(bool)), SLOT(close()) );
 
-    pActionApply = new QAction("Save",0);
+    pActionApply = new QAction("Save");
     pActionApply->setText(tr("Apply"));
     pActionApply->setIcon(QPixmap(":/img/apply.png"));
 //    pActionApply->setShortcut(QKeySequence("CTRL+S"));
     connect(pActionApply, SIGNAL(triggered(bool)), SLOT(slotApply()) );
 
-    pActionOpen = new QAction("Open",0);
+    pActionOpen = new QAction("Open");
     pActionOpen->setText(tr("Open template"));
     pActionOpen->setIcon(QPixmap(":/img/open.png"));
     pActionOpen->setShortcut(QKeySequence("CTRL+O"));
     connect(pActionOpen, SIGNAL(triggered(bool)), SLOT(slotOpen()) );
 
-    pActionSaveSheduls = new QAction("SaveSheduls",0);
+    pActionSaveSheduls = new QAction("SaveSheduls");
     pActionSaveSheduls->setText(tr("Save the template"));
     pActionSaveSheduls->setIcon(QPixmap(":/img/save_sheduls.png"));
     pActionSaveSheduls->setShortcut(QKeySequence("CTRL+S"));
     connect(pActionSaveSheduls, SIGNAL(triggered(bool)), SLOT(slotSaveTemplate()) );
 
-    pActionSettingsDasy = new QAction("Settings", 0);
+    pActionSettingsDasy = new QAction("Settings");
     pActionSettingsDasy->setText(tr("Days of the week"));
     pActionSettingsDasy->setIcon(QPixmap(":/img/days.png"));
     pActionSettingsDasy->setShortcut(QKeySequence("ALT+D"));
     connect(pActionSettingsDasy, SIGNAL(triggered(bool)), SLOT(slotSettingsDays()) );
 
-    pActionSettingsGenerals = new QAction("Settings", 0);
+    pActionSettingsGenerals = new QAction("Settings");
     pActionSettingsGenerals->setText(tr("General"));
     pActionSettingsGenerals->setIcon(QPixmap(":/img/settings.png"));
     pActionSettingsGenerals->setShortcut(QKeySequence("ALT+G"));
     connect(pActionSettingsGenerals, SIGNAL(triggered(bool)), SLOT(slotSettingsGenerals()) );
 
-    pActionAboutInstruction = new QAction("Instruction", 0);
+    pActionAboutInstruction = new QAction("Instruction");
     pActionAboutInstruction->setText(tr("instruction"));
     pActionAboutInstruction->setIcon(QPixmap(":/img/instruction.png"));
     pActionAboutInstruction->setShortcut(QKeySequence("F1"));
     connect(pActionAboutInstruction, SIGNAL(triggered(bool)), SLOT(slotAboutInstruction()) );
 
-    pActionAboutAuthor = new QAction("Author", 0);
-    pActionAboutAuthor->setText(tr("About..."));
+    pActionAboutAuthor = new QAction("About");
+    pActionAboutAuthor->setText(tr("About"));
     pActionAboutAuthor->setIcon(QPixmap(":/img/callNow.png"));
-    connect(pActionAboutAuthor, SIGNAL(triggered(bool)), SLOT(slotAboutAuthor()) );
+    connect(pActionAboutAuthor, SIGNAL(triggered(bool)), SLOT(slotAbout()) );
 
-    pActionSetDateTime = new QAction("SetDateTime", 0);
+    pActionSetDateTime = new QAction("SetDateTime");
     pActionSetDateTime->setText(tr("Date and time"));
     pActionSetDateTime->setIcon(QPixmap(":/img/clock.png"));
     pActionSetDateTime->setShortcut(QKeySequence("ALT+T"));
     connect(pActionSetDateTime, SIGNAL(triggered(bool)), SLOT(slotSetDateTime()) );
 
-    pActionSetLanguageRu = new QAction("SetLanguage",0);
+    pActionSetLanguageRu = new QAction("SetLanguage");
     pActionSetLanguageRu->setText(tr("Russian"));
     pActionSetLanguageRu->setIcon(QPixmap(":img/ru.png"));
     connect(pActionSetLanguageRu, SIGNAL(triggered(bool)), SLOT(slotSetLanguageRu()) );
 
-    pActionSetLanguageEn = new QAction("SetLanguage",0);
+    pActionSetLanguageEn = new QAction("SetLanguage");
     pActionSetLanguageEn->setText(tr("English"));
     pActionSetLanguageEn->setIcon(QPixmap(":img/en.png"));
     connect(pActionSetLanguageEn, SIGNAL(triggered(bool)), SLOT(slotSetLanguageEn()) );
 
-    pActionResetSettings = new QAction(0);
+    pActionResetSettings = new QAction();
     pActionResetSettings->setText(tr("Default settings"));
     pActionResetSettings->setIcon(QPixmap(":/img/reload.png"));
     connect(pActionResetSettings, SIGNAL(triggered(bool)), SLOT(slotResetSettings()) );
@@ -538,20 +534,23 @@ void MainWindow::retranslate()
 }
 QString MainWindow::callNow(QString sound)
 {
+    if(sound == dash)
+        return "\0";
+
 #if defined (Q_OS_WIN)
   if( !QFile(cacheSettingsGenerals[2].toString() + "\\" + sound).exists() ){
       QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
-      return "error, file " + cacheSettingsGenerals[2].toString() + "\\" + sound + " - not exist!";
+      return "error, file \"" + cacheSettingsGenerals[2].toString() + "\\" + sound + "\" - not exist!";
   }
 #elif defined (Q_OS_LINUX)
     if( !QFile(cacheSettingsGenerals[2].toString() + "/" + sound).exists() ){
         QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
-        return "error, file " + cacheSettingsGenerals[2].toString() + "/" + sound + " - not exist!";
+        return "error, file \"" + cacheSettingsGenerals[2].toString() + "/" + sound + " - not exist!";
     }
 #elif defined (Q_OS_FREEBSD)
     if( !QFile(cacheSettingsGenerals[2].toString() + "/" + sound).exists() ){
         QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
-        return "error, file " + cacheSettingsGenerals[2].toString() + "/" + sound + " - not exist!";
+        return "error, file \"" + cacheSettingsGenerals[2].toString() + "/" + sound + "\" - not exist!";
     }
 #endif
   if( player.state() == QMediaPlayer::PlayingState )
@@ -611,7 +610,7 @@ bool MainWindow::callBeforeLesson(int change, int lessons)
     }
     return false;
 }
-void MainWindow::startTcpServer(QString address, int port)
+void MainWindow::startTcpServer(QString address, quint16 port)
 {
     server->start(address, port);
 }
@@ -704,6 +703,8 @@ void MainWindow::slotSettingsDays()
     if (pSettingsWindow->exec() == QDialog::Accepted){
         pSettingsWindow->writeSettingsDays();
         this->readSettingsCache();
+        setSheduleOfDay();
+        resendDataToServer();
     }
     pSettingsWindow->stopSoundDays();
     pSettingsWindow->daysDelete();
@@ -734,7 +735,7 @@ void MainWindow::slotSettingsGenerals()
 }
 void MainWindow::slotAboutInstruction()
 {
-    QDesktopServices::openUrl(QUrl("https://litsey-yugorsk.ru/soft/bells/doc.html"));
+    QDesktopServices::openUrl(QUrl("https://bells.litsey-yugorsk.ru/doc.php"));
 }
 void MainWindow::slotSetDateTime()
 {
@@ -805,9 +806,16 @@ void MainWindow::slotSetDateTime()
     }
     delete pmbx;
 }
-void MainWindow::slotAboutAuthor()
+void MainWindow::slotAbout()
 {
-    QDesktopServices::openUrl(QUrl("https://litsey-yugorsk.ru/soft/bells/index.html"));
+//    QDesktopServices::openUrl(QUrl("https://bells.litsey-yugorsk.ru"));
+
+    About *about = new About();
+
+    if (about->exec() == QDialog::Accepted){
+        ;
+    }
+    delete about;
 }
 void MainWindow::slotStatusChanged(QMediaPlayer::State state)
 {
@@ -891,7 +899,6 @@ void MainWindow::slotResetSettings()
       readSettings();
       readSettingsCache();
       slotApply();
-//      rightPanelSet();
   }
   delete pmbx;
 }

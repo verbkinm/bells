@@ -27,7 +27,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = 0);
+    MainWindow(QWidget *parent = nullptr);
 
 private:
     QSettings           settings;
@@ -86,7 +86,7 @@ private:
 
     TcpServer*          server;
 
-    void                startTcpServer      (QString address, int port);
+    void                startTcpServer      (QString address, quint16 port);
     void                stopTcpServer       ();
     void                resendDataToServer  ();
 
@@ -128,7 +128,7 @@ private slots:
     void                slotResetSettings   ();
 
     void                slotAboutInstruction();
-    void                slotAboutAuthor     ();
+    void                slotAbout           ();
 
     void                slotSetDateTime     ();
 
