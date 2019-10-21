@@ -76,21 +76,21 @@ void Dialog::slotPlayStop1()
 #endif
     player.setVolume(100);
 
-  if( player.state() == QMediaPlayer::PlayingState ){
-      ui->buttonPlayStop1->setIcon(QPixmap(":/img/play.png"));
-      ui->buttonPlayStop2->setEnabled(true);
-      player.setMedia(QUrl::fromLocalFile(sound));
-      player.stop();
-      return;
-  }
-  if( player.state() == QMediaPlayer::StoppedState ){
-      beginSoundPlaying = true;
-      ui->buttonPlayStop1->setIcon(QPixmap(":/img/stop.png"));
-      ui->buttonPlayStop2->setEnabled(false);
-      player.setMedia(QUrl::fromLocalFile(sound));
-      player.play();
-      return;
-  }
+    if( player.state() == QMediaPlayer::PlayingState ){
+        ui->buttonPlayStop1->setIcon(QPixmap(":/img/play.png"));
+        ui->buttonPlayStop2->setEnabled(true);
+        player.setMedia(QUrl::fromLocalFile(sound));
+        player.stop();
+        return;
+    }
+    if( player.state() == QMediaPlayer::StoppedState ){
+        beginSoundPlaying = true;
+        ui->buttonPlayStop1->setIcon(QPixmap(":/img/stop.png"));
+        ui->buttonPlayStop2->setEnabled(false);
+        player.setMedia(QUrl::fromLocalFile(sound));
+        player.play();
+        return;
+    }
 }
 void Dialog::slotPlayStop2()
 {
@@ -104,60 +104,61 @@ void Dialog::slotPlayStop2()
     QString sound = dir.path()+"/"+ui->dialogEndSound->currentText();
 #endif
 
-  player.setVolume(100);
+    player.setVolume(100);
 
-  if( player.state() == QMediaPlayer::PlayingState ){
-      ui->buttonPlayStop2->setIcon(QPixmap(":/img/play.png"));
-      ui->buttonPlayStop1->setEnabled(true);
-      player.setMedia(QUrl::fromLocalFile(sound));
-      player.stop();
-      return;
-  }
-  if( player.state() == QMediaPlayer::StoppedState ){
-      endSoundPlaying = true;
-      ui->buttonPlayStop2->setIcon(QPixmap(":/img/stop.png"));
-      ui->buttonPlayStop1->setEnabled(false);
-      player.setMedia(QUrl::fromLocalFile(sound));
-      player.play();
-      return;
-  }
+    if( player.state() == QMediaPlayer::PlayingState ){
+        ui->buttonPlayStop2->setIcon(QPixmap(":/img/play.png"));
+        ui->buttonPlayStop1->setEnabled(true);
+        player.setMedia(QUrl::fromLocalFile(sound));
+        player.stop();
+        return;
+    }
+    if( player.state() == QMediaPlayer::StoppedState ){
+        endSoundPlaying = true;
+        ui->buttonPlayStop2->setIcon(QPixmap(":/img/stop.png"));
+        ui->buttonPlayStop1->setEnabled(false);
+        player.setMedia(QUrl::fromLocalFile(sound));
+        player.play();
+        return;
+    }
 }
 //###############################
 //#       SLOT PLAYER STOP      #
 //###############################
 void Dialog::slotPlayerStop(QMediaPlayer::State state)
 {
-  if( state == QMediaPlayer::StoppedState ){
-      player.stop();
-      beginSoundPlaying = false;
-      endSoundPlaying   = false;
-      ui->buttonPlayStop1->setIcon(QPixmap(":/img/play.png"));
-      ui->buttonPlayStop2->setIcon(QPixmap(":/img/play.png"));
-      ui->buttonPlayStop1->setEnabled(true);
-      ui->buttonPlayStop2->setEnabled(true);
-  }
+    if( state == QMediaPlayer::StoppedState ){
+        player.stop();
+        beginSoundPlaying = false;
+        endSoundPlaying   = false;
+        ui->buttonPlayStop1->setIcon(QPixmap(":/img/play.png"));
+        ui->buttonPlayStop2->setIcon(QPixmap(":/img/play.png"));
+        ui->buttonPlayStop1->setEnabled(true);
+        ui->buttonPlayStop2->setEnabled(true);
+    }
 }
 //###############################
 //#     SLOT GENERAL PLAYER     #
 //###############################
 void Dialog::slotGeneralPlayerStop()
 {
-  if( generalPlayer->state() == QMediaPlayer::PlayingState ){
-    ui->buttonPlayStop1->setEnabled(false);
-    ui->buttonPlayStop2->setEnabled(false);
-    player.pause();
-    return;
-  }
-  if( generalPlayer->state() == QMediaPlayer::StoppedState ){
-      ui->buttonPlayStop1->setEnabled(true);
-      ui->buttonPlayStop2->setEnabled(true);
-      if( player.state() == QMediaPlayer::PausedState )
-          player.play();
-          if( beginSoundPlaying )
-              ui->buttonPlayStop2->setEnabled(false);
-          if( endSoundPlaying )
-              ui->buttonPlayStop1->setEnabled(false);
-  }
+    if( generalPlayer->state() == QMediaPlayer::PlayingState ){
+        ui->buttonPlayStop1->setEnabled(false);
+        ui->buttonPlayStop2->setEnabled(false);
+        player.pause();
+        return;
+    }
+    if( generalPlayer->state() == QMediaPlayer::StoppedState )
+    {
+        ui->buttonPlayStop1->setEnabled(true);
+        ui->buttonPlayStop2->setEnabled(true);
+        if( player.state() == QMediaPlayer::PausedState )
+            player.play();
+        if( beginSoundPlaying )
+            ui->buttonPlayStop2->setEnabled(false);
+        if( endSoundPlaying )
+            ui->buttonPlayStop1->setEnabled(false);
+    }
 }
 Dialog::~Dialog()
 {
