@@ -175,7 +175,7 @@ void MainWindow::firstStartProgram()
             settings.setValue("Days/"+QString::number(day)+"/shedul_of_day",0);
             settings.setValue("Days/"+QString::number(day)+"/sound_before_lesson",DEFAULT_SOUND);
             settings.setValue("Days/"+QString::number(day)+"/time_before_lesson",2);
-          }
+        }
         settings.setValue("Generals_settings/on_or_off_server",false);
         settings.setValue("Generals_settings/address_listen","localhost");
         settings.setValue("Generals_settings/port_listen","83");
@@ -203,7 +203,7 @@ void MainWindow::readSettings()
                                               settings.value("Sheduls/shedul"+QString::number(tabs)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/sound_end").toString() );
                 pLeftPanel->setDisableLesson(tabs,change,lesson,settings.value("Sheduls/shedul"+QString::number(tabs)+"/change"+QString::number(change)+"/lesson"+QString::number(lesson)+"/isEnabled").toBool());
             }
-                pLeftPanel->setDisableChange(tabs,change,settings.value("Sheduls/shedul"+QString::number(tabs)+"/change"+QString::number(change)+"/isEnabled").toBool());
+            pLeftPanel->setDisableChange(tabs,change,settings.value("Sheduls/shedul"+QString::number(tabs)+"/change"+QString::number(change)+"/isEnabled").toBool());
         }
     }
     pLeftPanel->setCurrentTab(settings.value("Generals_settings/start_tab").toInt());
@@ -273,7 +273,7 @@ void MainWindow::createActions()
     pActionApply = new QAction("Save");
     pActionApply->setText(tr("Apply"));
     pActionApply->setIcon(QPixmap(":/img/apply.png"));
-//    pActionApply->setShortcut(QKeySequence("CTRL+S"));
+    //    pActionApply->setShortcut(QKeySequence("CTRL+S"));
     connect(pActionApply, SIGNAL(triggered(bool)), SLOT(slotApply()) );
 
     pActionOpen = new QAction("Open");
@@ -448,8 +448,8 @@ void MainWindow::rightPanelSet()
                                         pLeftPanel->isLessonEnabled(currentTab, change, lesson) );
         }
     }
-//    server->printDataSendArray();
-//перемены
+    //    server->printDataSendArray();
+    //перемены
     int end_this_lesson,recess,begin_next_lesson;
     QString result;
     bool last_lesson;
@@ -462,9 +462,9 @@ void MainWindow::rightPanelSet()
                 continue;
             }
             end_this_lesson = pLeftPanel->getLessonTimeEnd(pLeftPanel->currentTab(), change,lesson).mid(0,2).toInt()*3600\
-                            + pLeftPanel->getLessonTimeEnd(pLeftPanel->currentTab(), change,lesson).mid(3,2).toInt()*60;
+                    + pLeftPanel->getLessonTimeEnd(pLeftPanel->currentTab(), change,lesson).mid(3,2).toInt()*60;
             begin_next_lesson = pLeftPanel->getLessonTimeBegin(pLeftPanel->currentTab(), change,lesson+1).mid(0,2).toInt()*3600\
-                              + pLeftPanel->getLessonTimeBegin(pLeftPanel->currentTab(), change,lesson+1).mid(3,2).toInt()*60;
+                    + pLeftPanel->getLessonTimeBegin(pLeftPanel->currentTab(), change,lesson+1).mid(3,2).toInt()*60;
 
             if(!pLeftPanel->isLessonEnabled(pLeftPanel->currentTab(), change,lesson+1)){
                 if(lesson+2 == pLeftPanel->getSize(pLeftPanel->currentTab(),change)){
@@ -474,7 +474,7 @@ void MainWindow::rightPanelSet()
                 for (int nextLesson = lesson+2; nextLesson < pLeftPanel->getSize(pLeftPanel->currentTab(),change); nextLesson++){
                     if(pLeftPanel->isLessonEnabled(pLeftPanel->currentTab(), change, nextLesson)){
                         begin_next_lesson = pLeftPanel->getLessonTimeBegin(pLeftPanel->currentTab(), change,nextLesson).mid(0,2).toInt()*3600\
-                                          + pLeftPanel->getLessonTimeBegin(pLeftPanel->currentTab(), change,nextLesson).mid(3,2).toInt()*60;
+                                + pLeftPanel->getLessonTimeBegin(pLeftPanel->currentTab(), change,nextLesson).mid(3,2).toInt()*60;
                         break;
                     }
                     if(nextLesson+1 ==  pLeftPanel->getSize(pLeftPanel->currentTab(),change))
@@ -496,7 +496,7 @@ void MainWindow::rightPanelSet()
 
     pRightPanel->setTableToolTip();
 
-//    qDebug() << "end rigth";
+    //    qDebug() << "end rigth";
 }
 void MainWindow::retranslate()
 {
@@ -538,10 +538,10 @@ QString MainWindow::callNow(QString sound)
         return "\0";
 
 #if defined (Q_OS_WIN)
-  if( !QFile(cacheSettingsGenerals[2].toString() + "\\" + sound).exists() ){
-      QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
-      return "error, file \"" + cacheSettingsGenerals[2].toString() + "\\" + sound + "\" - not exist!";
-  }
+    if( !QFile(cacheSettingsGenerals[2].toString() + "\\" + sound).exists() ){
+        QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
+        return "error, file \"" + cacheSettingsGenerals[2].toString() + "\\" + sound + "\" - not exist!";
+    }
 #elif defined (Q_OS_LINUX)
     if( !QFile(cacheSettingsGenerals[2].toString() + "/" + sound).exists() ){
         QMessageBox::warning(this,tr("Warning"),tr("The file ") + cacheSettingsGenerals[2].toString() + "\\" + sound + tr(" - not exist!"),QMessageBox::Ok);
@@ -553,8 +553,11 @@ QString MainWindow::callNow(QString sound)
         return "error, file \"" + cacheSettingsGenerals[2].toString() + "/" + sound + "\" - not exist!";
     }
 #endif
-  if( player.state() == QMediaPlayer::PlayingState )
-    return " error, melody is already playing" ;
+    if( player.state() == QMediaPlayer::PlayingState )
+    {
+        player.stop();
+        //    return " error, melody is already playing" ;
+    }
 
     QStringList tmpArgs;
     cmdProgramStart[0].close();
@@ -562,23 +565,23 @@ QString MainWindow::callNow(QString sound)
 
 #if defined (Q_OS_WIN)
     if(!cacheSettingsGenerals[5].toString().isEmpty())
-      cmdProgramStart[0].start("\"" + cacheSettingsGenerals[5].toString() + "\"");
+        cmdProgramStart[0].start("\"" + cacheSettingsGenerals[5].toString() + "\"");
     if(!cacheSettingsGenerals[6].toString().isEmpty())
-      cmdProgramStart[1].start("\"" + cacheSettingsGenerals[6].toString() + "\"");
+        cmdProgramStart[1].start("\"" + cacheSettingsGenerals[6].toString() + "\"");
 
     tmpArgs << cacheSettingsGenerals[2].toString() + "\\" + sound;
 #elif defined (Q_OS_LINUX)
     if(!cacheSettingsGenerals[5].toString().isEmpty())
-       cmdProgramStart[0].start(cacheSettingsGenerals[5].toString());
+        cmdProgramStart[0].start(cacheSettingsGenerals[5].toString());
     if(!cacheSettingsGenerals[6].toString().isEmpty())
-      cmdProgramStart[1].start(cacheSettingsGenerals[6].toString());
+        cmdProgramStart[1].start(cacheSettingsGenerals[6].toString());
 
     tmpArgs << cacheSettingsGenerals[2].toString() + "/" + sound;
 #elif defined (Q_OS_FREEBSD)
     if(!cacheSettingsGenerals[5].toString().isEmpty())
-       cmdProgramStart[0].start(cacheSettingsGenerals[5].toString());
+        cmdProgramStart[0].start(cacheSettingsGenerals[5].toString());
     if(!cacheSettingsGenerals[6].toString().isEmpty())
-      cmdProgramStart[1].start(cacheSettingsGenerals[6].toString());
+        cmdProgramStart[1].start(cacheSettingsGenerals[6].toString());
 
     tmpArgs << cacheSettingsGenerals[2].toString() + "/" + sound;
 #endif
@@ -634,51 +637,51 @@ void MainWindow::slotApply()
 }
 void MainWindow::slotSaveTemplate()
 {
-  QString FILE_NAME = QFileDialog::getSaveFileName(this,tr("Save the template"),cacheSettingsGenerals[8].toString(),"*.bells");
+    QString FILE_NAME = QFileDialog::getSaveFileName(this,tr("Save the template"),cacheSettingsGenerals[8].toString(),"*.bells");
 
-  if ( !FILE_NAME.isEmpty() ){
-      if( FILE_NAME.mid(FILE_NAME.length()-6) != ".bells")
-          FILE_NAME.append(".bells");
+    if ( !FILE_NAME.isEmpty() ){
+        if( FILE_NAME.mid(FILE_NAME.length()-6) != ".bells")
+            FILE_NAME.append(".bells");
 
-      QFile out( FILE_NAME );
-      if( out.open( QIODevice::WriteOnly ) ) {
-          QTextStream stream( &out );
-          stream.setCodec( "UTF-8 ");
-          foreach (QString str, settings.allKeys()) {
-              stream << str << "=" << settings.value(str).toString() << "\n";
-          }
-          settings.setValue("Generals_settings/path_save_and_open_file",QFileInfo(out).path().replace("/","\\"));
-          cacheSettingsGenerals[8] = QFileInfo(out).path().replace("/","\\");
-          out.close();
-       }
-  }
+        QFile out( FILE_NAME );
+        if( out.open( QIODevice::WriteOnly ) ) {
+            QTextStream stream( &out );
+            stream.setCodec( "UTF-8 ");
+            foreach (QString str, settings.allKeys()) {
+                stream << str << "=" << settings.value(str).toString() << "\n";
+            }
+            settings.setValue("Generals_settings/path_save_and_open_file",QFileInfo(out).path().replace("/","\\"));
+            cacheSettingsGenerals[8] = QFileInfo(out).path().replace("/","\\");
+            out.close();
+        }
+    }
 }
 void MainWindow::slotOpen()
 {
-  QFileDialog openFile;
-  QString tmpPath(openFile.getOpenFileName(this,tr("Open template"),cacheSettingsGenerals[8].toString(),"*.bells"));
-  QFile fileOpen(tmpPath);
-  if(fileOpen.open(QIODevice::ReadOnly) ){
-      QApplication::setOverrideCursor(Qt::WaitCursor);
-      QString tmp = settings.value("Generals_settings/path_application").toString();
-      while(!fileOpen.atEnd()){
-          QString line = fileOpen.readLine();
-          QString key, value;
-          QString spliter = "=";
-          int spliterPos = line.indexOf(spliter);
-          key = line.mid(0,spliterPos);
-          value = line.mid(spliterPos+1);
-          value.remove("\n");
-          settings.setValue(key,value);
-      }
-      settings.setValue("Generals_settings/path_application",tmp);
-      QApplication::setOverrideCursor(Qt::ArrowCursor);
-      settings.setValue("Generals_settings/path_save_and_open_file",QFileInfo(fileOpen).path().replace("/","\\"));
-      readSettings();
-      readSettingsCache();
-      rightPanelSet();
-  }
-  fileOpen.close();
+    QFileDialog openFile;
+    QString tmpPath(openFile.getOpenFileName(this,tr("Open template"),cacheSettingsGenerals[8].toString(),"*.bells"));
+    QFile fileOpen(tmpPath);
+    if(fileOpen.open(QIODevice::ReadOnly) ){
+        QApplication::setOverrideCursor(Qt::WaitCursor);
+        QString tmp = settings.value("Generals_settings/path_application").toString();
+        while(!fileOpen.atEnd()){
+            QString line = fileOpen.readLine();
+            QString key, value;
+            QString spliter = "=";
+            int spliterPos = line.indexOf(spliter);
+            key = line.mid(0,spliterPos);
+            value = line.mid(spliterPos+1);
+            value.remove("\n");
+            settings.setValue(key,value);
+        }
+        settings.setValue("Generals_settings/path_application",tmp);
+        QApplication::setOverrideCursor(Qt::ArrowCursor);
+        settings.setValue("Generals_settings/path_save_and_open_file",QFileInfo(fileOpen).path().replace("/","\\"));
+        readSettings();
+        readSettingsCache();
+        rightPanelSet();
+    }
+    fileOpen.close();
 
 }
 
@@ -687,7 +690,7 @@ void MainWindow::slotCallNow()
     if ( player.state() == 0){
         log.write(" - call now manual - " + callNow(cacheSettingsGenerals[0].toString()));
         return;
-      }
+    }
     if ( player.state() == 1 )
         slotCallStop();
 }
@@ -741,66 +744,66 @@ void MainWindow::slotSetDateTime()
 {
 #if defined (Q_OS_FREEBSD)
     QMessageBox* pmbxUnix =
-                        new QMessageBox(tr("Warning"),
-                        tr("In Unix system you can't change time and date in this program!"),
-                        QMessageBox::Warning,
-                        QMessageBox::Ok,
-                        QMessageBox::NoButton, QMessageBox::NoButton);
+            new QMessageBox(tr("Warning"),
+                            tr("In Unix system you can't change time and date in this program!"),
+                            QMessageBox::Warning,
+                            QMessageBox::Ok,
+                            QMessageBox::NoButton, QMessageBox::NoButton);
     if( pmbxUnix->exec() == QMessageBox::Ok){
         delete pmbxUnix;
         return;
     }
 #endif
-  QMessageBox* pmbx =
-                      new QMessageBox(tr("Warning"),
-                      tr("These settings change the date and time system! Continue?"),
-                      QMessageBox::Information,
-                      QMessageBox::Yes,
-                      QMessageBox::No,QMessageBox::NoButton);
-      if( pmbx->exec() == QMessageBox::Yes){
-          SetDateTime *dateTime = new SetDateTime(locale);
-          dateTime->show();
-          if( dateTime->exec() == QDialog::Accepted ){
+    QMessageBox* pmbx =
+            new QMessageBox(tr("Warning"),
+                            tr("These settings change the date and time system! Continue?"),
+                            QMessageBox::Information,
+                            QMessageBox::Yes,
+                            QMessageBox::No,QMessageBox::NoButton);
+    if( pmbx->exec() == QMessageBox::Yes){
+        SetDateTime *dateTime = new SetDateTime(locale);
+        dateTime->show();
+        if( dateTime->exec() == QDialog::Accepted ){
 #if defined (Q_OS_WIN)
-          SYSTEMTIME lt;
-          GetLocalTime(&lt);
-          lt.wDay = dateTime->getDate().day();
+            SYSTEMTIME lt;
+            GetLocalTime(&lt);
+            lt.wDay = dateTime->getDate().day();
 
-          if(dateTime->getDate().dayOfWeek() == 0)
-              lt.wDayOfWeek = 7;
-          else
-            lt.wDayOfWeek = dateTime->getDate().dayOfWeek();
+            if(dateTime->getDate().dayOfWeek() == 0)
+                lt.wDayOfWeek = 7;
+            else
+                lt.wDayOfWeek = dateTime->getDate().dayOfWeek();
 
-          lt.wMonth         = dateTime->getDate().month();
-          lt.wYear          = dateTime->getDate().year();
-          lt.wHour          = dateTime->getTime().hour();
-          lt.wMinute        = dateTime->getTime().minute();
-          lt.wSecond        = dateTime->getTime().second();
-          lt.wMilliseconds  = dateTime->getTime().msec();
+            lt.wMonth         = dateTime->getDate().month();
+            lt.wYear          = dateTime->getDate().year();
+            lt.wHour          = dateTime->getTime().hour();
+            lt.wMinute        = dateTime->getTime().minute();
+            lt.wSecond        = dateTime->getTime().second();
+            lt.wMilliseconds  = dateTime->getTime().msec();
 
-          if( SetLocalTime(&lt) == 0 )
-              QMessageBox::information(dateTime, tr("Warning"), tr("To change the date and time you need to run a program as a local administrator!"));
+            if( SetLocalTime(&lt) == 0 )
+                QMessageBox::information(dateTime, tr("Warning"), tr("To change the date and time you need to run a program as a local administrator!"));
 #elif defined (Q_OS_LINUX)
-        QString month = QString::number(dateTime->getDate().month());
-        QString day   = QString::number(dateTime->getDate().day());
-        QString hour  = QString::number(dateTime->getTime().hour());
-        QString minute= QString::number(dateTime->getTime().minute());
-        QString year  = QString::number(dateTime->getDate().year());
-        QString second= QString::number(dateTime->getTime().second());
+            QString month = QString::number(dateTime->getDate().month());
+            QString day   = QString::number(dateTime->getDate().day());
+            QString hour  = QString::number(dateTime->getTime().hour());
+            QString minute= QString::number(dateTime->getTime().minute());
+            QString year  = QString::number(dateTime->getDate().year());
+            QString second= QString::number(dateTime->getTime().second());
 
-        if(month.toInt() < 10)  {month  = "0" + month;}
-        if(day.toInt() < 10)    {day    = "0" + day;}
-        if(hour.toInt() < 10)   {hour   = "0" + hour;}
-        if(minute.toInt() < 10) {minute = "0" + minute;}
-        if(second.toInt() < 10) {second = "0" + second;}
+            if(month.toInt() < 10)  {month  = "0" + month;}
+            if(day.toInt() < 10)    {day    = "0" + day;}
+            if(hour.toInt() < 10)   {hour   = "0" + hour;}
+            if(minute.toInt() < 10) {minute = "0" + minute;}
+            if(second.toInt() < 10) {second = "0" + second;}
 
-        QString date_and_time = month+day+hour+minute+year+"."+second;
+            QString date_and_time = month+day+hour+minute+year+"."+second;
 
-    qDebug() << system(QString("gksu date "+date_and_time).toLocal8Bit() );
-        Password *password = new Password(date_and_time);
-    password->show();
+            qDebug() << system(QString("gksu date "+date_and_time).toLocal8Bit() );
+            Password *password = new Password(date_and_time);
+            password->show();
 #endif
-        dateTime->close();
+            dateTime->close();
         }
         delete dateTime;
     }
@@ -808,7 +811,7 @@ void MainWindow::slotSetDateTime()
 }
 void MainWindow::slotAbout()
 {
-//    QDesktopServices::openUrl(QUrl("https://bells.litsey-yugorsk.ru"));
+    //    QDesktopServices::openUrl(QUrl("https://bells.litsey-yugorsk.ru"));
 
     About *about = new About();
 
@@ -819,30 +822,30 @@ void MainWindow::slotAbout()
 }
 void MainWindow::slotStatusChanged(QMediaPlayer::State state)
 {
-  if ( state == 0 ){
-      pActionCall->setIcon(QPixmap(":img/callNow.png"));
-      pActionCall->setText(tr("Call"));
+    if ( state == 0 ){
+        pActionCall->setIcon(QPixmap(":img/callNow.png"));
+        pActionCall->setText(tr("Call"));
 
-      log.write(" - call end");
+        log.write(" - call end");
 
-      cmdProgramEnd[0].close();
-      cmdProgramEnd[1].close();
+        cmdProgramEnd[0].close();
+        cmdProgramEnd[1].close();
 
 #if defined (Q_OS_WIN)
-      cmdProgramEnd[0].start("\"" + cacheSettingsGenerals[3].toString() + "\"");
-      cmdProgramEnd[1].start("\"" + cacheSettingsGenerals[4].toString() + "\"");
+        cmdProgramEnd[0].start("\"" + cacheSettingsGenerals[3].toString() + "\"");
+        cmdProgramEnd[1].start("\"" + cacheSettingsGenerals[4].toString() + "\"");
 #elif defined (Q_OS_LINUX)
-      cmdProgramEnd[0].start(cacheSettingsGenerals[3].toString());
-      cmdProgramEnd[1].start(cacheSettingsGenerals[4].toString());
+        cmdProgramEnd[0].start(cacheSettingsGenerals[3].toString());
+        cmdProgramEnd[1].start(cacheSettingsGenerals[4].toString());
 #elif defined (Q_OS_FREEBSD)
-      cmdProgramEnd[0].start(cacheSettingsGenerals[3].toString());
-      cmdProgramEnd[1].start(cacheSettingsGenerals[4].toString());
+        cmdProgramEnd[0].start(cacheSettingsGenerals[3].toString());
+        cmdProgramEnd[1].start(cacheSettingsGenerals[4].toString());
 #endif
-      log.write(" - program 1 after call - " + cacheSettingsGenerals[3].toString());
-      log.write(" - program 2 after call - " + cacheSettingsGenerals[4].toString());
-      log.write(" ===============================================================");
-      return;
-  }
+        log.write(" - program 1 after call - " + cacheSettingsGenerals[3].toString());
+        log.write(" - program 2 after call - " + cacheSettingsGenerals[4].toString());
+        log.write(" ===============================================================");
+        return;
+    }
     if ( state == 1){
         pActionCall->setIcon(QPixmap(":img/callStop.png"));
         pActionCall->setText(tr("Turn the ringer off"));
@@ -880,27 +883,27 @@ void MainWindow::slotSetLanguageEn()
 }
 void MainWindow::slotCheckDayOfWeek()
 {
-  if( currentDayOfWeek != QDate::currentDate().dayOfWeek() ){
-      currentDayOfWeek = QDate::currentDate().dayOfWeek();
-      setSheduleOfDay();
+    if( currentDayOfWeek != QDate::currentDate().dayOfWeek() ){
+        currentDayOfWeek = QDate::currentDate().dayOfWeek();
+        setSheduleOfDay();
     }
 }
 void MainWindow::slotResetSettings()
 {
-  QMessageBox* pmbx =
-                      new QMessageBox(tr("Warning"),
-                      tr("Are you sure?"),
-                      QMessageBox::Information,
-                      QMessageBox::Ok,
-                      QMessageBox::Cancel,QMessageBox::NoButton);
-  if (pmbx->exec() == QMessageBox::Ok){
-      settings.clear();
-      firstStartProgram();
-      readSettings();
-      readSettingsCache();
-      slotApply();
-  }
-  delete pmbx;
+    QMessageBox* pmbx =
+            new QMessageBox(tr("Warning"),
+                            tr("Are you sure?"),
+                            QMessageBox::Information,
+                            QMessageBox::Ok,
+                            QMessageBox::Cancel,QMessageBox::NoButton);
+    if (pmbx->exec() == QMessageBox::Ok){
+        settings.clear();
+        firstStartProgram();
+        readSettings();
+        readSettingsCache();
+        slotApply();
+    }
+    delete pmbx;
 }
 /*virtual*/void MainWindow::timerEvent(QTimerEvent*)
 {
@@ -925,12 +928,12 @@ void MainWindow::slotResetSettings()
 }
 void MainWindow::setSheduleOfDay()
 {
-  if( cacheSettingsDays[QDate::currentDate().dayOfWeek()-1][1].toBool() ){
-      if( cacheSettingsDays[QDate::currentDate().dayOfWeek() - 1][5].toBool() ){
-          pLeftPanel->setCurrentTab(cacheSettingsDays[QDate::currentDate().dayOfWeek() - 1][2].toInt() );
-          rightPanelSet();
-      }
-  }
+    if( cacheSettingsDays[QDate::currentDate().dayOfWeek()-1][1].toBool() ){
+        if( cacheSettingsDays[QDate::currentDate().dayOfWeek() - 1][5].toBool() ){
+            pLeftPanel->setCurrentTab(cacheSettingsDays[QDate::currentDate().dayOfWeek() - 1][2].toInt() );
+            rightPanelSet();
+        }
+    }
 }
 /*virtual*/void MainWindow::closeEvent(QCloseEvent *)
 {
