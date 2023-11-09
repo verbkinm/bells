@@ -738,7 +738,7 @@ void MainWindow::slotSettingsGenerals()
 }
 void MainWindow::slotAboutInstruction()
 {
-    QDesktopServices::openUrl(QUrl("https://bells.litsey-yugorsk.ru/главная/документация"));
+    QDesktopServices::openUrl(QUrl("https://bells.verbkinm.ru/главная/документация"));
 }
 void MainWindow::slotSetDateTime()
 {
